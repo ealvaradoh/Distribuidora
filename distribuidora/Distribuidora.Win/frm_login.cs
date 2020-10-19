@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Distribuidora.BL;
 
 namespace Distribuidora.Win
 {
     public partial class frm_login : Form
     {
-        public frm_menu Menu { get; set; }
+        public frm_menu MenuPrincipal { get; set; }
+        public frm_login Login { get; set; }
         public frm_login()
         {
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace Distribuidora.Win
 
         private void btnConectar_Click(object sender, EventArgs e)
         {
+            Contexto.crearConexion();
             this.Close();
         }
     }

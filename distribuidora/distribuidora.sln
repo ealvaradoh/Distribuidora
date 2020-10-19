@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distribuidora.Win", "Distribuidora.Win\Distribuidora.Win.csproj", "{8D1ED024-36D0-4894-AF5F-93A2F364D2EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distribuidora.BL", "Distribuidora.BL\Distribuidora.BL.csproj", "{BB2A41A3-DF6B-4708-8CD5-13ED17E5BB82}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distribuidora.BL", "Distribuidora.BL\Distribuidora.BL.csproj", "{C9996624-FB1C-4BB6-AEA3-EF93E89059F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{8D1ED024-36D0-4894-AF5F-93A2F364D2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D1ED024-36D0-4894-AF5F-93A2F364D2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D1ED024-36D0-4894-AF5F-93A2F364D2EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB2A41A3-DF6B-4708-8CD5-13ED17E5BB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB2A41A3-DF6B-4708-8CD5-13ED17E5BB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB2A41A3-DF6B-4708-8CD5-13ED17E5BB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB2A41A3-DF6B-4708-8CD5-13ED17E5BB82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9996624-FB1C-4BB6-AEA3-EF93E89059F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9996624-FB1C-4BB6-AEA3-EF93E89059F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9996624-FB1C-4BB6-AEA3-EF93E89059F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9996624-FB1C-4BB6-AEA3-EF93E89059F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

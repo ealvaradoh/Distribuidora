@@ -20,7 +20,7 @@ namespace Distribuidora.Win
         private void Login()
         {
             var frmLogin = new frm_login();
-            frmLogin.Menu = this;
+            frmLogin.MenuPrincipal = this;
             frmLogin.ShowDialog();
         }
 
