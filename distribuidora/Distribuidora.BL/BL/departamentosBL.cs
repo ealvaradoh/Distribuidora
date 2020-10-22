@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Distribuidora.BL.BL
 {
-    public class departamentoBL
+    public class departamentosBL
     {
         departamentoSQL _departamentoSQL;
         public BindingList<departamento> ListaDepartamentos { get; set; }
-        public departamentoBL()
+        public departamentosBL()
         {
             _departamentoSQL = new departamentoSQL();
         }

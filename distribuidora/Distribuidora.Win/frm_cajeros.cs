@@ -11,17 +11,17 @@ using System.Windows.Forms;
 
 namespace Distribuidora.Win
 {
-    public partial class frm_usuarios : Form
+    public partial class frm_cajeros : Form
     {
+        cajerosBL _cajerosBL;
         empleadosBL _empleadosBL;
-        departamentosBL _departamentoBL;
-        public frm_usuarios()
+        public frm_cajeros()
         {
-            InitializeComponent();
+            _cajerosBL = new cajerosBL();
             _empleadosBL = new empleadosBL();
-            _departamentoBL = new departamentosBL();
+            InitializeComponent();
+            listaCajerosBindingSource.DataSource = _cajerosBL.ObtenerCajeros();
             listaEmpleadosBindingSource.DataSource = _empleadosBL.ObtenerEmpleados();
-            listaDepartamentosBindingSource.DataSource = _departamentoBL.ObtenerDepartamentos();
         }
     }
 }

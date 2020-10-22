@@ -28,6 +28,7 @@ namespace Distribuidora.BL.MySQL
             {
                 emp = new empleado();
                 emp.emp_id = int.Parse(reader["emp_id"].ToString());
+                emp.emp_numid = reader["emp_numid"].ToString();
                 emp.emp_pnom = reader["emp_pnom"].ToString();
                 emp.emp_snom = reader["emp_snom"].ToString();
                 emp.emp_pape = reader["emp_pape"].ToString();
@@ -36,6 +37,7 @@ namespace Distribuidora.BL.MySQL
                 emp.emp_mail = reader["emp_mail"].ToString();
                 emp.emp_mail_ctr = reader["emp_mail_ctr"].ToString();
                 emp.emp_activo = bool.Parse(reader["emp_activo"].ToString());
+                emp.emp_tel = reader["emp_tel"].ToString();
                 emp.depar_id = int.Parse(reader["depar_id"].ToString());
 
                 listaEmpleados.Add(emp);

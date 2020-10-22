@@ -59,5 +59,43 @@ namespace Distribuidora.Win
             tsDatabase.Text = "BD: " + contexto.database;
             tsUsuario.Text = "Usuario: " + frm_login.usuario;
         }
+
+        public frm_clientes frm_clientes;
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frm_clientes == null)
+            {
+                frm_clientes = new frm_clientes();
+                frm_clientes.MdiParent = this;
+                frm_clientes.Show();
+            }
+            else if (frm_clientes.IsDisposed)
+            {
+                frm_clientes = new frm_clientes();
+                frm_clientes.MdiParent = this;
+                frm_clientes.Show();
+            }
+            else
+                frm_clientes.Activate();
+        }
+
+        public frm_cajeros frm_cajeros;
+        private void cajerosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frm_cajeros == null)
+            {
+                frm_cajeros = new frm_cajeros();
+                frm_cajeros.MdiParent = this;
+                frm_cajeros.Show();
+            }
+            else if (frm_cajeros.IsDisposed)
+            {
+                frm_cajeros = new frm_cajeros();
+                frm_cajeros.MdiParent = this;
+                frm_cajeros.Show();
+            }
+            else
+                frm_cajeros.Activate();
+        }
     }
 }
