@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Distribuidora.BL;
+using Distribuidora.BL.MySQL;
 
 namespace Distribuidora.Win
 {
@@ -23,7 +23,7 @@ namespace Distribuidora.Win
             List<TextBox> usuarioTlist = new List<TextBox>();
             List<string> usuarioSlist = new List<String>();
             usuarioTlist.Add(txtUsuario);
-            usuarioSlist.Add("Usuario");
+            usuarioSlist.Add("Usuario (Mail)");
             SetCueBanner(ref usuarioTlist, usuarioSlist);
 
             List<TextBox> contrasenaTlist = new List<TextBox>();
@@ -49,9 +49,27 @@ namespace Distribuidora.Win
             Application.Exit();
         }
 
+        public static string server, database, user, pwd;
+        public static string usuario, contra;    
         private void btnConectar_Click(object sender, EventArgs e)
         {
-            Contexto.crearConexion();
+            server = txtServer.Text;
+            database = txtDatabase.Text;
+            user = txtUser.Text;
+            pwd = txtPwd.Text;
+
+            usuario = txtUsuario.Text;
+            contra = txtContraseña.Text;
+
+            btnConectar.Enabled = false;
+            btnConectar.Text = "Verificando...";
+            Application.DoEvents();
+
+            contexto.server = server;
+            contexto.database = database;
+            contexto.Uid = user;
+            contexto.Pwd = pwd;
+            contexto.crearConexion();
             this.Close();
         }
     }

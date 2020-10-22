@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Distribuidora.BL.MySQL;
 
 namespace Distribuidora.Win
 {
@@ -27,11 +28,36 @@ namespace Distribuidora.Win
         private void frm_menu_Load(object sender, EventArgs e)
         {
             Login();
+            tsServer.Text = "Servidor: " + contexto.server;
+            tsDatabase.Text = "BD: " + contexto.database;
+            tsUsuario.Text = "Usuario: " + frm_login.usuario;
         }
 
-        private void sALIRToolStripMenuItem_Click(object sender, EventArgs e)
+        public frm_usuarios frm_usuarios;
+        private void controlDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (frm_usuarios == null)
+            {
+                frm_usuarios = new frm_usuarios();
+                frm_usuarios.MdiParent = this;
+                frm_usuarios.Show();
+            }
+            else if (frm_usuarios.IsDisposed)
+            {
+                frm_usuarios = new frm_usuarios();
+                frm_usuarios.MdiParent = this;
+                frm_usuarios.Show();
+            }
+            else
+                frm_usuarios.Activate();
+        }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Login();
+            tsServer.Text = "Servidor: " + contexto.server;
+            tsDatabase.Text = "BD: " + contexto.database;
+            tsUsuario.Text = "Usuario: " + frm_login.usuario;
         }
     }
 }

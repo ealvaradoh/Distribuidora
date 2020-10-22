@@ -99,6 +99,12 @@
     <Compile Include="frm_menu.Designer.cs">
       <DependentUpon>frm_menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_usuarios.Designer.cs">
+      <DependentUpon>frm_usuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frm_login.resx">
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_menu.resx">
       <DependentUpon>frm_menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_usuarios.resx">
+      <DependentUpon>frm_usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,6 +127,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.departamentoBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.empleadosBL.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -131,32 +142,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\orden.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\factura.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\catalogos.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Usuario.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MenuBotonSalir.png" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Distribuidora.BL\Distribuidora.BL.csproj">
-      <Project>{c9996624-fb1c-4bb6-aea3-ef93e89059f2}</Project>
+      <Project>{D4ABC185-7F85-402A-8686-0FDC3C0717C9}</Project>
       <Name>Distribuidora.BL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\login.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\login1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
