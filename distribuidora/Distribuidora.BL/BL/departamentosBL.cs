@@ -1,5 +1,5 @@
 ﻿using Distribuidora.BL.Entidades;
-using Distribuidora.BL.MySQL;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,15 +11,30 @@ namespace Distribuidora.BL.BL
 {
     public class departamentosBL
     {
-        departamentoSQL _departamentoSQL;
         public BindingList<departamento> ListaDepartamentos { get; set; }
         public departamentosBL()
         {
-            _departamentoSQL = new departamentoSQL();
+            ListaDepartamentos = new BindingList<departamento>();
         }
         public BindingList<departamento> ObtenerDepartamentos()
         {
-            ListaDepartamentos = _departamentoSQL.select();
+            MySqlDataReader reader;
+            MySqlConnection _contexto = contexto.crearConexion();
+
+            string sql = "SELECT * FROM departamento;";
+            MySqlCommand comando = new MySqlCommand(sql, _contexto);
+
+            reader = comando.ExecuteReader();
+
+            departamento depart = null;
+            while (reader.Read())
+            {
+                depart = new departamento();
+                depart.depar_id = int.Parse(reader["depar_id"].ToString());
+                depart.depar_nom = reader["depar_nom"].ToString();
+
+                ListaDepartamentos.Add(depart);
+            }
             return ListaDepartamentos;
         }
     }

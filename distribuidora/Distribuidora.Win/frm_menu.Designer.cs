@@ -110,13 +110,14 @@
             // facturasToolStripMenuItem
             // 
             this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
-            this.facturasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.facturasToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
             this.facturasToolStripMenuItem.Text = "Facturas";
+            this.facturasToolStripMenuItem.Click += new System.EventHandler(this.facturasToolStripMenuItem_Click);
             // 
             // cajerosToolStripMenuItem
             // 
             this.cajerosToolStripMenuItem.Name = "cajerosToolStripMenuItem";
-            this.cajerosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cajerosToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
             this.cajerosToolStripMenuItem.Text = "Cajeros";
             this.cajerosToolStripMenuItem.Click += new System.EventHandler(this.cajerosToolStripMenuItem_Click);
             // 
@@ -141,6 +142,7 @@
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
             this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
+            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
             // inventarioToolStripMenuItem
             // 
@@ -156,12 +158,14 @@
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
             this.productosToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
             this.productosToolStripMenuItem.Text = "Productos";
+            this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // órdenesDeEntregaToolStripMenuItem
             // 
             this.órdenesDeEntregaToolStripMenuItem.Name = "órdenesDeEntregaToolStripMenuItem";
             this.órdenesDeEntregaToolStripMenuItem.Size = new System.Drawing.Size(223, 26);
             this.órdenesDeEntregaToolStripMenuItem.Text = "Órdenes de Entrega";
+            this.órdenesDeEntregaToolStripMenuItem.Click += new System.EventHandler(this.órdenesDeEntregaToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 

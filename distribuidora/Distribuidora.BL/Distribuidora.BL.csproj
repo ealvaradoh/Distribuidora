@@ -44,25 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLDistribuidora.cs" />
     <Compile Include="BL\cajerosBL.cs" />
     <Compile Include="BL\clientesBL.cs" />
+    <Compile Include="BL\contexto.cs" />
     <Compile Include="BL\departamentosBL.cs" />
     <Compile Include="BL\empleadosBL.cs" />
+    <Compile Include="BL\facturasBL.cs" />
+    <Compile Include="BL\ordenesBL.cs" />
+    <Compile Include="BL\productosBL.cs" />
+    <Compile Include="BL\proveedoresBL.cs" />
+    <Compile Include="BL\resultado.cs" />
     <Compile Include="Entidades\cajero.cs" />
     <Compile Include="Entidades\cliente.cs" />
     <Compile Include="Entidades\departamento.cs" />
     <Compile Include="Entidades\empleado.cs" />
-    <Compile Include="MySQL\cajeroSQL.cs" />
-    <Compile Include="MySQL\clienteSQL.cs" />
-    <Compile Include="MySQL\contexto.cs" />
-    <Compile Include="MySQL\departamentoSQL.cs" />
-    <Compile Include="MySQL\empleadoSQL.cs" />
+    <Compile Include="Entidades\factura.cs" />
+    <Compile Include="Entidades\orden_entrega.cs" />
+    <Compile Include="Entidades\producto.cs" />
+    <Compile Include="Entidades\proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.cajerosBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.clientesBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.departamentosBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.empleadosBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.productosBL.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

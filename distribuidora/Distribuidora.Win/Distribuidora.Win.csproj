@@ -99,6 +99,12 @@
     <Compile Include="frm_clientes.Designer.cs">
       <DependentUpon>frm_clientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_facturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_facturas.Designer.cs">
+      <DependentUpon>frm_facturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,24 @@
     </Compile>
     <Compile Include="frm_menu.Designer.cs">
       <DependentUpon>frm_menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ordenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ordenes.Designer.cs">
+      <DependentUpon>frm_ordenes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_productos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_productos.Designer.cs">
+      <DependentUpon>frm_productos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_proveedores.Designer.cs">
+      <DependentUpon>frm_proveedores.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_usuarios.cs">
       <SubType>Form</SubType>
@@ -125,11 +149,23 @@
     <EmbeddedResource Include="frm_clientes.resx">
       <DependentUpon>frm_clientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_facturas.resx">
+      <DependentUpon>frm_facturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_menu.resx">
       <DependentUpon>frm_menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ordenes.resx">
+      <DependentUpon>frm_ordenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_productos.resx">
+      <DependentUpon>frm_productos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_proveedores.resx">
+      <DependentUpon>frm_proveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_usuarios.resx">
       <DependentUpon>frm_usuarios.cs</DependentUpon>
@@ -149,6 +185,10 @@
     <None Include="Properties\DataSources\Distribuidora.BL.BL.clientesBL.datasource" />
     <None Include="Properties\DataSources\Distribuidora.BL.BL.departamentosBL.datasource" />
     <None Include="Properties\DataSources\Distribuidora.BL.BL.empleadosBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.facturasBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.ordenesBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.productosBL.datasource" />
+    <None Include="Properties\DataSources\Distribuidora.BL.BL.proveedoresBL.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

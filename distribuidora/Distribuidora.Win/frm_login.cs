@@ -8,16 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Distribuidora.BL.MySQL;
+using Distribuidora.BL.BL;
+using Distribuidora.BL.Entidades;
 
 namespace Distribuidora.Win
 {
     public partial class frm_login : Form
     {
         public frm_menu MenuPrincipal { get; set; }
-        public frm_login Login { get; set; }
+        empleadosBL _empleadoBL;
+
         public frm_login()
         {
+            _empleadoBL = new empleadosBL();
             InitializeComponent();
 
             List<TextBox> usuarioTlist = new List<TextBox>();
@@ -50,7 +53,8 @@ namespace Distribuidora.Win
         }
 
         public static string server, database, user, pwd;
-        public static string usuario, contra;    
+        public static string usuario, contra;
+        public static int departamentoID;
         private void btnConectar_Click(object sender, EventArgs e)
         {
             server = txtServer.Text;
@@ -70,7 +74,22 @@ namespace Distribuidora.Win
             contexto.Uid = user;
             contexto.Pwd = pwd;
             contexto.crearConexion();
-            this.Close();
+
+            var resultado = _empleadoBL.AutorizarEmpleado(usuario, contra);
+            
+
+            if (resultado.Exitoso == true)
+            {
+                departamentoID = resultado.departamentoID;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(resultado.Mensaje);
+            }
+
+            btnConectar.Enabled = true;
+            btnConectar.Text = "Conectar";
         }
     }
 }

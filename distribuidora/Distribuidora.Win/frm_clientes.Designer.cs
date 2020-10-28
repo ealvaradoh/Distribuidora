@@ -29,58 +29,92 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_clientes));
-            System.Windows.Forms.Label clien_idLabel;
-            System.Windows.Forms.Label clien_papeLabel;
-            System.Windows.Forms.Label clien_pnomLabel;
-            System.Windows.Forms.Label clien_snomLabel;
             System.Windows.Forms.Label clien_telLabel;
-            System.Windows.Forms.Label cliend_numidLabel;
-            this.listaClientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            System.Windows.Forms.Label clien_numidLabel;
+            System.Windows.Forms.Label clien_nomLabel;
+            System.Windows.Forms.Label clien_idLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_clientes));
             this.listaClientesBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.listaClientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.listaClientesBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.clien_idTextBox = new System.Windows.Forms.TextBox();
-            this.clien_papeTextBox = new System.Windows.Forms.TextBox();
-            this.clien_pnomTextBox = new System.Windows.Forms.TextBox();
-            this.clien_snomTextBox = new System.Windows.Forms.TextBox();
             this.clien_telTextBox = new System.Windows.Forms.TextBox();
-            this.cliend_numidTextBox = new System.Windows.Forms.TextBox();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            clien_idLabel = new System.Windows.Forms.Label();
-            clien_papeLabel = new System.Windows.Forms.Label();
-            clien_pnomLabel = new System.Windows.Forms.Label();
-            clien_snomLabel = new System.Windows.Forms.Label();
+            this.bindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.listaClientesBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorEditItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCancelItem = new System.Windows.Forms.ToolStripButton();
+            this.clien_numidTextBox = new System.Windows.Forms.TextBox();
+            this.clien_nomTextBox = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.clien_idTextBox = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             clien_telLabel = new System.Windows.Forms.Label();
-            cliend_numidLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.listaClientesBindingSource)).BeginInit();
+            clien_numidLabel = new System.Windows.Forms.Label();
+            clien_nomLabel = new System.Windows.Forms.Label();
+            clien_idLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.listaClientesBindingNavigator)).BeginInit();
             this.listaClientesBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
-            this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaClientesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
+            this.bindingNavigator.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listaClientesBindingSource
+            // clien_telLabel
             // 
-            this.listaClientesBindingSource.DataSource = typeof(Distribuidora.BL.Entidades.cliente);
+            clien_telLabel.AutoSize = true;
+            clien_telLabel.Location = new System.Drawing.Point(11, 182);
+            clien_telLabel.Name = "clien_telLabel";
+            clien_telLabel.Size = new System.Drawing.Size(229, 20);
+            clien_telLabel.TabIndex = 9;
+            clien_telLabel.Text = "Número de teléfono o celular:";
+            // 
+            // clien_numidLabel
+            // 
+            clien_numidLabel.AutoSize = true;
+            clien_numidLabel.Location = new System.Drawing.Point(11, 28);
+            clien_numidLabel.Name = "clien_numidLabel";
+            clien_numidLabel.Size = new System.Drawing.Size(81, 20);
+            clien_numidLabel.TabIndex = 14;
+            clien_numidLabel.Text = "Identidad:";
+            // 
+            // clien_nomLabel
+            // 
+            clien_nomLabel.AutoSize = true;
+            clien_nomLabel.Location = new System.Drawing.Point(11, 103);
+            clien_nomLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            clien_nomLabel.Name = "clien_nomLabel";
+            clien_nomLabel.Size = new System.Drawing.Size(73, 20);
+            clien_nomLabel.TabIndex = 15;
+            clien_nomLabel.Text = "Nombre:";
+            // 
+            // clien_idLabel
+            // 
+            clien_idLabel.AutoSize = true;
+            clien_idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            clien_idLabel.Location = new System.Drawing.Point(4, 12);
+            clien_idLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            clien_idLabel.Name = "clien_idLabel";
+            clien_idLabel.Size = new System.Drawing.Size(254, 36);
+            clien_idLabel.TabIndex = 16;
+            clien_idLabel.Text = "N° DE CLIENTE:";
             // 
             // listaClientesBindingNavigator
             // 
-            this.listaClientesBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.listaClientesBindingNavigator.AddNewItem = null;
             this.listaClientesBindingNavigator.BindingSource = this.listaClientesBindingSource;
             this.listaClientesBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.listaClientesBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.listaClientesBindingNavigator.DeleteItem = null;
             this.listaClientesBindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listaClientesBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.listaClientesBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -93,19 +127,28 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.listaClientesBindingNavigatorSaveItem});
-            this.listaClientesBindingNavigator.Location = new System.Drawing.Point(0, 423);
+            this.bindingNavigatorDeleteItem});
+            this.listaClientesBindingNavigator.Location = new System.Drawing.Point(0, 431);
             this.listaClientesBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.listaClientesBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.listaClientesBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.listaClientesBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.listaClientesBindingNavigator.Name = "listaClientesBindingNavigator";
             this.listaClientesBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.listaClientesBindingNavigator.Size = new System.Drawing.Size(800, 27);
+            this.listaClientesBindingNavigator.Size = new System.Drawing.Size(628, 27);
             this.listaClientesBindingNavigator.TabIndex = 0;
             this.listaClientesBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // listaClientesBindingSource
+            // 
+            this.listaClientesBindingSource.DataSource = typeof(Distribuidora.BL.Entidades.cliente);
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
+            this.bindingNavigatorCountItem.Text = "de {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -136,20 +179,13 @@
             this.bindingNavigatorPositionItem.AutoSize = false;
             this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(49, 27);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Posición actual";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
-            this.bindingNavigatorCountItem.Text = "de {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
@@ -172,195 +208,180 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
             // 
             // bindingNavigatorDeleteItem
             // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(87, 24);
             this.bindingNavigatorDeleteItem.Text = "Eliminar";
-            // 
-            // listaClientesBindingNavigatorSaveItem
-            // 
-            this.listaClientesBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.listaClientesBindingNavigatorSaveItem.Enabled = false;
-            this.listaClientesBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("listaClientesBindingNavigatorSaveItem.Image")));
-            this.listaClientesBindingNavigatorSaveItem.Name = "listaClientesBindingNavigatorSaveItem";
-            this.listaClientesBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
-            this.listaClientesBindingNavigatorSaveItem.Text = "Guardar datos";
-            // 
-            // clien_idLabel
-            // 
-            clien_idLabel.AutoSize = true;
-            clien_idLabel.Location = new System.Drawing.Point(18, 70);
-            clien_idLabel.Name = "clien_idLabel";
-            clien_idLabel.Size = new System.Drawing.Size(56, 17);
-            clien_idLabel.TabIndex = 1;
-            clien_idLabel.Text = "clien id:";
-            // 
-            // clien_idTextBox
-            // 
-            this.clien_idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_id", true));
-            this.clien_idTextBox.Location = new System.Drawing.Point(115, 67);
-            this.clien_idTextBox.Name = "clien_idTextBox";
-            this.clien_idTextBox.Size = new System.Drawing.Size(100, 22);
-            this.clien_idTextBox.TabIndex = 2;
-            // 
-            // clien_papeLabel
-            // 
-            clien_papeLabel.AutoSize = true;
-            clien_papeLabel.Location = new System.Drawing.Point(18, 98);
-            clien_papeLabel.Name = "clien_papeLabel";
-            clien_papeLabel.Size = new System.Drawing.Size(77, 17);
-            clien_papeLabel.TabIndex = 3;
-            clien_papeLabel.Text = "clien pape:";
-            // 
-            // clien_papeTextBox
-            // 
-            this.clien_papeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_pape", true));
-            this.clien_papeTextBox.Location = new System.Drawing.Point(115, 95);
-            this.clien_papeTextBox.Name = "clien_papeTextBox";
-            this.clien_papeTextBox.Size = new System.Drawing.Size(100, 22);
-            this.clien_papeTextBox.TabIndex = 4;
-            // 
-            // clien_pnomLabel
-            // 
-            clien_pnomLabel.AutoSize = true;
-            clien_pnomLabel.Location = new System.Drawing.Point(18, 126);
-            clien_pnomLabel.Name = "clien_pnomLabel";
-            clien_pnomLabel.Size = new System.Drawing.Size(80, 17);
-            clien_pnomLabel.TabIndex = 5;
-            clien_pnomLabel.Text = "clien pnom:";
-            // 
-            // clien_pnomTextBox
-            // 
-            this.clien_pnomTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_pnom", true));
-            this.clien_pnomTextBox.Location = new System.Drawing.Point(115, 123);
-            this.clien_pnomTextBox.Name = "clien_pnomTextBox";
-            this.clien_pnomTextBox.Size = new System.Drawing.Size(100, 22);
-            this.clien_pnomTextBox.TabIndex = 6;
-            // 
-            // clien_snomLabel
-            // 
-            clien_snomLabel.AutoSize = true;
-            clien_snomLabel.Location = new System.Drawing.Point(18, 154);
-            clien_snomLabel.Name = "clien_snomLabel";
-            clien_snomLabel.Size = new System.Drawing.Size(79, 17);
-            clien_snomLabel.TabIndex = 7;
-            clien_snomLabel.Text = "clien snom:";
-            // 
-            // clien_snomTextBox
-            // 
-            this.clien_snomTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_snom", true));
-            this.clien_snomTextBox.Location = new System.Drawing.Point(115, 151);
-            this.clien_snomTextBox.Name = "clien_snomTextBox";
-            this.clien_snomTextBox.Size = new System.Drawing.Size(100, 22);
-            this.clien_snomTextBox.TabIndex = 8;
-            // 
-            // clien_telLabel
-            // 
-            clien_telLabel.AutoSize = true;
-            clien_telLabel.Location = new System.Drawing.Point(18, 182);
-            clien_telLabel.Name = "clien_telLabel";
-            clien_telLabel.Size = new System.Drawing.Size(60, 17);
-            clien_telLabel.TabIndex = 9;
-            clien_telLabel.Text = "clien tel:";
+            this.bindingNavigatorDeleteItem.ToolTipText = "Eliminar";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // clien_telTextBox
             // 
             this.clien_telTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_tel", true));
-            this.clien_telTextBox.Location = new System.Drawing.Point(115, 179);
+            this.clien_telTextBox.Location = new System.Drawing.Point(15, 204);
+            this.clien_telTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clien_telTextBox.Name = "clien_telTextBox";
-            this.clien_telTextBox.Size = new System.Drawing.Size(100, 22);
+            this.clien_telTextBox.Size = new System.Drawing.Size(348, 27);
             this.clien_telTextBox.TabIndex = 10;
             // 
-            // cliend_numidLabel
+            // bindingNavigator
             // 
-            cliend_numidLabel.AutoSize = true;
-            cliend_numidLabel.Location = new System.Drawing.Point(18, 210);
-            cliend_numidLabel.Name = "cliend_numidLabel";
-            cliend_numidLabel.Size = new System.Drawing.Size(91, 17);
-            cliend_numidLabel.TabIndex = 11;
-            cliend_numidLabel.Text = "cliend numid:";
+            this.bindingNavigator.AddNewItem = null;
+            this.bindingNavigator.BindingSource = this.listaClientesBindingSource;
+            this.bindingNavigator.CountItem = null;
+            this.bindingNavigator.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.listaClientesBindingSource, "clien_id", true));
+            this.bindingNavigator.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_id", true));
+            this.bindingNavigator.DeleteItem = null;
+            this.bindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.bindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listaClientesBindingNavigatorSaveItem,
+            this.bindingNavigatorEditItem,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorCancelItem});
+            this.bindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.bindingNavigator.MoveFirstItem = null;
+            this.bindingNavigator.MoveLastItem = null;
+            this.bindingNavigator.MoveNextItem = null;
+            this.bindingNavigator.MovePreviousItem = null;
+            this.bindingNavigator.Name = "bindingNavigator";
+            this.bindingNavigator.PositionItem = null;
+            this.bindingNavigator.Size = new System.Drawing.Size(628, 47);
+            this.bindingNavigator.TabIndex = 13;
+            this.bindingNavigator.Text = "bindingNavigator1";
             // 
-            // cliend_numidTextBox
+            // listaClientesBindingNavigatorSaveItem
             // 
-            this.cliend_numidTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "cliend_numid", true));
-            this.cliend_numidTextBox.Location = new System.Drawing.Point(115, 207);
-            this.cliend_numidTextBox.Name = "cliend_numidTextBox";
-            this.cliend_numidTextBox.Size = new System.Drawing.Size(100, 22);
-            this.cliend_numidTextBox.TabIndex = 12;
+            this.listaClientesBindingNavigatorSaveItem.Enabled = false;
+            this.listaClientesBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("listaClientesBindingNavigatorSaveItem.Image")));
+            this.listaClientesBindingNavigatorSaveItem.Name = "listaClientesBindingNavigatorSaveItem";
+            this.listaClientesBindingNavigatorSaveItem.Size = new System.Drawing.Size(107, 44);
+            this.listaClientesBindingNavigatorSaveItem.Text = "Guardar datos";
+            this.listaClientesBindingNavigatorSaveItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.listaClientesBindingNavigatorSaveItem.Click += new System.EventHandler(this.listaClientesBindingNavigatorSaveItem_Click);
             // 
-            // bindingNavigator1
+            // bindingNavigatorEditItem
             // 
-            this.bindingNavigator1.AddNewItem = null;
-            this.bindingNavigator1.BindingSource = this.listaClientesBindingSource;
-            this.bindingNavigator1.CountItem = null;
-            this.bindingNavigator1.DeleteItem = null;
-            this.bindingNavigator1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton7});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
-            this.bindingNavigator1.MoveFirstItem = null;
-            this.bindingNavigator1.MoveLastItem = null;
-            this.bindingNavigator1.MoveNextItem = null;
-            this.bindingNavigator1.MovePreviousItem = null;
-            this.bindingNavigator1.Name = "bindingNavigator1";
-            this.bindingNavigator1.PositionItem = null;
-            this.bindingNavigator1.Size = new System.Drawing.Size(800, 47);
-            this.bindingNavigator1.TabIndex = 13;
-            this.bindingNavigator1.Text = "bindingNavigator1";
+            this.bindingNavigatorEditItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorEditItem.Image")));
+            this.bindingNavigatorEditItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorEditItem.Name = "bindingNavigatorEditItem";
+            this.bindingNavigatorEditItem.Size = new System.Drawing.Size(52, 44);
+            this.bindingNavigatorEditItem.Text = "Editar";
+            this.bindingNavigatorEditItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorEditItem.Click += new System.EventHandler(this.bindingNavigatorEditItem_Click);
             // 
-            // toolStripButton7
+            // bindingNavigatorAddNewItem
             // 
-            this.toolStripButton7.Enabled = false;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(107, 44);
-            this.toolStripButton7.Text = "Guardar datos";
-            this.toolStripButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(57, 44);
+            this.bindingNavigatorAddNewItem.Text = "Añadir";
+            this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorAddNewItem.ToolTipText = "Añadir";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
+            // bindingNavigatorCancelItem
+            // 
+            this.bindingNavigatorCancelItem.Enabled = false;
+            this.bindingNavigatorCancelItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorCancelItem.Image")));
+            this.bindingNavigatorCancelItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorCancelItem.Name = "bindingNavigatorCancelItem";
+            this.bindingNavigatorCancelItem.Size = new System.Drawing.Size(70, 44);
+            this.bindingNavigatorCancelItem.Text = "Cancelar";
+            this.bindingNavigatorCancelItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorCancelItem.Click += new System.EventHandler(this.bindingNavigatorCancelItem_Click);
+            // 
+            // clien_numidTextBox
+            // 
+            this.clien_numidTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_numid", true));
+            this.clien_numidTextBox.Location = new System.Drawing.Point(15, 50);
+            this.clien_numidTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.clien_numidTextBox.Name = "clien_numidTextBox";
+            this.clien_numidTextBox.Size = new System.Drawing.Size(348, 27);
+            this.clien_numidTextBox.TabIndex = 15;
+            // 
+            // clien_nomTextBox
+            // 
+            this.clien_nomTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_nom", true));
+            this.clien_nomTextBox.Location = new System.Drawing.Point(15, 127);
+            this.clien_nomTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.clien_nomTextBox.Name = "clien_nomTextBox";
+            this.clien_nomTextBox.Size = new System.Drawing.Size(348, 27);
+            this.clien_nomTextBox.TabIndex = 16;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.clien_idTextBox);
+            this.panel1.Controls.Add(clien_idLabel);
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel1.Location = new System.Drawing.Point(0, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(628, 67);
+            this.panel1.TabIndex = 18;
+            // 
+            // clien_idTextBox
+            // 
+            this.clien_idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_id", true));
+            this.clien_idTextBox.Enabled = false;
+            this.clien_idTextBox.Location = new System.Drawing.Point(292, 9);
+            this.clien_idTextBox.Name = "clien_idTextBox";
+            this.clien_idTextBox.Size = new System.Drawing.Size(162, 41);
+            this.clien_idTextBox.TabIndex = 17;
+            this.clien_idTextBox.Text = "0";
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.clien_numidTextBox);
+            this.panel2.Controls.Add(this.clien_telTextBox);
+            this.panel2.Controls.Add(clien_telLabel);
+            this.panel2.Controls.Add(clien_nomLabel);
+            this.panel2.Controls.Add(clien_numidLabel);
+            this.panel2.Controls.Add(this.clien_nomTextBox);
+            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel2.Location = new System.Drawing.Point(12, 155);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(604, 261);
+            this.panel2.TabIndex = 37;
             // 
             // frm_clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.bindingNavigator1);
-            this.Controls.Add(clien_idLabel);
-            this.Controls.Add(this.clien_idTextBox);
-            this.Controls.Add(clien_papeLabel);
-            this.Controls.Add(this.clien_papeTextBox);
-            this.Controls.Add(clien_pnomLabel);
-            this.Controls.Add(this.clien_pnomTextBox);
-            this.Controls.Add(clien_snomLabel);
-            this.Controls.Add(this.clien_snomTextBox);
-            this.Controls.Add(clien_telLabel);
-            this.Controls.Add(this.clien_telTextBox);
-            this.Controls.Add(cliend_numidLabel);
-            this.Controls.Add(this.cliend_numidTextBox);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(628, 458);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.bindingNavigator);
             this.Controls.Add(this.listaClientesBindingNavigator);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frm_clientes";
             this.Text = "Clientes";
-            ((System.ComponentModel.ISupportInitialize)(this.listaClientesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaClientesBindingNavigator)).EndInit();
             this.listaClientesBindingNavigator.ResumeLayout(false);
             this.listaClientesBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
-            this.bindingNavigator1.ResumeLayout(false);
-            this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaClientesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).EndInit();
+            this.bindingNavigator.ResumeLayout(false);
+            this.bindingNavigator.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,9 +391,7 @@
 
         private System.Windows.Forms.BindingSource listaClientesBindingSource;
         private System.Windows.Forms.BindingNavigator listaClientesBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
@@ -381,14 +400,17 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton listaClientesBindingNavigatorSaveItem;
-        private System.Windows.Forms.TextBox clien_idTextBox;
-        private System.Windows.Forms.TextBox clien_papeTextBox;
-        private System.Windows.Forms.TextBox clien_pnomTextBox;
-        private System.Windows.Forms.TextBox clien_snomTextBox;
         private System.Windows.Forms.TextBox clien_telTextBox;
-        private System.Windows.Forms.TextBox cliend_numidTextBox;
-        private System.Windows.Forms.BindingNavigator bindingNavigator1;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.BindingNavigator bindingNavigator;
+        private System.Windows.Forms.ToolStripButton listaClientesBindingNavigatorSaveItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorCancelItem;
+        private System.Windows.Forms.TextBox clien_numidTextBox;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorEditItem;
+        private System.Windows.Forms.TextBox clien_nomTextBox;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox clien_idTextBox;
+        private System.Windows.Forms.Panel panel2;
     }
 }

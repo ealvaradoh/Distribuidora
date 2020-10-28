@@ -98,7 +98,7 @@
             // emp_mailLabel
             // 
             emp_mailLabel.AutoSize = true;
-            emp_mailLabel.Location = new System.Drawing.Point(19, 419);
+            emp_mailLabel.Location = new System.Drawing.Point(19, 418);
             emp_mailLabel.Name = "emp_mailLabel";
             emp_mailLabel.Size = new System.Drawing.Size(33, 17);
             emp_mailLabel.TabIndex = 9;
@@ -107,7 +107,7 @@
             // emp_mail_ctrLabel
             // 
             emp_mail_ctrLabel.AutoSize = true;
-            emp_mail_ctrLabel.Location = new System.Drawing.Point(19, 462);
+            emp_mail_ctrLabel.Location = new System.Drawing.Point(19, 474);
             emp_mail_ctrLabel.Name = "emp_mail_ctrLabel";
             emp_mail_ctrLabel.Size = new System.Drawing.Size(110, 17);
             emp_mail_ctrLabel.TabIndex = 11;
@@ -125,7 +125,7 @@
             // emp_pnomLabel
             // 
             emp_pnomLabel.AutoSize = true;
-            emp_pnomLabel.Location = new System.Drawing.Point(19, 237);
+            emp_pnomLabel.Location = new System.Drawing.Point(19, 238);
             emp_pnomLabel.Name = "emp_pnomLabel";
             emp_pnomLabel.Size = new System.Drawing.Size(105, 17);
             emp_pnomLabel.TabIndex = 15;
@@ -143,7 +143,7 @@
             // emp_snomLabel
             // 
             emp_snomLabel.AutoSize = true;
-            emp_snomLabel.Location = new System.Drawing.Point(370, 234);
+            emp_snomLabel.Location = new System.Drawing.Point(371, 234);
             emp_snomLabel.Name = "emp_snomLabel";
             emp_snomLabel.Size = new System.Drawing.Size(121, 17);
             emp_snomLabel.TabIndex = 19;
@@ -200,14 +200,14 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem});
-            this.listaEmpleadosBindingNavigator.Location = new System.Drawing.Point(0, 562);
+            this.listaEmpleadosBindingNavigator.Location = new System.Drawing.Point(0, 534);
             this.listaEmpleadosBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.listaEmpleadosBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.listaEmpleadosBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.listaEmpleadosBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.listaEmpleadosBindingNavigator.Name = "listaEmpleadosBindingNavigator";
             this.listaEmpleadosBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.listaEmpleadosBindingNavigator.Size = new System.Drawing.Size(772, 27);
+            this.listaEmpleadosBindingNavigator.Size = new System.Drawing.Size(721, 27);
             this.listaEmpleadosBindingNavigator.TabIndex = 0;
             this.listaEmpleadosBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -265,7 +265,7 @@
             this.bindingNavigatorPositionItem.AutoSize = false;
             this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(49, 27);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Posición actual";
             // 
@@ -301,8 +301,9 @@
             // 
             this.emp_activoCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.listaEmpleadosBindingSource, "emp_activo", true));
             this.emp_activoCheckBox.Location = new System.Drawing.Point(19, 108);
+            this.emp_activoCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_activoCheckBox.Name = "emp_activoCheckBox";
-            this.emp_activoCheckBox.Size = new System.Drawing.Size(200, 24);
+            this.emp_activoCheckBox.Size = new System.Drawing.Size(200, 25);
             this.emp_activoCheckBox.TabIndex = 4;
             this.emp_activoCheckBox.Text = "Activo";
             this.emp_activoCheckBox.UseVisualStyleBackColor = true;
@@ -311,6 +312,7 @@
             // 
             this.emp_fingDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.listaEmpleadosBindingSource, "emp_fing", true));
             this.emp_fingDateTimePicker.Location = new System.Drawing.Point(149, 137);
+            this.emp_fingDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_fingDateTimePicker.Name = "emp_fingDateTimePicker";
             this.emp_fingDateTimePicker.Size = new System.Drawing.Size(200, 22);
             this.emp_fingDateTimePicker.TabIndex = 6;
@@ -321,6 +323,7 @@
             this.emp_idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_id", true));
             this.emp_idTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emp_idTextBox.Location = new System.Drawing.Point(19, 64);
+            this.emp_idTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_idTextBox.Name = "emp_idTextBox";
             this.emp_idTextBox.Size = new System.Drawing.Size(200, 38);
             this.emp_idTextBox.TabIndex = 8;
@@ -328,7 +331,8 @@
             // emp_mailTextBox
             // 
             this.emp_mailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_mail", true));
-            this.emp_mailTextBox.Location = new System.Drawing.Point(19, 438);
+            this.emp_mailTextBox.Location = new System.Drawing.Point(19, 436);
+            this.emp_mailTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_mailTextBox.Name = "emp_mailTextBox";
             this.emp_mailTextBox.Size = new System.Drawing.Size(200, 22);
             this.emp_mailTextBox.TabIndex = 10;
@@ -336,7 +340,8 @@
             // emp_mail_ctrTextBox
             // 
             this.emp_mail_ctrTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_mail_ctr", true));
-            this.emp_mail_ctrTextBox.Location = new System.Drawing.Point(19, 481);
+            this.emp_mail_ctrTextBox.Location = new System.Drawing.Point(19, 491);
+            this.emp_mail_ctrTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_mail_ctrTextBox.Name = "emp_mail_ctrTextBox";
             this.emp_mail_ctrTextBox.Size = new System.Drawing.Size(200, 22);
             this.emp_mail_ctrTextBox.TabIndex = 12;
@@ -345,6 +350,7 @@
             // 
             this.emp_papeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_pape", true));
             this.emp_papeTextBox.Location = new System.Drawing.Point(149, 263);
+            this.emp_papeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_papeTextBox.Name = "emp_papeTextBox";
             this.emp_papeTextBox.Size = new System.Drawing.Size(200, 22);
             this.emp_papeTextBox.TabIndex = 14;
@@ -353,6 +359,7 @@
             // 
             this.emp_pnomTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_pnom", true));
             this.emp_pnomTextBox.Location = new System.Drawing.Point(149, 234);
+            this.emp_pnomTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_pnomTextBox.Name = "emp_pnomTextBox";
             this.emp_pnomTextBox.Size = new System.Drawing.Size(200, 22);
             this.emp_pnomTextBox.TabIndex = 16;
@@ -361,6 +368,7 @@
             // 
             this.emp_sapeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_sape", true));
             this.emp_sapeTextBox.Location = new System.Drawing.Point(497, 260);
+            this.emp_sapeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_sapeTextBox.Name = "emp_sapeTextBox";
             this.emp_sapeTextBox.Size = new System.Drawing.Size(200, 22);
             this.emp_sapeTextBox.TabIndex = 18;
@@ -369,6 +377,7 @@
             // 
             this.emp_snomTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_snom", true));
             this.emp_snomTextBox.Location = new System.Drawing.Point(497, 231);
+            this.emp_snomTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_snomTextBox.Name = "emp_snomTextBox";
             this.emp_snomTextBox.Size = new System.Drawing.Size(201, 22);
             this.emp_snomTextBox.TabIndex = 20;
@@ -385,6 +394,7 @@
             this.depar_idComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.depar_idComboBox.FormattingEnabled = true;
             this.depar_idComboBox.Location = new System.Drawing.Point(149, 166);
+            this.depar_idComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.depar_idComboBox.Name = "depar_idComboBox";
             this.depar_idComboBox.Size = new System.Drawing.Size(200, 24);
             this.depar_idComboBox.TabIndex = 21;
@@ -394,6 +404,7 @@
             // 
             this.emp_numidTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_numid", true));
             this.emp_numidTextBox.Location = new System.Drawing.Point(149, 326);
+            this.emp_numidTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_numidTextBox.Name = "emp_numidTextBox";
             this.emp_numidTextBox.Size = new System.Drawing.Size(200, 22);
             this.emp_numidTextBox.TabIndex = 22;
@@ -401,7 +412,8 @@
             // emp_telTextBox
             // 
             this.emp_telTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_tel", true));
-            this.emp_telTextBox.Location = new System.Drawing.Point(149, 355);
+            this.emp_telTextBox.Location = new System.Drawing.Point(149, 354);
+            this.emp_telTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_telTextBox.Name = "emp_telTextBox";
             this.emp_telTextBox.Size = new System.Drawing.Size(200, 22);
             this.emp_telTextBox.TabIndex = 23;
@@ -422,7 +434,7 @@
             this.bindingNavigator1.MovePreviousItem = null;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = null;
-            this.bindingNavigator1.Size = new System.Drawing.Size(772, 47);
+            this.bindingNavigator1.Size = new System.Drawing.Size(721, 47);
             this.bindingNavigator1.TabIndex = 24;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -439,7 +451,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 589);
+            this.ClientSize = new System.Drawing.Size(721, 561);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(emp_telLabel);
             this.Controls.Add(this.emp_telTextBox);
@@ -464,6 +476,7 @@
             this.Controls.Add(emp_snomLabel);
             this.Controls.Add(this.emp_snomTextBox);
             this.Controls.Add(this.listaEmpleadosBindingNavigator);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frm_usuarios";
             this.Text = "Control de Usuarios";
             ((System.ComponentModel.ISupportInitialize)(this.listaEmpleadosBindingSource)).EndInit();
