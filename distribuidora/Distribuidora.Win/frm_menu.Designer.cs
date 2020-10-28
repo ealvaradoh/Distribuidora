@@ -31,7 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.departamentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +71,6 @@
             this.usuariosToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.controlDeUsuariosToolStripMenuItem,
-            this.departamentosToolStripMenuItem,
             this.loginToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
             this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
@@ -81,20 +79,14 @@
             // controlDeUsuariosToolStripMenuItem
             // 
             this.controlDeUsuariosToolStripMenuItem.Name = "controlDeUsuariosToolStripMenuItem";
-            this.controlDeUsuariosToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.controlDeUsuariosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.controlDeUsuariosToolStripMenuItem.Text = "Control de Usuarios";
             this.controlDeUsuariosToolStripMenuItem.Click += new System.EventHandler(this.controlDeUsuariosToolStripMenuItem_Click);
-            // 
-            // departamentosToolStripMenuItem
-            // 
-            this.departamentosToolStripMenuItem.Name = "departamentosToolStripMenuItem";
-            this.departamentosToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
-            this.departamentosToolStripMenuItem.Text = "Departamentos";
             // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.loginToolStripMenuItem.Text = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
@@ -242,7 +234,6 @@
         private System.Windows.Forms.ToolStripLabel tsUsuario;
         private System.Windows.Forms.ToolStripMenuItem controlDeUsuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem departamentosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cajerosToolStripMenuItem;
