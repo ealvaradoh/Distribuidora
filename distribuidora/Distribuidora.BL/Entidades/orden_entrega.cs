@@ -21,15 +21,29 @@ namespace Distribuidora.BL.Entidades
             ord_fecha = DateTime.Now;
             orden_detalle = new BindingList<orden_detalle>();
         }
+
+        public void CalcularTotalCantidad()
+        {
+            decimal cantidad = 0;
+            foreach (var produ in orden_detalle)
+            {
+                cantidad += produ.ord_det_cant;
+            }
+            ord_cant_produ = cantidad;
+        }
     }
 
     public class orden_detalle
     {
-        public int ord_det_id { get; set; }
         public int ord_id { get; set; }
         public int produ_id { get; set; }
         public producto producto { get; set; }
         public decimal ord_det_cant { get; set; }
 
+        public orden_detalle()
+        {
+            produ_id = 1;
+            ord_det_cant = 1;
+        }
     }
 }

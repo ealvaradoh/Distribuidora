@@ -32,6 +32,7 @@ namespace Distribuidora.Win
             listaCajerosBindingNavigator.Enabled = estado;
             bindingNavigatorAddNewItem.Enabled = estado;
             bindingNavigatorCancelItem.Enabled = !estado;
+            panelDatos.Enabled = !estado;
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace Distribuidora.Win
             _cajerosBL.AgregarCajero();
             listaCajerosBindingSource.MoveLast();
             EstadoBotones(false);
-            listaCajerosBindingNavigatorSaveItem.Enabled = true;
+            BindingNavigatorSaveItem.Enabled = true;
         }
 
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
@@ -50,13 +51,13 @@ namespace Distribuidora.Win
                 var cajeroCancelado = (cajero)listaCajerosBindingSource.Current;
                 _cajerosBL.CancelarCajero(cajeroCancelado);
                 EstadoBotones(true);
-                listaCajerosBindingNavigatorSaveItem.Enabled = false;
+                BindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
-                EstadoBotones(true);
-                listaCajerosBindingNavigatorSaveItem.Enabled = false;
                 listaCajerosBindingSource.CancelEdit();
+                EstadoBotones(true);
+                BindingNavigatorSaveItem.Enabled = false;
             }
         }
 
@@ -70,7 +71,7 @@ namespace Distribuidora.Win
 
                 listaCajerosBindingSource.ResetBindings(false);
                 EstadoBotones(true);
-                listaCajerosBindingNavigatorSaveItem.Enabled = false;
+                BindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
@@ -79,7 +80,7 @@ namespace Distribuidora.Win
 
                 listaCajerosBindingSource.ResetBindings(false);
                 EstadoBotones(true);
-                listaCajerosBindingNavigatorSaveItem.Enabled = false;
+                BindingNavigatorSaveItem.Enabled = false;
             }
         }
 
@@ -87,7 +88,7 @@ namespace Distribuidora.Win
         {
             esNuevo = false;
             EstadoBotones(false);
-            listaCajerosBindingNavigatorSaveItem.Enabled = true;
+            BindingNavigatorSaveItem.Enabled = true;
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)

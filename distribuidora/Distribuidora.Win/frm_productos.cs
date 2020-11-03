@@ -20,26 +20,33 @@ namespace Distribuidora.Win
         {
             _productosBL = new productosBL();
             InitializeComponent();
+            CargarDatos();
+            Permisos();
+        }
+
+        public void CargarDatos()
+        {
             listaProductosBindingSource.DataSource = _productosBL.ObtenerProductos();
         }
 
         public void EstadoBotones(bool estado)
         {
             listaProductosBindingNavigator.Enabled = estado;
-            listaProductosBindingNavigatorAdd.Enabled = estado;
-            listaProductosBindingNavigatorCancel.Enabled = !estado;
+            bindingNavigatorAddNewItem.Enabled = estado;
+            bindingNavigatorCancelItem.Enabled = !estado;
+            panelDatos.Enabled = !estado;
         }
 
-        public void Permisos(int departamentoID)
+        public void Permisos()
         {
-            if (departamentoID == 1)
+            if (resultadoLogin.departamentoControlTotal == true)
             {
                 bindingNavigatorDeleteItem.Enabled = true;
             }
-            else if (departamentoID == 2)
+            else if (resultadoLogin.departamentoControlTotal == false)
             {
                 bindingNavigatorDeleteItem.Enabled = false;
-                listaProductosBindingNavigatorEdit.Visible = false;
+                bindingNavigatorEditItem.Visible = false;
             }
         }
 
@@ -53,7 +60,7 @@ namespace Distribuidora.Win
 
                 listaProductosBindingSource.ResetBindings(false);
                 EstadoBotones(true);
-                listaProductosBindingNavigatorSaveItem.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
@@ -62,7 +69,7 @@ namespace Distribuidora.Win
 
                 listaProductosBindingSource.ResetBindings(false);
                 EstadoBotones(true);
-                listaProductosBindingNavigatorSaveItem.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
         }
 
@@ -70,7 +77,7 @@ namespace Distribuidora.Win
         {
             esNuevo = false;
             EstadoBotones(false);
-            listaProductosBindingNavigatorSaveItem.Enabled = true;
+            bindingNavigatorSaveItem.Enabled = true;
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
@@ -86,12 +93,12 @@ namespace Distribuidora.Win
                 var productoCancelado = (producto)listaProductosBindingSource.Current;
                 _productosBL.CancelarProducto(productoCancelado);
                 EstadoBotones(true);
-                listaProductosBindingNavigatorSaveItem.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
                 EstadoBotones(true);
-                listaProductosBindingNavigatorSaveItem.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
                 listaProductosBindingSource.CancelEdit();
             }
         }
@@ -102,7 +109,7 @@ namespace Distribuidora.Win
             _productosBL.AgregarProducto();
             listaProductosBindingSource.MoveLast();
             EstadoBotones(false);
-            listaProductosBindingNavigatorSaveItem.Enabled = true;
+            bindingNavigatorSaveItem.Enabled = true;
         }
     }
 }

@@ -27,8 +27,8 @@ namespace Distribuidora.Win
             _productosBL = new productosBL();
 
             InitializeComponent();
-            bindingNavigatorCancelItem.Enabled = false;
             CargarDatos();
+            Permisos();
         }
 
         public void CargarDatos()
@@ -39,33 +39,42 @@ namespace Distribuidora.Win
             listaNombreCajerosBindingSource.DataSource = _cajerosBL.ObtenerNombreCajeros();
         }
 
-        /*public void Permisos()
+        public void Permisos()
         {
-            if (frm_menu.departamentoID == 1)
+            if (resultadoLogin.departamentoControlTotal == true)
             {
-                ListaFacturaDetalleDelete.Enabled = true;
+                bindingNavigatorDelete.Enabled = true;
             }
-            else if (frm_menu.departamentoID == 2)
+            else if (resultadoLogin.departamentoControlTotal == false)
             {
-                bindingNavigatorDeleteItem.Enabled = false;
+                bindingNavigatorDelete.Enabled = false;
             }
-        }*/
+        }
 
         public void EstadoBotones(bool estado)
         {
-            listaFacturasBindingNavigator.Enabled = estado;
+            BindingNavigator.Enabled = estado;
             bindingNavigatorAddNewItem.Enabled = estado;
             bindingNavigatorCancelItem.Enabled = !estado;
+            panelDatos.Enabled = !estado;
+            panelDetalle.Enabled = !estado;
+            bindingNavigatorSaveItem.Enabled = !estado;
         }
 
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            _facturasBL.AgregarFactura();
-            listaFacturasBindingSource.MoveLast();
-            EstadoBotones(false);
-            listaFacturasBindingNavigatorSaveItem.Enabled = true;
+            var factura = (factura)listaFacturasBindingSource.Current;
+            
+            var resultado = _facturasBL.AgregarFactura();
+            if (resultado.Exitoso == true)
+            {
+                listaFacturasBindingSource.MoveLast();
+                EstadoBotones(false);
+            }
+            else
+                MessageBox.Show(resultado.Mensaje);
         }
 
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
@@ -75,44 +84,48 @@ namespace Distribuidora.Win
                 var facturacancelada = (factura)listaFacturasBindingSource.Current;
                 _facturasBL.CancelarFactura(facturacancelada);
                 EstadoBotones(true);
-                listaFacturasBindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
                 EstadoBotones(true);
-                listaFacturasBindingNavigatorSaveItem.Enabled = false;
-                listaFacturasBindingSource.CancelEdit();
             }
-
-
         }
 
         private void ListaFacturaDetalleAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var factura = (factura)listaFacturasBindingSource.Current;
-                _facturasBL.AgregarFacturaDetalle(factura);
-            }
-            catch (Exception error)
-            {
-
-                MessageBox.Show(error.Message);
-            }
-
+            var factura = (factura)listaFacturasBindingSource.Current;
+            _facturasBL.AgregarFacturaDetalle(factura);
         }
 
         private void listaFacturasBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             if (esNuevo == true)
             {
-                var facturaGuardada = (factura)listaClientesBindingSource.Current;
-                _facturasBL.GuardarFactura();
-                listaFacturasBindingSource.RemoveCurrent();
+                var facturaGuardada = (factura)listaFacturasBindingSource.Current;
+                var resultado = _facturasBL.GuardarFactura(facturaGuardada);
+                if (resultado.Exitoso == true)
+                {
+                    listaFacturasBindingSource.RemoveCurrent();
 
-                listaClientesBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                listaFacturasBindingNavigatorSaveItem.Enabled = false;
+                    listaFacturasBindingSource.ResetBindings(false);
+                    EstadoBotones(true);
+                }
+                else
+                    MessageBox.Show(resultado.Mensaje);
+                
+            }
+            else if (esNuevo == false)
+            {
+                var facturaEditada = (factura)listaFacturasBindingSource.Current;
+                var resultado = _facturasBL.EditarFactura(facturaEditada);
+                if (resultado.Exitoso == true)
+                {
+                    listaFacturasBindingSource.ResetBindings(false);
+                    EstadoBotones(true);
+                }
+                else
+                    MessageBox.Show(resultado.Mensaje);
+                
             }
         }
 
@@ -120,7 +133,6 @@ namespace Distribuidora.Win
         {
             esNuevo = false;
             EstadoBotones(false);
-            listaFacturasBindingNavigatorSaveItem.Enabled = true;
         }
 
         private void ListaFacturaDetalleDelete_Click(object sender, EventArgs e)
@@ -129,6 +141,64 @@ namespace Distribuidora.Win
             var facturaDetalle = (factura_detalle)factura_detalleBindingSource.Current;
 
             _facturasBL.RemoverFacturaDetalle(factura, facturaDetalle);
+        }
+
+        private void fact_subtTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                fact_subtTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_subtTextBox.Text));
+            }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message);
+            }
+            
+        }
+
+        private void fact_isvTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                fact_isvTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_isvTextBox.Text));
+            }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message);
+            }
+            
+        }
+
+        private void fact_totalTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                fact_totalTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_totalTextBox.Text));
+            }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        private void bindingNavigatorDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void CalcularTotales()
+        {
+            var factura = (factura)listaFacturasBindingSource.Current;
+            factura.CalcularTotalGeneral();
+            listaFacturasBindingSource.ResetBindings(true);
+        }
+
+        private void factura_detalleDataGridView_Click(object sender, EventArgs e)
+        {
+            CalcularTotales();
         }
     }
 }

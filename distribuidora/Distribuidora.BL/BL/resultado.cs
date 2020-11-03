@@ -11,6 +11,5 @@ namespace Distribuidora.BL.BL
     {
         public bool Exitoso { get; set; }
         public string Mensaje { get; set; }
-        public int departamentoID { get; set; }
     }
 }

@@ -20,6 +20,12 @@ namespace Distribuidora.Win
         {
             _clientesBL = new clientesBL();
             InitializeComponent();
+            CargarDatos();
+            Permisos();
+        }
+
+        public void CargarDatos()
+        {
             listaClientesBindingSource.DataSource = _clientesBL.ObtenerClientes();
         }
 
@@ -28,15 +34,16 @@ namespace Distribuidora.Win
             listaClientesBindingNavigator.Enabled = estado;
             bindingNavigatorAddNewItem.Enabled = estado;
             bindingNavigatorCancelItem.Enabled = !estado;
+            panelDatos.Enabled = !estado;
         }
 
-        public void Permisos(int departamentoID)
+        public void Permisos()
         {
-            if(departamentoID == 1)
+            if(resultadoLogin.departamentoControlTotal == true)
             {
                 bindingNavigatorDeleteItem.Enabled = true;
             }
-            else if (departamentoID == 2)
+            else if (resultadoLogin.departamentoControlTotal == false)
             {
                 bindingNavigatorDeleteItem.Enabled = false;
             }
@@ -48,7 +55,7 @@ namespace Distribuidora.Win
             _clientesBL.AgregarCliente();
             listaClientesBindingSource.MoveLast();
             EstadoBotones(false);
-            listaClientesBindingNavigatorSaveItem.Enabled = true;
+            bindingNavigatorSaveItem.Enabled = true;
         }
 
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
@@ -58,13 +65,12 @@ namespace Distribuidora.Win
                 var clienteCancelado = (cliente)listaClientesBindingSource.Current;
                 _clientesBL.CancelarCliente(clienteCancelado);
                 EstadoBotones(true);
-                listaClientesBindingNavigatorSaveItem.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
             else if(esNuevo == false)
             {
                 EstadoBotones(true);
-                listaClientesBindingNavigatorSaveItem.Enabled = false;
-                listaClientesBindingSource.CancelEdit();
+                bindingNavigatorSaveItem.Enabled = false;
             }
         }
 
@@ -78,7 +84,7 @@ namespace Distribuidora.Win
 
                 listaClientesBindingSource.ResetBindings(false);
                 EstadoBotones(true);
-                listaClientesBindingNavigatorSaveItem.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
@@ -87,7 +93,7 @@ namespace Distribuidora.Win
 
                 listaClientesBindingSource.ResetBindings(false);
                 EstadoBotones(true);
-                listaClientesBindingNavigatorSaveItem.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
         }
 
@@ -95,7 +101,7 @@ namespace Distribuidora.Win
         {
             esNuevo = false;
             EstadoBotones(false);
-            listaClientesBindingNavigatorSaveItem.Enabled = true;
+            bindingNavigatorSaveItem.Enabled = true;
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)

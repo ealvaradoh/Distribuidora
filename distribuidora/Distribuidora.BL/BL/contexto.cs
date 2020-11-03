@@ -10,13 +10,17 @@ namespace Distribuidora.BL.BL
     public class contexto
     {
         public static string server, database, Uid, Pwd;
+        public static MySqlConnection conexion = new MySqlConnection();
         public static MySqlConnection crearConexion()
         {
             string conxStr = string.Format(
                 "Server = {0}; Database = {1}; Uid = {2}; Pwd = {3};", server, database, Uid, Pwd);
 
-            MySqlConnection conexion = new MySqlConnection(conxStr);
-            conexion.Open();
+            if(conexion.State.ToString() == "Closed")
+            {
+                conexion = new MySqlConnection(conxStr);
+                conexion.Open();
+            }
             return conexion;
         }
     }

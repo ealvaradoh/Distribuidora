@@ -54,38 +54,35 @@ namespace Distribuidora.Win
 
         public static string server, database, user, pwd;
         public static string usuario, contra;
-        public static int departamentoID;
         private void btnConectar_Click(object sender, EventArgs e)
         {
+            // Datos MySQL
             server = txtServer.Text;
             database = txtDatabase.Text;
             user = txtUser.Text;
             pwd = txtPwd.Text;
 
+            // Datos usuario que inicia sesión
             usuario = txtUsuario.Text;
             contra = txtContraseña.Text;
 
             btnConectar.Enabled = false;
-            btnConectar.Text = "Verificando...";
+            btnConectar.Text = "Conectando...";
             Application.DoEvents();
 
             contexto.server = server;
             contexto.database = database;
             contexto.Uid = user;
             contexto.Pwd = pwd;
-            contexto.crearConexion();
 
-            var resultado = _empleadoBL.AutorizarEmpleado(usuario, contra);
-            
-
-            if (resultado.Exitoso == true)
+            var resultadoLogin = _empleadoBL.AutorizarEmpleado(usuario, contra);
+            if (resultadoLogin.Exitoso == true)
             {
-                departamentoID = resultado.departamentoID;
                 this.Close();
             }
             else
             {
-                MessageBox.Show(resultado.Mensaje);
+                MessageBox.Show(resultadoLogin.Mensaje);
             }
 
             btnConectar.Enabled = true;

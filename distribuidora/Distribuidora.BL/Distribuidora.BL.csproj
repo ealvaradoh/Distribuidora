@@ -53,6 +53,7 @@
     <Compile Include="BL\ordenesBL.cs" />
     <Compile Include="BL\productosBL.cs" />
     <Compile Include="BL\proveedoresBL.cs" />
+    <Compile Include="BL\resultadoLogin.cs" />
     <Compile Include="BL\resultado.cs" />
     <Compile Include="Entidades\cajero.cs" />
     <Compile Include="Entidades\cliente.cs" />

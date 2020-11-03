@@ -57,11 +57,11 @@
             this.prov_rtnTextBox = new System.Windows.Forms.TextBox();
             this.prov_telTextBox = new System.Windows.Forms.TextBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorSave = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorEdit = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorAdd = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorCancel = new System.Windows.Forms.ToolStripButton();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.bindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorEditItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCancelNewItem = new System.Windows.Forms.ToolStripButton();
+            this.panelDatos = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             prov_direLabel = new System.Windows.Forms.Label();
             prov_mailLabel = new System.Windows.Forms.Label();
@@ -75,14 +75,14 @@
             this.listaProveedoresBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelDatos.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // prov_direLabel
             // 
             prov_direLabel.AutoSize = true;
-            prov_direLabel.Location = new System.Drawing.Point(27, 182);
+            prov_direLabel.Location = new System.Drawing.Point(27, 149);
             prov_direLabel.Name = "prov_direLabel";
             prov_direLabel.Size = new System.Drawing.Size(86, 20);
             prov_direLabel.TabIndex = 1;
@@ -91,7 +91,7 @@
             // prov_mailLabel
             // 
             prov_mailLabel.AutoSize = true;
-            prov_mailLabel.Location = new System.Drawing.Point(519, 259);
+            prov_mailLabel.Location = new System.Drawing.Point(490, 259);
             prov_mailLabel.Name = "prov_mailLabel";
             prov_mailLabel.Size = new System.Drawing.Size(70, 20);
             prov_mailLabel.TabIndex = 5;
@@ -100,7 +100,7 @@
             // prov_nomLabel
             // 
             prov_nomLabel.AutoSize = true;
-            prov_nomLabel.Location = new System.Drawing.Point(27, 92);
+            prov_nomLabel.Location = new System.Drawing.Point(27, 76);
             prov_nomLabel.Name = "prov_nomLabel";
             prov_nomLabel.Size = new System.Drawing.Size(73, 20);
             prov_nomLabel.TabIndex = 7;
@@ -109,7 +109,7 @@
             // prov_paisLabel
             // 
             prov_paisLabel.AutoSize = true;
-            prov_paisLabel.Location = new System.Drawing.Point(519, 27);
+            prov_paisLabel.Location = new System.Drawing.Point(490, 149);
             prov_paisLabel.Name = "prov_paisLabel";
             prov_paisLabel.Size = new System.Drawing.Size(47, 20);
             prov_paisLabel.TabIndex = 9;
@@ -118,7 +118,7 @@
             // prov_rtnLabel
             // 
             prov_rtnLabel.AutoSize = true;
-            prov_rtnLabel.Location = new System.Drawing.Point(27, 27);
+            prov_rtnLabel.Location = new System.Drawing.Point(27, 11);
             prov_rtnLabel.Name = "prov_rtnLabel";
             prov_rtnLabel.Size = new System.Drawing.Size(112, 20);
             prov_rtnLabel.TabIndex = 11;
@@ -127,7 +127,7 @@
             // prov_telLabel
             // 
             prov_telLabel.AutoSize = true;
-            prov_telLabel.Location = new System.Drawing.Point(519, 92);
+            prov_telLabel.Location = new System.Drawing.Point(490, 204);
             prov_telLabel.Name = "prov_telLabel";
             prov_telLabel.Size = new System.Drawing.Size(78, 20);
             prov_telLabel.TabIndex = 13;
@@ -256,10 +256,10 @@
             // prov_direTextBox
             // 
             this.prov_direTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaProveedoresBindingSource, "prov_dire", true));
-            this.prov_direTextBox.Location = new System.Drawing.Point(27, 205);
+            this.prov_direTextBox.Location = new System.Drawing.Point(27, 172);
             this.prov_direTextBox.Multiline = true;
             this.prov_direTextBox.Name = "prov_direTextBox";
-            this.prov_direTextBox.Size = new System.Drawing.Size(430, 107);
+            this.prov_direTextBox.Size = new System.Drawing.Size(430, 137);
             this.prov_direTextBox.TabIndex = 2;
             // 
             // prov_idTextBox
@@ -274,31 +274,31 @@
             // prov_mailTextBox
             // 
             this.prov_mailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaProveedoresBindingSource, "prov_mail", true));
-            this.prov_mailTextBox.Location = new System.Drawing.Point(519, 282);
+            this.prov_mailTextBox.Location = new System.Drawing.Point(490, 282);
             this.prov_mailTextBox.Name = "prov_mailTextBox";
-            this.prov_mailTextBox.Size = new System.Drawing.Size(293, 27);
+            this.prov_mailTextBox.Size = new System.Drawing.Size(320, 27);
             this.prov_mailTextBox.TabIndex = 6;
             // 
             // prov_nomTextBox
             // 
             this.prov_nomTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaProveedoresBindingSource, "prov_nom", true));
-            this.prov_nomTextBox.Location = new System.Drawing.Point(27, 115);
+            this.prov_nomTextBox.Location = new System.Drawing.Point(27, 99);
             this.prov_nomTextBox.Name = "prov_nomTextBox";
-            this.prov_nomTextBox.Size = new System.Drawing.Size(433, 27);
+            this.prov_nomTextBox.Size = new System.Drawing.Size(785, 27);
             this.prov_nomTextBox.TabIndex = 8;
             // 
             // prov_paisTextBox
             // 
             this.prov_paisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaProveedoresBindingSource, "prov_pais", true));
-            this.prov_paisTextBox.Location = new System.Drawing.Point(520, 50);
+            this.prov_paisTextBox.Location = new System.Drawing.Point(491, 172);
             this.prov_paisTextBox.Name = "prov_paisTextBox";
-            this.prov_paisTextBox.Size = new System.Drawing.Size(293, 27);
+            this.prov_paisTextBox.Size = new System.Drawing.Size(320, 27);
             this.prov_paisTextBox.TabIndex = 10;
             // 
             // prov_rtnTextBox
             // 
             this.prov_rtnTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaProveedoresBindingSource, "prov_rtn", true));
-            this.prov_rtnTextBox.Location = new System.Drawing.Point(27, 51);
+            this.prov_rtnTextBox.Location = new System.Drawing.Point(27, 35);
             this.prov_rtnTextBox.Name = "prov_rtnTextBox";
             this.prov_rtnTextBox.Size = new System.Drawing.Size(433, 27);
             this.prov_rtnTextBox.TabIndex = 12;
@@ -306,9 +306,9 @@
             // prov_telTextBox
             // 
             this.prov_telTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaProveedoresBindingSource, "prov_tel", true));
-            this.prov_telTextBox.Location = new System.Drawing.Point(520, 115);
+            this.prov_telTextBox.Location = new System.Drawing.Point(491, 227);
             this.prov_telTextBox.Name = "prov_telTextBox";
-            this.prov_telTextBox.Size = new System.Drawing.Size(294, 27);
+            this.prov_telTextBox.Size = new System.Drawing.Size(321, 27);
             this.prov_telTextBox.TabIndex = 14;
             // 
             // bindingNavigator1
@@ -319,10 +319,10 @@
             this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorSave,
-            this.bindingNavigatorEdit,
-            this.bindingNavigatorAdd,
-            this.bindingNavigatorCancel});
+            this.bindingNavigatorSaveItem,
+            this.bindingNavigatorEditItem,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorCancelNewItem});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
@@ -334,74 +334,75 @@
             this.bindingNavigator1.TabIndex = 15;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
-            // bindingNavigatorSave
+            // bindingNavigatorSaveItem
             // 
-            this.bindingNavigatorSave.Enabled = false;
-            this.bindingNavigatorSave.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorSave.Image")));
-            this.bindingNavigatorSave.Name = "bindingNavigatorSave";
-            this.bindingNavigatorSave.Size = new System.Drawing.Size(107, 44);
-            this.bindingNavigatorSave.Text = "Guardar datos";
-            this.bindingNavigatorSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.bindingNavigatorSave.Click += new System.EventHandler(this.bindingNavigatorSave_Click);
+            this.bindingNavigatorSaveItem.Enabled = false;
+            this.bindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorSaveItem.Image")));
+            this.bindingNavigatorSaveItem.Name = "bindingNavigatorSaveItem";
+            this.bindingNavigatorSaveItem.Size = new System.Drawing.Size(107, 44);
+            this.bindingNavigatorSaveItem.Text = "Guardar datos";
+            this.bindingNavigatorSaveItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorSaveItem.Click += new System.EventHandler(this.bindingNavigatorSave_Click);
             // 
-            // bindingNavigatorEdit
+            // bindingNavigatorEditItem
             // 
-            this.bindingNavigatorEdit.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorEdit.Image")));
-            this.bindingNavigatorEdit.Name = "bindingNavigatorEdit";
-            this.bindingNavigatorEdit.Size = new System.Drawing.Size(52, 44);
-            this.bindingNavigatorEdit.Text = "Editar";
-            this.bindingNavigatorEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.bindingNavigatorEdit.ToolTipText = "Editar";
-            this.bindingNavigatorEdit.Click += new System.EventHandler(this.bindingNavigatorEdit_Click);
+            this.bindingNavigatorEditItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorEditItem.Image")));
+            this.bindingNavigatorEditItem.Name = "bindingNavigatorEditItem";
+            this.bindingNavigatorEditItem.Size = new System.Drawing.Size(52, 44);
+            this.bindingNavigatorEditItem.Text = "Editar";
+            this.bindingNavigatorEditItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorEditItem.ToolTipText = "Editar";
+            this.bindingNavigatorEditItem.Click += new System.EventHandler(this.bindingNavigatorEdit_Click);
             // 
-            // bindingNavigatorAdd
+            // bindingNavigatorAddNewItem
             // 
-            this.bindingNavigatorAdd.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAdd.Image")));
-            this.bindingNavigatorAdd.Name = "bindingNavigatorAdd";
-            this.bindingNavigatorAdd.Size = new System.Drawing.Size(57, 44);
-            this.bindingNavigatorAdd.Text = "Añadir";
-            this.bindingNavigatorAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.bindingNavigatorAdd.Click += new System.EventHandler(this.bindingNavigatorAdd_Click);
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(57, 44);
+            this.bindingNavigatorAddNewItem.Text = "Añadir";
+            this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAdd_Click);
             // 
-            // bindingNavigatorCancel
+            // bindingNavigatorCancelNewItem
             // 
-            this.bindingNavigatorCancel.Enabled = false;
-            this.bindingNavigatorCancel.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorCancel.Image")));
-            this.bindingNavigatorCancel.Name = "bindingNavigatorCancel";
-            this.bindingNavigatorCancel.Size = new System.Drawing.Size(70, 44);
-            this.bindingNavigatorCancel.Text = "Cancelar";
-            this.bindingNavigatorCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.bindingNavigatorCancel.Click += new System.EventHandler(this.bindingNavigatorCancel_Click);
+            this.bindingNavigatorCancelNewItem.Enabled = false;
+            this.bindingNavigatorCancelNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorCancelNewItem.Image")));
+            this.bindingNavigatorCancelNewItem.Name = "bindingNavigatorCancelNewItem";
+            this.bindingNavigatorCancelNewItem.Size = new System.Drawing.Size(70, 44);
+            this.bindingNavigatorCancelNewItem.Text = "Cancelar";
+            this.bindingNavigatorCancelNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorCancelNewItem.Click += new System.EventHandler(this.bindingNavigatorCancel_Click);
             // 
-            // panel2
+            // panelDatos
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelDatos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.prov_direTextBox);
-            this.panel2.Controls.Add(this.prov_telTextBox);
-            this.panel2.Controls.Add(prov_direLabel);
-            this.panel2.Controls.Add(prov_telLabel);
-            this.panel2.Controls.Add(this.prov_rtnTextBox);
-            this.panel2.Controls.Add(prov_rtnLabel);
-            this.panel2.Controls.Add(this.prov_paisTextBox);
-            this.panel2.Controls.Add(prov_mailLabel);
-            this.panel2.Controls.Add(prov_paisLabel);
-            this.panel2.Controls.Add(this.prov_mailTextBox);
-            this.panel2.Controls.Add(this.prov_nomTextBox);
-            this.panel2.Controls.Add(prov_nomLabel);
-            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(21, 154);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(829, 370);
-            this.panel2.TabIndex = 38;
+            this.panelDatos.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelDatos.Controls.Add(this.prov_direTextBox);
+            this.panelDatos.Controls.Add(this.prov_telTextBox);
+            this.panelDatos.Controls.Add(prov_direLabel);
+            this.panelDatos.Controls.Add(prov_telLabel);
+            this.panelDatos.Controls.Add(this.prov_rtnTextBox);
+            this.panelDatos.Controls.Add(prov_rtnLabel);
+            this.panelDatos.Controls.Add(this.prov_paisTextBox);
+            this.panelDatos.Controls.Add(prov_mailLabel);
+            this.panelDatos.Controls.Add(prov_paisLabel);
+            this.panelDatos.Controls.Add(this.prov_mailTextBox);
+            this.panelDatos.Controls.Add(this.prov_nomTextBox);
+            this.panelDatos.Controls.Add(prov_nomLabel);
+            this.panelDatos.Enabled = false;
+            this.panelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelDatos.Location = new System.Drawing.Point(21, 154);
+            this.panelDatos.Name = "panelDatos";
+            this.panelDatos.Size = new System.Drawing.Size(829, 370);
+            this.panelDatos.TabIndex = 38;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.prov_idTextBox);
             this.panel1.Controls.Add(produ_idLabel);
@@ -418,11 +419,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 597);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelDatos);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.listaProveedoresBindingNavigator);
             this.Name = "frm_proveedores";
-            this.Text = "frm_proveedores";
+            this.Text = "Proveedores";
             ((System.ComponentModel.ISupportInitialize)(this.listaProveedoresBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaProveedoresBindingNavigator)).EndInit();
             this.listaProveedoresBindingNavigator.ResumeLayout(false);
@@ -430,8 +431,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelDatos.ResumeLayout(false);
+            this.panelDatos.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -460,12 +461,12 @@
         private System.Windows.Forms.TextBox prov_rtnTextBox;
         private System.Windows.Forms.TextBox prov_telTextBox;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorSave;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorEdit;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAdd;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorCancel;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorSaveItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorEditItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorCancelNewItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDelete;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelDatos;
         private System.Windows.Forms.Panel panel1;
     }
 }

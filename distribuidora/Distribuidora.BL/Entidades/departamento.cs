@@ -10,5 +10,6 @@ namespace Distribuidora.BL.Entidades
     {
         public int depar_id { get; set; }
         public string depar_nom { get; set; }
+        public bool depar_ctrl_total { get; set; }
     }
 }

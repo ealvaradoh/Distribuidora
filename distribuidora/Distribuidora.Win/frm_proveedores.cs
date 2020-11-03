@@ -26,8 +26,9 @@ namespace Distribuidora.Win
         public void EstadoBotones(bool estado)
         {
             listaProveedoresBindingNavigator.Enabled = estado;
-            bindingNavigatorAdd.Enabled = estado;
-            bindingNavigatorCancel.Enabled = !estado;
+            bindingNavigatorAddNewItem.Enabled = estado;
+            bindingNavigatorCancelNewItem.Enabled = !estado;
+            panelDatos.Enabled = !estado;
         }
 
         private void bindingNavigatorAdd_Click(object sender, EventArgs e)
@@ -36,14 +37,14 @@ namespace Distribuidora.Win
             _proveedoresBL.AgregarProveedor();
             listaProveedoresBindingSource.MoveLast();
             EstadoBotones(false);
-            bindingNavigatorSave.Enabled = true;
+            bindingNavigatorSaveItem.Enabled = true;
         }
 
         private void bindingNavigatorEdit_Click(object sender, EventArgs e)
         {
             esNuevo = false;
             EstadoBotones(false);
-            bindingNavigatorSave.Enabled = true;
+            bindingNavigatorSaveItem.Enabled = true;
         }
 
         private void bindingNavigatorCancel_Click(object sender, EventArgs e)
@@ -53,12 +54,12 @@ namespace Distribuidora.Win
                 var proveedorCancelado = (proveedor)listaProveedoresBindingSource.Current;
                 _proveedoresBL.CancelarProveedor(proveedorCancelado);
                 EstadoBotones(true);
-                bindingNavigatorSave.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
                 EstadoBotones(true);
-                bindingNavigatorSave.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
                 listaProveedoresBindingSource.CancelEdit();
             }
         }
@@ -73,7 +74,7 @@ namespace Distribuidora.Win
 
                 listaProveedoresBindingSource.ResetBindings(false);
                 EstadoBotones(true);
-                bindingNavigatorSave.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
@@ -82,7 +83,7 @@ namespace Distribuidora.Win
 
                 listaProveedoresBindingSource.ResetBindings(false);
                 EstadoBotones(true);
-                bindingNavigatorSave.Enabled = false;
+                bindingNavigatorSaveItem.Enabled = false;
             }
         }
 

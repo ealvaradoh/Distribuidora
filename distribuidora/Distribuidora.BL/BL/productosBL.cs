@@ -19,24 +19,26 @@ namespace Distribuidora.BL.BL
 
         public BindingList<producto> ObtenerProductos()
         {
-            MySqlDataReader reader;
-            MySqlConnection _contexto = contexto.crearConexion();
+            MySqlConnection _contexto;
 
-            string sql = "SELECT * FROM producto;";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
-
-            reader = comando.ExecuteReader();
-
-            producto produ = null;
-            while (reader.Read())
+            using (_contexto = contexto.crearConexion())
             {
-                produ = new producto();
-                produ.produ_id = int.Parse(reader["produ_id"].ToString());
-                produ.produ_nom = reader["produ_nom"].ToString();
-                produ.produ_prec = decimal.Parse(reader["produ_prec"].ToString());
-                ListaProductos.Add(produ);
+                string sql = "SELECT * FROM producto;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    MySqlDataReader reader = comando.ExecuteReader();
+                    producto produ = null;
+                    while (reader.Read())
+                    {
+                        produ = new producto();
+                        produ.produ_id = int.Parse(reader["produ_id"].ToString());
+                        produ.produ_nom = reader["produ_nom"].ToString();
+                        produ.produ_prec = decimal.Parse(reader["produ_prec"].ToString());
+                        ListaProductos.Add(produ);
+                    }
+                }
+                return ListaProductos;
             }
-            return ListaProductos;
         }
 
         public void AgregarProducto()
@@ -52,61 +54,85 @@ namespace Distribuidora.BL.BL
 
         public void GuardarProducto(producto productoGuardado)
         {
-            MySqlDataReader reader;
             MySqlConnection _contexto;
-            string sql;
-
-            _contexto = contexto.crearConexion();
-            sql = "INSERT INTO producto VALUES(@produ_id, @produ_nom, @produ_prec);";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
-
-            comando.Parameters.AddWithValue("@produ_id", productoGuardado.produ_id);
-            comando.Parameters.AddWithValue("@produ_nom", productoGuardado.produ_nom);
-            comando.Parameters.AddWithValue("@produ_prec", productoGuardado.produ_prec);
-
-            comando.ExecuteNonQuery();
-
-
-            _contexto = contexto.crearConexion();
-            sql = "SELECT MAX(produ_id) AS nuevoProductoId FROM producto;";
-            comando = new MySqlCommand(sql, _contexto);
-
-            reader = comando.ExecuteReader();
-            while (reader.Read())
+            using (_contexto = contexto.crearConexion())
             {
-                productoGuardado.produ_id = int.Parse(reader["nuevoProductoId"].ToString());
-            }
+                string sql = "INSERT INTO producto VALUES(@produ_id, @produ_nom, @produ_prec);";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@produ_id", productoGuardado.produ_id);
+                    comando.Parameters.AddWithValue("@produ_nom", productoGuardado.produ_nom);
+                    comando.Parameters.AddWithValue("@produ_prec", productoGuardado.produ_prec);
 
-            ListaProductos.Add(productoGuardado);
+                    comando.ExecuteNonQuery();
+                }
+
+                sql = "SELECT MAX(produ_id) AS nuevoProductoId FROM producto;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    MySqlDataReader reader = comando.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        productoGuardado.produ_id = int.Parse(reader["nuevoProductoId"].ToString());
+                    }
+                }
+                ListaProductos.Add(productoGuardado);
+            }
         }
 
         public void EditarProducto(producto productoEditado)
         {
             MySqlConnection _contexto = contexto.crearConexion();
-            string sql;
+            using (_contexto = contexto.crearConexion())
+            {
+                string sql = "UPDATE producto SET produ_nom=@produ_nom, produ_prec=@produ_prec WHERE produ_id = @produ_id;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@produ_nom", productoEditado.produ_nom);
+                    comando.Parameters.AddWithValue("@produ_prec", productoEditado.produ_prec);
+                    comando.Parameters.AddWithValue("@produ_id", productoEditado.produ_id);
 
-            sql = "UPDATE producto SET produ_nom=@produ_nom, produ_prec=@produ_prec WHERE produ_id = @produ_id;";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
-
-            comando.Parameters.AddWithValue("@produ_nom", productoEditado.produ_nom);
-            comando.Parameters.AddWithValue("@produ_prec", productoEditado.produ_prec);
-            comando.Parameters.AddWithValue("@produ_id", productoEditado.produ_id);
-
-            comando.ExecuteNonQuery();
+                    comando.ExecuteNonQuery();
+                }
+            }
         }
 
         public void EliminarProducto(producto productoEliminado)
         {
-            MySqlConnection _contexto = contexto.crearConexion();
-            string sql;
+            MySqlConnection _contexto;
+            using (_contexto = contexto.crearConexion())
+            {
+                string sql = "DELETE FROM producto WHERE produ_id = @produ_id;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@produ_id", productoEliminado.produ_id);
 
-            sql = "DELETE FROM producto WHERE produ_id = @produ_id;";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
+                    comando.ExecuteNonQuery();
+                }
+                ListaProductos.Remove(productoEliminado);
+            }
+            
+        }
 
-            comando.Parameters.AddWithValue("@produ_id", productoEliminado.produ_id);
-
-            comando.ExecuteNonQuery();
-            ListaProductos.Remove(productoEliminado);
+        public decimal ObtenerPrecio(int produ_id)
+        {
+            
+            MySqlConnection _contexto;
+            using (_contexto = contexto.crearConexion())
+            {
+                decimal prec = 0;
+                string sql = "SELECT produ_prec FROM producto WHERE produ_id = @produ_id;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@produ_id", produ_id);
+                    MySqlDataReader reader = comando.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        prec = decimal.Parse(reader["produ_prec"].ToString());
+                    }
+                }
+                return prec;
+            }
         }
     }
 }

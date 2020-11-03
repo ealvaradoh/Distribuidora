@@ -14,7 +14,7 @@ namespace Distribuidora.Win
 {
     public partial class frm_menu : Form
     {
-        public static int departamentoID;
+        public static bool DepartamentoControlTotal;
         public frm_menu()
         {
             InitializeComponent();
@@ -31,10 +31,9 @@ namespace Distribuidora.Win
         private void frm_menu_Load(object sender, EventArgs e)
         {
             Login();
-            tsServer.Text = "Servidor: " + contexto.server;
-            tsDatabase.Text = "Base de Datos: " + contexto.database;
-            tsUsuario.Text = "Usuario: " + frm_login.usuario;
-            departamentoID = frm_login.departamentoID;
+            statusServidor.Text = "Servidor: " + contexto.server;
+            StatusBD.Text = "Base de Datos: " + contexto.database;
+            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre;
         }
 
         public frm_usuarios frm_usuarios;
@@ -59,10 +58,9 @@ namespace Distribuidora.Win
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Login();
-            tsServer.Text = "Servidor: " + contexto.server;
-            tsDatabase.Text = "BD: " + contexto.database;
-            tsUsuario.Text = "Usuario: " + frm_login.usuario;
-            departamentoID = frm_login.departamentoID;
+            statusServidor.Text = "Servidor: " + contexto.server;
+            StatusBD.Text = "BD: " + contexto.database;
+            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre;
         }
 
         public frm_clientes frm_clientes;
@@ -73,14 +71,12 @@ namespace Distribuidora.Win
                 frm_clientes = new frm_clientes();
                 frm_clientes.MdiParent = this;
                 frm_clientes.Show();
-                frm_clientes.Permisos(departamentoID);
             }
             else if (frm_clientes.IsDisposed)
             {
                 frm_clientes = new frm_clientes();
                 frm_clientes.MdiParent = this;
                 frm_clientes.Show();
-                frm_clientes.Permisos(departamentoID);
             }
             else
                 frm_clientes.Activate();
@@ -113,21 +109,19 @@ namespace Distribuidora.Win
                 frm_productos = new frm_productos();
                 frm_productos.MdiParent = this;
                 frm_productos.Show();
-                frm_productos.Permisos(departamentoID);
             }
             else if (frm_productos.IsDisposed)
             {
                 frm_productos = new frm_productos();
                 frm_productos.MdiParent = this;
                 frm_productos.Show();
-                frm_productos.Permisos(departamentoID);
             }
             else
                 frm_productos.Activate();
         }
 
         public frm_facturas frm_facturas;
-        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
+        public void AbrirFacturas()
         {
             if (frm_facturas == null)
             {
@@ -143,6 +137,10 @@ namespace Distribuidora.Win
             }
             else
                 frm_facturas.Activate();
+        }
+        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirFacturas();
         }
 
         public frm_proveedores frm_proveedores;
@@ -165,7 +163,7 @@ namespace Distribuidora.Win
         }
 
         public frm_ordenes frm_ordenes;
-        private void órdenesDeEntregaToolStripMenuItem_Click(object sender, EventArgs e)
+        public void AbrirOrdenes()
         {
             if (frm_ordenes == null)
             {
@@ -181,6 +179,20 @@ namespace Distribuidora.Win
             }
             else
                 frm_ordenes.Activate();
+        }
+        private void órdenesDeEntregaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirOrdenes();
+        }
+
+        private void toolStripFacturas_Click(object sender, EventArgs e)
+        {
+            AbrirFacturas();
+        }
+
+        private void toolStripOrdenes_Click(object sender, EventArgs e)
+        {
+            AbrirOrdenes();
         }
     }
 }

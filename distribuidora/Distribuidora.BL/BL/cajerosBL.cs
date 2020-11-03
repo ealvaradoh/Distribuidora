@@ -20,51 +20,54 @@ namespace Distribuidora.BL.BL
         }
         public BindingList<cajero> ObtenerCajeros()
         {
-            MySqlDataReader reader;
-            MySqlConnection _contexto = contexto.crearConexion();
-
-            string sql = "SELECT * FROM cajero;";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
-
-            reader = comando.ExecuteReader();
-
-            cajero caje = null;
-            while (reader.Read())
+            MySqlConnection _contexto;
+            using (_contexto = contexto.crearConexion())
             {
-                caje = new cajero();
-                caje.caje_id = int.Parse(reader["caje_id"].ToString());
-                caje.caje_caja_asig = reader["caje_caja_asig"].ToString();
-                caje.caje_fing = DateTime.Parse(reader["caje_fing"].ToString());
-                caje.emp_id = int.Parse(reader["emp_id"].ToString());
+                string sql = "SELECT * FROM cajero;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    MySqlDataReader reader = comando.ExecuteReader();
 
-                ListaCajeros.Add(caje);
+                    cajero caje = null;
+                    while (reader.Read())
+                    {
+                        caje = new cajero();
+                        caje.caje_id = int.Parse(reader["caje_id"].ToString());
+                        caje.caje_caja_asig = reader["caje_caja_asig"].ToString();
+                        caje.caje_fing = DateTime.Parse(reader["caje_fing"].ToString());
+                        caje.emp_id = int.Parse(reader["emp_id"].ToString());
+
+                        ListaCajeros.Add(caje);
+                    }
+                }
+                return ListaCajeros;
             }
-            return ListaCajeros;
         }
 
         public BindingList<cajeroNombre> ObtenerNombreCajeros()
         {
-            MySqlDataReader reader;
-            MySqlConnection _contexto = contexto.crearConexion();
-
-            string sql = "SELECT caje.`caje_id`, caje.`emp_id`, CONCAT(emple.`emp_pnom`,' ',emple.`emp_snom`,' ',emple.`emp_pape`) AS empleado FROM cajero caje " +
+            MySqlConnection _contexto;
+            using (_contexto = contexto.crearConexion())
+            {
+                string sql = "SELECT caje.`caje_id`, caje.`emp_id`, CONCAT(emple.`emp_pnom`,' ',emple.`emp_snom`,' ',emple.`emp_pape`) AS empleado FROM cajero caje " +
                 "INNER JOIN empleado emple ON caje.`emp_id` = emple.`emp_id` " +
                 "ORDER BY emple.`emp_id`;";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    MySqlDataReader reader = comando.ExecuteReader();
+                    cajeroNombre caje = null;
+                    while (reader.Read())
+                    {
+                        caje = new cajeroNombre();
+                        caje.caje_id = int.Parse(reader["caje_id"].ToString());
+                        caje.emp_id = int.Parse(reader["emp_id"].ToString());
+                        caje.empleadoNombre = reader["empleado"].ToString();
 
-            reader = comando.ExecuteReader();
-
-            cajeroNombre caje = null;
-            while (reader.Read())
-            {
-                caje = new cajeroNombre();
-                caje.caje_id = int.Parse(reader["caje_id"].ToString());
-                caje.emp_id = int.Parse(reader["emp_id"].ToString());
-                caje.empleadoNombre = reader["empleado"].ToString();
-
-                ListaNombreCajeros.Add(caje);
+                        ListaNombreCajeros.Add(caje);
+                    }
+                }
+                return ListaNombreCajeros;
             }
-            return ListaNombreCajeros;
         }
 
         public void AgregarCajero()
@@ -80,63 +83,63 @@ namespace Distribuidora.BL.BL
 
         public void GuardarCajero(cajero CajeroGuardado)
         {
-            MySqlDataReader reader;
             MySqlConnection _contexto;
-            string sql;
-
-            _contexto = contexto.crearConexion();
-
-            sql = "INSERT INTO cajero VALUES(@caje_id, @caje_caja_asig, @caje_fing, @emp_id);";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
-
-            comando.Parameters.AddWithValue("caje_id", CajeroGuardado.caje_id);
-            comando.Parameters.AddWithValue("caje_caja_asig",CajeroGuardado.caje_caja_asig);
-            comando.Parameters.AddWithValue("caje_fing", CajeroGuardado.caje_fing);
-            comando.Parameters.AddWithValue("emp_id", CajeroGuardado.emp_id);
-
-            comando.ExecuteNonQuery();
-
-            _contexto = contexto.crearConexion();
-            sql = "SELECT MAX(caje_id) AS nuevoCajeroId FROM cajero;";
-            comando = new MySqlCommand(sql, _contexto);
-
-            reader = comando.ExecuteReader();
-            while (reader.Read())
+            using (_contexto = contexto.crearConexion())
             {
-                CajeroGuardado.caje_id = int.Parse(reader["nuevoCajeroId"].ToString());
-            }
+                string sql = "INSERT INTO cajero VALUES(@caje_id, @caje_caja_asig, @caje_fing, @emp_id);";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    comando.Parameters.AddWithValue("caje_id", CajeroGuardado.caje_id);
+                    comando.Parameters.AddWithValue("caje_caja_asig", CajeroGuardado.caje_caja_asig);
+                    comando.Parameters.AddWithValue("caje_fing", CajeroGuardado.caje_fing);
+                    comando.Parameters.AddWithValue("emp_id", CajeroGuardado.emp_id);
 
-            ListaCajeros.Add(CajeroGuardado);
+                    comando.ExecuteNonQuery();
+                }
+                sql = "SELECT MAX(caje_id) AS nuevoCajeroId FROM cajero;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    MySqlDataReader reader = comando.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CajeroGuardado.caje_id = int.Parse(reader["nuevoCajeroId"].ToString());
+                    }
+                }
+                ListaCajeros.Add(CajeroGuardado);
+            }
         }
 
         public void EditarCajero(cajero CajeroEditado)
         {
-            MySqlConnection _contexto = contexto.crearConexion();
-            string sql;
+            MySqlConnection _contexto;
+            using (_contexto = contexto.crearConexion())
+            {
+                string sql = "UPDATE cajero SET caje_caja_asig=@caje_caja_asig, caje_fing=@caje_fing, emp_id=@emp_id WHERE caje_id = @caje_id;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    comando.Parameters.AddWithValue("caje_id", CajeroEditado.caje_id);
+                    comando.Parameters.AddWithValue("caje_caja_asig", CajeroEditado.caje_caja_asig);
+                    comando.Parameters.AddWithValue("caje_fing", CajeroEditado.caje_fing);
+                    comando.Parameters.AddWithValue("emp_id", CajeroEditado.emp_id);
 
-            sql = "UPDATE cajero SET caje_caja_asig=@caje_caja_asig, caje_fing=@caje_fing, emp_id=@emp_id WHERE caje_id = @caje_id;";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
-
-            comando.Parameters.AddWithValue("caje_id", CajeroEditado.caje_id);
-            comando.Parameters.AddWithValue("caje_caja_asig", CajeroEditado.caje_caja_asig);
-            comando.Parameters.AddWithValue("caje_fing", CajeroEditado.caje_fing);
-            comando.Parameters.AddWithValue("emp_id", CajeroEditado.emp_id);
-
-            comando.ExecuteNonQuery();
+                    comando.ExecuteNonQuery();
+                }
+            }
         }
 
         public void EliminarCajero(cajero CajeroEliminado)
         {
-            MySqlConnection _contexto = contexto.crearConexion();
-            string sql;
-
-            sql = "DELETE FROM cajero WHERE caje_id = @caje_id;";
-            MySqlCommand comando = new MySqlCommand(sql, _contexto);
-
-            comando.Parameters.AddWithValue("@caje_id", CajeroEliminado.caje_id);
-
-            comando.ExecuteNonQuery();
-            ListaCajeros.Remove(CajeroEliminado);
+            MySqlConnection _contexto;
+            using (_contexto = contexto.crearConexion())
+            {
+                string sql = "DELETE FROM cajero WHERE caje_id = @caje_id;";
+                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@caje_id", CajeroEliminado.caje_id);
+                    comando.ExecuteNonQuery();
+                }
+                ListaCajeros.Remove(CajeroEliminado);
+            }
         }
 
         public class cajeroNombre

@@ -49,12 +49,12 @@
             this.produ_nomTextBox = new System.Windows.Forms.TextBox();
             this.produ_precTextBox = new System.Windows.Forms.TextBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.listaProductosBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.listaProductosBindingNavigatorEdit = new System.Windows.Forms.ToolStripButton();
-            this.listaProductosBindingNavigatorAdd = new System.Windows.Forms.ToolStripButton();
-            this.listaProductosBindingNavigatorCancel = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorEditItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCancelItem = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelDatos = new System.Windows.Forms.Panel();
             produ_idLabel = new System.Windows.Forms.Label();
             produ_nomLabel = new System.Windows.Forms.Label();
             produ_precLabel = new System.Windows.Forms.Label();
@@ -64,7 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelDatos.SuspendLayout();
             this.SuspendLayout();
             // 
             // produ_idLabel
@@ -209,9 +209,9 @@
             // produ_idTextBox
             // 
             this.produ_idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaProductosBindingSource, "produ_id", true));
-            this.produ_idTextBox.Enabled = false;
             this.produ_idTextBox.Location = new System.Drawing.Point(344, 9);
             this.produ_idTextBox.Name = "produ_idTextBox";
+            this.produ_idTextBox.ReadOnly = true;
             this.produ_idTextBox.Size = new System.Drawing.Size(296, 41);
             this.produ_idTextBox.TabIndex = 2;
             // 
@@ -239,10 +239,10 @@
             this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listaProductosBindingNavigatorSaveItem,
-            this.listaProductosBindingNavigatorEdit,
-            this.listaProductosBindingNavigatorAdd,
-            this.listaProductosBindingNavigatorCancel});
+            this.bindingNavigatorSaveItem,
+            this.bindingNavigatorEditItem,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorCancelItem});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
@@ -254,52 +254,52 @@
             this.bindingNavigator1.TabIndex = 7;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
-            // listaProductosBindingNavigatorSaveItem
+            // bindingNavigatorSaveItem
             // 
-            this.listaProductosBindingNavigatorSaveItem.Enabled = false;
-            this.listaProductosBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("listaProductosBindingNavigatorSaveItem.Image")));
-            this.listaProductosBindingNavigatorSaveItem.Name = "listaProductosBindingNavigatorSaveItem";
-            this.listaProductosBindingNavigatorSaveItem.Size = new System.Drawing.Size(107, 44);
-            this.listaProductosBindingNavigatorSaveItem.Text = "Guardar datos";
-            this.listaProductosBindingNavigatorSaveItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.listaProductosBindingNavigatorSaveItem.Click += new System.EventHandler(this.listaProductosBindingNavigatorSaveItem_Click);
+            this.bindingNavigatorSaveItem.Enabled = false;
+            this.bindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorSaveItem.Image")));
+            this.bindingNavigatorSaveItem.Name = "bindingNavigatorSaveItem";
+            this.bindingNavigatorSaveItem.Size = new System.Drawing.Size(107, 44);
+            this.bindingNavigatorSaveItem.Text = "Guardar datos";
+            this.bindingNavigatorSaveItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorSaveItem.Click += new System.EventHandler(this.listaProductosBindingNavigatorSaveItem_Click);
             // 
-            // listaProductosBindingNavigatorEdit
+            // bindingNavigatorEditItem
             // 
-            this.listaProductosBindingNavigatorEdit.Image = ((System.Drawing.Image)(resources.GetObject("listaProductosBindingNavigatorEdit.Image")));
-            this.listaProductosBindingNavigatorEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.listaProductosBindingNavigatorEdit.Name = "listaProductosBindingNavigatorEdit";
-            this.listaProductosBindingNavigatorEdit.Size = new System.Drawing.Size(52, 44);
-            this.listaProductosBindingNavigatorEdit.Text = "Editar";
-            this.listaProductosBindingNavigatorEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.listaProductosBindingNavigatorEdit.Click += new System.EventHandler(this.listaProductosBindingNavigatorEdit_Click);
+            this.bindingNavigatorEditItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorEditItem.Image")));
+            this.bindingNavigatorEditItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorEditItem.Name = "bindingNavigatorEditItem";
+            this.bindingNavigatorEditItem.Size = new System.Drawing.Size(52, 44);
+            this.bindingNavigatorEditItem.Text = "Editar";
+            this.bindingNavigatorEditItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorEditItem.Click += new System.EventHandler(this.listaProductosBindingNavigatorEdit_Click);
             // 
-            // listaProductosBindingNavigatorAdd
+            // bindingNavigatorAddNewItem
             // 
-            this.listaProductosBindingNavigatorAdd.Image = ((System.Drawing.Image)(resources.GetObject("listaProductosBindingNavigatorAdd.Image")));
-            this.listaProductosBindingNavigatorAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.listaProductosBindingNavigatorAdd.Name = "listaProductosBindingNavigatorAdd";
-            this.listaProductosBindingNavigatorAdd.Size = new System.Drawing.Size(57, 44);
-            this.listaProductosBindingNavigatorAdd.Text = "Añadir";
-            this.listaProductosBindingNavigatorAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.listaProductosBindingNavigatorAdd.Click += new System.EventHandler(this.listaProductosBindingNavigatorAdd_Click);
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(57, 44);
+            this.bindingNavigatorAddNewItem.Text = "Añadir";
+            this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.listaProductosBindingNavigatorAdd_Click);
             // 
-            // listaProductosBindingNavigatorCancel
+            // bindingNavigatorCancelItem
             // 
-            this.listaProductosBindingNavigatorCancel.Enabled = false;
-            this.listaProductosBindingNavigatorCancel.Image = ((System.Drawing.Image)(resources.GetObject("listaProductosBindingNavigatorCancel.Image")));
-            this.listaProductosBindingNavigatorCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.listaProductosBindingNavigatorCancel.Name = "listaProductosBindingNavigatorCancel";
-            this.listaProductosBindingNavigatorCancel.Size = new System.Drawing.Size(70, 44);
-            this.listaProductosBindingNavigatorCancel.Text = "Cancelar";
-            this.listaProductosBindingNavigatorCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.listaProductosBindingNavigatorCancel.Click += new System.EventHandler(this.listaProductosBindingNavigatorCancel_Click);
+            this.bindingNavigatorCancelItem.Enabled = false;
+            this.bindingNavigatorCancelItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorCancelItem.Image")));
+            this.bindingNavigatorCancelItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorCancelItem.Name = "bindingNavigatorCancelItem";
+            this.bindingNavigatorCancelItem.Size = new System.Drawing.Size(70, 44);
+            this.bindingNavigatorCancelItem.Text = "Cancelar";
+            this.bindingNavigatorCancelItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.bindingNavigatorCancelItem.Click += new System.EventHandler(this.listaProductosBindingNavigatorCancel_Click);
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.produ_idTextBox);
             this.panel1.Controls.Add(produ_idLabel);
@@ -310,33 +310,34 @@
             this.panel1.Size = new System.Drawing.Size(669, 67);
             this.panel1.TabIndex = 34;
             // 
-            // panel2
+            // panelDatos
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelDatos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.produ_precTextBox);
-            this.panel2.Controls.Add(produ_precLabel);
-            this.panel2.Controls.Add(this.produ_nomTextBox);
-            this.panel2.Controls.Add(produ_nomLabel);
-            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(21, 143);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(621, 181);
-            this.panel2.TabIndex = 37;
+            this.panelDatos.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelDatos.Controls.Add(this.produ_precTextBox);
+            this.panelDatos.Controls.Add(produ_precLabel);
+            this.panelDatos.Controls.Add(this.produ_nomTextBox);
+            this.panelDatos.Controls.Add(produ_nomLabel);
+            this.panelDatos.Enabled = false;
+            this.panelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelDatos.Location = new System.Drawing.Point(21, 143);
+            this.panelDatos.Name = "panelDatos";
+            this.panelDatos.Size = new System.Drawing.Size(621, 181);
+            this.panelDatos.TabIndex = 37;
             // 
             // frm_productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 406);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelDatos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.listaProductosBindingNavigator);
             this.Name = "frm_productos";
-            this.Text = "frm_producto";
+            this.Text = "Productos";
             ((System.ComponentModel.ISupportInitialize)(this.listaProductosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaProductosBindingNavigator)).EndInit();
             this.listaProductosBindingNavigator.ResumeLayout(false);
@@ -346,8 +347,8 @@
             this.bindingNavigator1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelDatos.ResumeLayout(false);
+            this.panelDatos.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,12 +371,12 @@
         private System.Windows.Forms.TextBox produ_nomTextBox;
         private System.Windows.Forms.TextBox produ_precTextBox;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
-        private System.Windows.Forms.ToolStripButton listaProductosBindingNavigatorSaveItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorSaveItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripButton listaProductosBindingNavigatorEdit;
-        private System.Windows.Forms.ToolStripButton listaProductosBindingNavigatorAdd;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorEditItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.Panel panelDatos;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton listaProductosBindingNavigatorCancel;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorCancelItem;
     }
 }
