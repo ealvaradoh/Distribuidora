@@ -31,21 +31,7 @@ namespace Distribuidora.BL.Entidades
             fact_total = 0;
         }
 
-        public void CalcularTotalGeneral()
-        {
-            var productoBL = new productosBL();
-
-            decimal subtotal = 0;
-            foreach (var produ in factura_detalle)
-            {
-                var precio = productoBL.ObtenerPrecio(produ.produ_id);
-                subtotal += +produ.CalcularTotalDetalle(precio);
-            }
-
-            fact_subt = subtotal;
-            fact_isv = fact_subt * decimal.Parse("0.15");
-            fact_total = fact_subt + fact_isv;
-        }
+        
     }
 
     public class factura_detalle
@@ -62,15 +48,6 @@ namespace Distribuidora.BL.Entidades
         {
             produ_id = 1;
             fact_det_cant = 1;
-        }
-
-        public decimal CalcularTotalDetalle(decimal precio)
-        {
-            fact_det_prec = precio;
-            fact_det_total = 
-                fact_det_cant * fact_det_prec;
-
-            return fact_det_total;
         }
     }
 }

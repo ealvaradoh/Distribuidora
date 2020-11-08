@@ -50,6 +50,7 @@
             this.toolStripFacturas = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripOrdenes = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSalir = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -211,7 +212,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripFacturas,
             this.toolStripSeparator1,
-            this.toolStripOrdenes});
+            this.toolStripOrdenes,
+            this.toolStripSalir});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1069, 47);
@@ -244,6 +246,16 @@
             this.toolStripOrdenes.Text = "Órdenes de Entrega";
             this.toolStripOrdenes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripOrdenes.Click += new System.EventHandler(this.toolStripOrdenes_Click);
+            // 
+            // toolStripSalir
+            // 
+            this.toolStripSalir.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSalir.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSalir.Image")));
+            this.toolStripSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSalir.Name = "toolStripSalir";
+            this.toolStripSalir.Size = new System.Drawing.Size(42, 44);
+            this.toolStripSalir.Text = "Salir";
+            this.toolStripSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // frm_menu
             // 
@@ -294,6 +306,7 @@
         private System.Windows.Forms.ToolStripButton toolStripFacturas;
         private System.Windows.Forms.ToolStripButton toolStripOrdenes;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripSalir;
     }
 }
 

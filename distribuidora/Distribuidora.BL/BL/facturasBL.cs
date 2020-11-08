@@ -24,7 +24,7 @@ namespace Distribuidora.BL.BL
             MySqlConnection _contexto;
             using (_contexto = contexto.crearConexion())
             {
-                string sqlFactura = "SELECT f.`fact_id`, f.`fact_fecha`, f.`clien_id`, f.`fact_subt`, f.`fact_isv`, f.`fact_total`, f.`caje_id`, " +
+                string sqlFactura = "SELECT f.*, " +
                     "fd.`fact_id` AS fd_fact_id, fd.`produ_id`, fd.`fact_det_cant`, fd.`fact_det_prec`, fd.`fact_det_total` " +
                     "FROM factura f, factura_detalle fd " +
                     "WHERE f.`fact_id` = fd.`fact_id` ORDER BY f.`fact_id`;";
@@ -78,11 +78,11 @@ namespace Distribuidora.BL.BL
             }
         }
 
-        public resultado AutorizaCajeroAtiende(factura nuevaFactura)
+        public resultado AutorizaCajeroAtiende(factura factura)
         {
             var resultado = new resultado();
             resultado.Exitoso = true;
-            nuevaFactura.caje_id = 0;
+            factura.caje_id = 0;
 
             MySqlConnection _contexto;
             string sql = "SELECT emp.`emp_id`, caje.`caje_id` " +
@@ -97,10 +97,10 @@ namespace Distribuidora.BL.BL
                     MySqlDataReader reader = comando.ExecuteReader();
                     while (reader.Read())
                     {
-                        nuevaFactura.caje_id = int.Parse(reader["caje_id"].ToString());
+                        factura.caje_id = int.Parse(reader["caje_id"].ToString());
                     }
                 }
-                if (nuevaFactura.caje_id == 0)
+                if (factura.caje_id == 0)
                 {
                     resultado.Exitoso = false;
                     resultado.Mensaje = "El empleado no está autorizado para hacer facturas";
@@ -109,27 +109,30 @@ namespace Distribuidora.BL.BL
             return resultado;
         }
 
-        public resultado AgregarFactura()
+        public void CalcularTotalGeneral(factura fact)
         {
-            var nuevaFactura = new factura();
-            nuevaFactura.caje_id = resultadoLogin.cajeroID;
-            var resultado = AutorizaCajeroAtiende(nuevaFactura);
+            var productoBL = new productosBL();
 
-            if (resultado.Exitoso == false)
-                return resultado;
-            else
-                ListaFacturas.Add(nuevaFactura); 
+            decimal subtotal = 0;
+            foreach (var fact_det in fact.factura_detalle)
+            {
+                var precio = productoBL.ObtenerPrecio(fact_det.produ_id);
+                subtotal += CalcularTotalDetalle(fact_det, precio);
+            }
 
-            return resultado;
+            fact.fact_subt = subtotal;
+            fact.fact_isv = fact.fact_subt * decimal.Parse("0.15");
+            fact.fact_total = fact.fact_subt + fact.fact_isv;
         }
 
-        public void AgregarFacturaDetalle(factura factura)
+        public decimal CalcularTotalDetalle(factura_detalle fact_det, decimal precio)
         {
-            if(factura != null)
-            {
-                var nuevoDetalle = new factura_detalle();
-                factura.factura_detalle.Add(nuevoDetalle);
-            }
+            fact_det.fact_det_prec = precio;
+
+            fact_det.fact_det_total =
+                fact_det.fact_det_cant * fact_det.fact_det_prec;
+
+            return fact_det.fact_det_total;
         }
 
         public resultado ValidarFactura(factura facturaValida)
@@ -240,6 +243,7 @@ namespace Distribuidora.BL.BL
                 facturaGuardada.factura_detalle = ListaFacturasDetalle;
                 ListaFacturas.Add(facturaGuardada);
             }
+            ListaFacturasDetalle.Clear();
             return resultado;
         }
 
@@ -295,6 +299,30 @@ namespace Distribuidora.BL.BL
                 }
             }
             return resultado;
+        }
+
+        public resultado AgregarFactura()
+        {
+            var nuevaFactura = new factura();
+            nuevaFactura.caje_id = resultadoLogin.cajeroID;
+            var resultado = AutorizaCajeroAtiende(nuevaFactura);
+
+            if (resultado.Exitoso == false)
+                return resultado;
+            else
+                ListaFacturas.Add(nuevaFactura);
+
+            return resultado;
+        }
+
+        public void AgregarFacturaDetalle(factura factura)
+        {
+            if (factura != null)
+            {
+                var nuevoDetalle = new factura_detalle();
+                factura.factura_detalle.Add(nuevoDetalle);
+                ListaFacturasDetalle.Add(nuevoDetalle);
+            }
         }
 
         public void RemoverFacturaDetalle(factura factura, factura_detalle facturaDetalle)

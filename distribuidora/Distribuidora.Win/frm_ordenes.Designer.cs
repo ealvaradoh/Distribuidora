@@ -66,6 +66,11 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorEditItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCancelItem = new System.Windows.Forms.ToolStripButton();
+            this.listaOrdenesDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prov_id = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ord_cant_produLabel = new System.Windows.Forms.Label();
             ord_fechaLabel = new System.Windows.Forms.Label();
             prov_idLabel = new System.Windows.Forms.Label();
@@ -82,33 +87,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.orden_detalleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaOrdenesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // ord_cant_produLabel
             // 
             ord_cant_produLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             ord_cant_produLabel.AutoSize = true;
-            ord_cant_produLabel.Location = new System.Drawing.Point(19, 335);
+            ord_cant_produLabel.Location = new System.Drawing.Point(15, 143);
             ord_cant_produLabel.Name = "ord_cant_produLabel";
-            ord_cant_produLabel.Size = new System.Drawing.Size(280, 20);
+            ord_cant_produLabel.Size = new System.Drawing.Size(247, 18);
             ord_cant_produLabel.TabIndex = 1;
             ord_cant_produLabel.Text = "Cantidad de producto en esta orden:";
             // 
             // ord_fechaLabel
             // 
             ord_fechaLabel.AutoSize = true;
-            ord_fechaLabel.Location = new System.Drawing.Point(19, 108);
+            ord_fechaLabel.Location = new System.Drawing.Point(15, 64);
             ord_fechaLabel.Name = "ord_fechaLabel";
-            ord_fechaLabel.Size = new System.Drawing.Size(60, 20);
+            ord_fechaLabel.Size = new System.Drawing.Size(53, 18);
             ord_fechaLabel.TabIndex = 3;
             ord_fechaLabel.Text = "Fecha:";
             // 
             // prov_idLabel
             // 
             prov_idLabel.AutoSize = true;
-            prov_idLabel.Location = new System.Drawing.Point(19, 22);
+            prov_idLabel.Location = new System.Drawing.Point(15, 10);
             prov_idLabel.Name = "prov_idLabel";
-            prov_idLabel.Size = new System.Drawing.Size(90, 20);
+            prov_idLabel.Size = new System.Drawing.Size(81, 18);
             prov_idLabel.TabIndex = 7;
             prov_idLabel.Text = "Proveedor:";
             // 
@@ -141,14 +147,14 @@
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorDeleteItem});
-            this.bindingNavigator.Location = new System.Drawing.Point(0, 591);
+            this.bindingNavigator.Location = new System.Drawing.Point(0, 521);
             this.bindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator.Name = "bindingNavigator";
             this.bindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator.Size = new System.Drawing.Size(1156, 27);
+            this.bindingNavigator.Size = new System.Drawing.Size(1375, 27);
             this.bindingNavigator.TabIndex = 0;
             this.bindingNavigator.Text = "bindingNavigator1";
             // 
@@ -237,7 +243,7 @@
             this.ord_cant_produTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ord_cant_produTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaOrdenesBindingSource, "ord_cant_produ", true));
             this.ord_cant_produTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ord_cant_produTextBox.Location = new System.Drawing.Point(23, 357);
+            this.ord_cant_produTextBox.Location = new System.Drawing.Point(14, 165);
             this.ord_cant_produTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ord_cant_produTextBox.Name = "ord_cant_produTextBox";
             this.ord_cant_produTextBox.Size = new System.Drawing.Size(276, 34);
@@ -246,10 +252,10 @@
             // ord_fechaDateTimePicker
             // 
             this.ord_fechaDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.listaOrdenesBindingSource, "ord_fecha", true));
-            this.ord_fechaDateTimePicker.Location = new System.Drawing.Point(23, 130);
+            this.ord_fechaDateTimePicker.Location = new System.Drawing.Point(19, 86);
             this.ord_fechaDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ord_fechaDateTimePicker.Name = "ord_fechaDateTimePicker";
-            this.ord_fechaDateTimePicker.Size = new System.Drawing.Size(400, 27);
+            this.ord_fechaDateTimePicker.Size = new System.Drawing.Size(400, 24);
             this.ord_fechaDateTimePicker.TabIndex = 4;
             // 
             // ord_idTextBox
@@ -274,27 +280,25 @@
             this.panel1.Location = new System.Drawing.Point(0, 50);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1156, 67);
+            this.panel1.Size = new System.Drawing.Size(1375, 67);
             this.panel1.TabIndex = 21;
             // 
             // panelDatos
             // 
-            this.panelDatos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelDatos.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panelDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelDatos.Controls.Add(this.ord_cant_produTextBox);
             this.panelDatos.Controls.Add(this.prov_nomComboBox);
             this.panelDatos.Controls.Add(prov_idLabel);
             this.panelDatos.Controls.Add(this.ord_fechaDateTimePicker);
-            this.panelDatos.Controls.Add(ord_cant_produLabel);
             this.panelDatos.Controls.Add(ord_fechaLabel);
+            this.panelDatos.Controls.Add(ord_cant_produLabel);
             this.panelDatos.Enabled = false;
-            this.panelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDatos.Location = new System.Drawing.Point(20, 162);
+            this.panelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelDatos.Location = new System.Drawing.Point(12, 121);
             this.panelDatos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelDatos.Name = "panelDatos";
-            this.panelDatos.Size = new System.Drawing.Size(439, 413);
+            this.panelDatos.Size = new System.Drawing.Size(624, 213);
             this.panelDatos.TabIndex = 39;
             // 
             // prov_nomComboBox
@@ -303,10 +307,10 @@
             this.prov_nomComboBox.DataSource = this.listaProveedoresBindingSource;
             this.prov_nomComboBox.DisplayMember = "prov_nom";
             this.prov_nomComboBox.FormattingEnabled = true;
-            this.prov_nomComboBox.Location = new System.Drawing.Point(23, 46);
+            this.prov_nomComboBox.Location = new System.Drawing.Point(19, 34);
             this.prov_nomComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.prov_nomComboBox.Name = "prov_nomComboBox";
-            this.prov_nomComboBox.Size = new System.Drawing.Size(400, 28);
+            this.prov_nomComboBox.Size = new System.Drawing.Size(400, 26);
             this.prov_nomComboBox.TabIndex = 8;
             this.prov_nomComboBox.ValueMember = "prov_id";
             // 
@@ -316,26 +320,25 @@
             // 
             // panelDetalle
             // 
-            this.panelDetalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelDetalle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelDetalle.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panelDetalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelDetalle.Controls.Add(this.ListaProductosDetalleDelete);
             this.panelDetalle.Controls.Add(this.ListaProductosDetalleAdd);
             this.panelDetalle.Controls.Add(this.orden_detalleDataGridView);
             this.panelDetalle.Enabled = false;
-            this.panelDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDetalle.Location = new System.Drawing.Point(479, 162);
+            this.panelDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelDetalle.Location = new System.Drawing.Point(12, 354);
             this.panelDetalle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelDetalle.Name = "panelDetalle";
-            this.panelDetalle.Size = new System.Drawing.Size(651, 413);
+            this.panelDetalle.Size = new System.Drawing.Size(624, 156);
             this.panelDetalle.TabIndex = 40;
             // 
             // ListaProductosDetalleDelete
             // 
             this.ListaProductosDetalleDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ListaProductosDetalleDelete.Location = new System.Drawing.Point(56, 370);
+            this.ListaProductosDetalleDelete.Location = new System.Drawing.Point(56, 113);
             this.ListaProductosDetalleDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ListaProductosDetalleDelete.Name = "ListaProductosDetalleDelete";
             this.ListaProductosDetalleDelete.Size = new System.Drawing.Size(47, 36);
@@ -347,7 +350,7 @@
             // ListaProductosDetalleAdd
             // 
             this.ListaProductosDetalleAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ListaProductosDetalleAdd.Location = new System.Drawing.Point(3, 370);
+            this.ListaProductosDetalleAdd.Location = new System.Drawing.Point(3, 113);
             this.ListaProductosDetalleAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ListaProductosDetalleAdd.Name = "ListaProductosDetalleAdd";
             this.ListaProductosDetalleAdd.Size = new System.Drawing.Size(47, 36);
@@ -375,9 +378,9 @@
             this.orden_detalleDataGridView.Name = "orden_detalleDataGridView";
             this.orden_detalleDataGridView.RowHeadersWidth = 51;
             this.orden_detalleDataGridView.RowTemplate.Height = 24;
-            this.orden_detalleDataGridView.Size = new System.Drawing.Size(641, 361);
+            this.orden_detalleDataGridView.Size = new System.Drawing.Size(614, 107);
             this.orden_detalleDataGridView.TabIndex = 0;
-            this.orden_detalleDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.orden_detalleDataGridView_CellClick);
+            this.orden_detalleDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.orden_detalleDataGridView_CellEndEdit);
             this.orden_detalleDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.orden_detalleDataGridView_DataError);
             // 
             // dataGridViewTextBoxColumn3
@@ -432,7 +435,7 @@
             this.bindingNavigator1.MovePreviousItem = null;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = null;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1156, 47);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1375, 47);
             this.bindingNavigator1.TabIndex = 41;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -477,11 +480,79 @@
             this.bindingNavigatorCancelItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.bindingNavigatorCancelItem.Click += new System.EventHandler(this.bindingNavigatorCancelItem_Click);
             // 
+            // listaOrdenesDataGridView
+            // 
+            this.listaOrdenesDataGridView.AllowUserToAddRows = false;
+            this.listaOrdenesDataGridView.AllowUserToDeleteRows = false;
+            this.listaOrdenesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaOrdenesDataGridView.AutoGenerateColumns = false;
+            this.listaOrdenesDataGridView.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listaOrdenesDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaOrdenesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaOrdenesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.prov_id,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn4});
+            this.listaOrdenesDataGridView.DataSource = this.listaOrdenesBindingSource;
+            this.listaOrdenesDataGridView.Location = new System.Drawing.Point(654, 122);
+            this.listaOrdenesDataGridView.Name = "listaOrdenesDataGridView";
+            this.listaOrdenesDataGridView.ReadOnly = true;
+            this.listaOrdenesDataGridView.RowHeadersWidth = 51;
+            this.listaOrdenesDataGridView.RowTemplate.Height = 24;
+            this.listaOrdenesDataGridView.Size = new System.Drawing.Size(704, 388);
+            this.listaOrdenesDataGridView.TabIndex = 41;
+            this.listaOrdenesDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.listaOrdenesDataGridView_DataError);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ord_id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "N° Orden";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // prov_id
+            // 
+            this.prov_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.prov_id.DataPropertyName = "prov_id";
+            this.prov_id.DataSource = this.listaProveedoresBindingSource;
+            this.prov_id.DisplayMember = "prov_nom";
+            this.prov_id.HeaderText = "Proveedor";
+            this.prov_id.MinimumWidth = 6;
+            this.prov_id.Name = "prov_id";
+            this.prov_id.ReadOnly = true;
+            this.prov_id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.prov_id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.prov_id.ValueMember = "prov_id";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ord_fecha";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Fecha";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "ord_cant_produ";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Cantidad de producto";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
             // frm_ordenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1156, 618);
+            this.ClientSize = new System.Drawing.Size(1375, 548);
+            this.Controls.Add(this.listaOrdenesDataGridView);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.panelDetalle);
             this.Controls.Add(this.panelDatos);
@@ -506,6 +577,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaOrdenesDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -545,5 +617,10 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorEditItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorCancelItem;
+        private System.Windows.Forms.DataGridView listaOrdenesDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn prov_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

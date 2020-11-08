@@ -33,7 +33,7 @@ namespace Distribuidora.Win
             Login();
             statusServidor.Text = "Servidor: " + contexto.server;
             StatusBD.Text = "Base de Datos: " + contexto.database;
-            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre;
+            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre + " - " + resultadoLogin.departamentoNombre;
         }
 
         public frm_usuarios frm_usuarios;
@@ -60,7 +60,7 @@ namespace Distribuidora.Win
             Login();
             statusServidor.Text = "Servidor: " + contexto.server;
             StatusBD.Text = "BD: " + contexto.database;
-            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre;
+            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre + " - " + resultadoLogin.departamentoNombre;
         }
 
         public frm_clientes frm_clientes;

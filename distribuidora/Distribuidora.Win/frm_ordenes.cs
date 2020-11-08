@@ -70,9 +70,11 @@ namespace Distribuidora.Win
                 var resultado = _ordenesBL.GuardarOrden(ordenGuardada);
                 if (resultado.Exitoso == true)
                 {
-                    listaOrdenesBindingSource.RemoveCurrent();
+                    listaOrdenesBindingSource.Clear();
 
                     listaOrdenesBindingSource.ResetBindings(false);
+                    listaOrdenesBindingSource.DataSource = _ordenesBL.ObtenerOrdenes();
+                    listaOrdenesBindingSource.MoveLast();
                     EstadoBotones(true);
                     bindingNavigatorSaveItem.Enabled = false;
                 }
@@ -83,11 +85,19 @@ namespace Distribuidora.Win
             else if (esNuevo == false)
             {
                 var ordenEditado = (orden_entrega)listaOrdenesBindingSource.Current;
-                _ordenesBL.EditarOrden(ordenEditado);
+                var resultado = _ordenesBL.EditarOrden(ordenEditado);
+                if (resultado.Exitoso == true)
+                {
+                    listaOrdenesBindingSource.Clear();
 
-                listaOrdenesBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                    listaOrdenesBindingSource.ResetBindings(false);
+                    listaOrdenesBindingSource.DataSource = _ordenesBL.ObtenerOrdenes();
+                    listaOrdenesBindingSource.Position = ordenEditado.ord_id - 1;
+                    EstadoBotones(true);
+                    bindingNavigatorSaveItem.Enabled = false;
+                }
+                else
+                    MessageBox.Show(resultado.Mensaje,"Alerta");
             }
         }
 
@@ -144,19 +154,30 @@ namespace Distribuidora.Win
             }
         }
 
+        public void CalcularTotal()
+        {
+            var orden = (orden_entrega)listaOrdenesBindingSource.Current;
+            orden.CalcularTotalCantidad();
+            listaOrdenesBindingSource.ResetBindings(false);
+        }
+
         private void ListaProductosDetalleDelete_Click(object sender, EventArgs e)
         {
             var orden = (orden_entrega)listaOrdenesBindingSource.Current;
             var ordenDetalle = (orden_detalle)orden_detalleBindingSource.Current;
 
             _ordenesBL.RemoverOrdenDetalle(orden, ordenDetalle);
+            CalcularTotal();
         }
 
-        private void orden_detalleDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void listaOrdenesDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            var orden = (orden_entrega)listaOrdenesBindingSource.Current;
-            orden.CalcularTotalCantidad();
-            listaOrdenesBindingSource.ResetBindings(false);
+            e.ThrowException = false;
+        }
+
+        private void orden_detalleDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            CalcularTotal();
         }
     }
 }

@@ -156,8 +156,13 @@ namespace Distribuidora.BL.BL
             return resultado;
         }
 
-        public void EditarOrden(orden_entrega ordenEditada)
+        public resultado EditarOrden(orden_entrega ordenEditada)
         {
+            var resultado = ValidarOrden(ordenEditada);
+            if (resultado.Exitoso == false)
+            {
+                return resultado;
+            }
             MySqlConnection _contexto;
             using (_contexto = contexto.crearConexion())
             {
@@ -198,6 +203,7 @@ namespace Distribuidora.BL.BL
                     }
                 }
             }
+            return resultado;
         }
 
         public void RemoverOrdenDetalle(orden_entrega orden, orden_detalle ordenDetalle)

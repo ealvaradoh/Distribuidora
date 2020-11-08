@@ -75,6 +75,15 @@
             this.panelDetalle = new System.Windows.Forms.Panel();
             this.ListaFacturaDetalleDelete = new System.Windows.Forms.Button();
             this.ListaFacturaDetalleAdd = new System.Windows.Forms.Button();
+            this.listaFacturasDataGridView = new System.Windows.Forms.DataGridView();
+            this.fact_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             fact_idLabel = new System.Windows.Forms.Label();
             fact_isvLabel = new System.Windows.Forms.Label();
             fact_subtLabel = new System.Windows.Forms.Label();
@@ -95,6 +104,10 @@
             this.panel1.SuspendLayout();
             this.panelDatos.SuspendLayout();
             this.panelDetalle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaFacturasDataGridView)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // fact_idLabel
@@ -112,9 +125,9 @@
             // 
             fact_isvLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             fact_isvLabel.AutoSize = true;
-            fact_isvLabel.Location = new System.Drawing.Point(636, 91);
+            fact_isvLabel.Location = new System.Drawing.Point(934, 82);
             fact_isvLabel.Name = "fact_isvLabel";
-            fact_isvLabel.Size = new System.Drawing.Size(40, 20);
+            fact_isvLabel.Size = new System.Drawing.Size(34, 18);
             fact_isvLabel.TabIndex = 9;
             fact_isvLabel.Text = "ISV:";
             // 
@@ -122,9 +135,9 @@
             // 
             fact_subtLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             fact_subtLabel.AutoSize = true;
-            fact_subtLabel.Location = new System.Drawing.Point(636, 20);
+            fact_subtLabel.Location = new System.Drawing.Point(934, 11);
             fact_subtLabel.Name = "fact_subtLabel";
-            fact_subtLabel.Size = new System.Drawing.Size(103, 20);
+            fact_subtLabel.Size = new System.Drawing.Size(90, 18);
             fact_subtLabel.TabIndex = 11;
             fact_subtLabel.Text = "SUBTOTAL:";
             // 
@@ -132,18 +145,18 @@
             // 
             fact_totalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             fact_totalLabel.AutoSize = true;
-            fact_totalLabel.Location = new System.Drawing.Point(636, 160);
+            fact_totalLabel.Location = new System.Drawing.Point(934, 151);
             fact_totalLabel.Name = "fact_totalLabel";
-            fact_totalLabel.Size = new System.Drawing.Size(68, 20);
+            fact_totalLabel.Size = new System.Drawing.Size(59, 18);
             fact_totalLabel.TabIndex = 13;
             fact_totalLabel.Text = "TOTAL:";
             // 
             // fact_fechaLabel
             // 
             fact_fechaLabel.AutoSize = true;
-            fact_fechaLabel.Location = new System.Drawing.Point(19, 78);
+            fact_fechaLabel.Location = new System.Drawing.Point(19, 72);
             fact_fechaLabel.Name = "fact_fechaLabel";
-            fact_fechaLabel.Size = new System.Drawing.Size(60, 20);
+            fact_fechaLabel.Size = new System.Drawing.Size(53, 18);
             fact_fechaLabel.TabIndex = 22;
             fact_fechaLabel.Text = "Fecha:";
             // 
@@ -152,7 +165,7 @@
             clien_idLabel.AutoSize = true;
             clien_idLabel.Location = new System.Drawing.Point(19, 12);
             clien_idLabel.Name = "clien_idLabel";
-            clien_idLabel.Size = new System.Drawing.Size(66, 20);
+            clien_idLabel.Size = new System.Drawing.Size(57, 18);
             clien_idLabel.TabIndex = 21;
             clien_idLabel.Text = "Cliente:";
             // 
@@ -160,9 +173,9 @@
             // 
             label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(471, 78);
+            label1.Location = new System.Drawing.Point(817, 13);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(85, 20);
+            label1.Size = new System.Drawing.Size(74, 18);
             label1.TabIndex = 26;
             label1.Text = "Cajero ID:";
             // 
@@ -189,14 +202,14 @@
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorDelete});
-            this.BindingNavigator.Location = new System.Drawing.Point(0, 546);
+            this.BindingNavigator.Location = new System.Drawing.Point(0, 534);
             this.BindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.BindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.BindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.BindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.BindingNavigator.Name = "BindingNavigator";
             this.BindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.BindingNavigator.Size = new System.Drawing.Size(1012, 27);
+            this.BindingNavigator.Size = new System.Drawing.Size(1232, 27);
             this.BindingNavigator.TabIndex = 0;
             this.BindingNavigator.Text = "bindingNavigator1";
             // 
@@ -293,7 +306,7 @@
             this.fact_isvTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.fact_isvTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaFacturasBindingSource, "fact_isv", true));
             this.fact_isvTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fact_isvTextBox.Location = new System.Drawing.Point(640, 113);
+            this.fact_isvTextBox.Location = new System.Drawing.Point(938, 104);
             this.fact_isvTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fact_isvTextBox.Name = "fact_isvTextBox";
             this.fact_isvTextBox.Size = new System.Drawing.Size(240, 34);
@@ -305,7 +318,7 @@
             this.fact_subtTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.fact_subtTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaFacturasBindingSource, "fact_subt", true));
             this.fact_subtTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fact_subtTextBox.Location = new System.Drawing.Point(640, 42);
+            this.fact_subtTextBox.Location = new System.Drawing.Point(938, 33);
             this.fact_subtTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fact_subtTextBox.Name = "fact_subtTextBox";
             this.fact_subtTextBox.Size = new System.Drawing.Size(240, 34);
@@ -317,7 +330,7 @@
             this.fact_totalTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.fact_totalTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaFacturasBindingSource, "fact_total", true));
             this.fact_totalTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fact_totalTextBox.Location = new System.Drawing.Point(640, 182);
+            this.fact_totalTextBox.Location = new System.Drawing.Point(938, 173);
             this.fact_totalTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fact_totalTextBox.Name = "fact_totalTextBox";
             this.fact_totalTextBox.Size = new System.Drawing.Size(240, 34);
@@ -351,9 +364,9 @@
             this.factura_detalleDataGridView.Name = "factura_detalleDataGridView";
             this.factura_detalleDataGridView.RowHeadersWidth = 51;
             this.factura_detalleDataGridView.RowTemplate.Height = 24;
-            this.factura_detalleDataGridView.Size = new System.Drawing.Size(563, 218);
+            this.factura_detalleDataGridView.Size = new System.Drawing.Size(841, 215);
             this.factura_detalleDataGridView.TabIndex = 15;
-            this.factura_detalleDataGridView.Click += new System.EventHandler(this.factura_detalleDataGridView_Click);
+            this.factura_detalleDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.factura_detalleDataGridView_CellEndEdit);
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -421,7 +434,7 @@
             this.bindingNavigatorTop.MovePreviousItem = null;
             this.bindingNavigatorTop.Name = "bindingNavigatorTop";
             this.bindingNavigatorTop.PositionItem = null;
-            this.bindingNavigatorTop.Size = new System.Drawing.Size(1012, 47);
+            this.bindingNavigatorTop.Size = new System.Drawing.Size(1232, 47);
             this.bindingNavigatorTop.TabIndex = 18;
             this.bindingNavigatorTop.Text = "bindingNavigator1";
             // 
@@ -481,7 +494,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 47);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1012, 67);
+            this.panel1.Size = new System.Drawing.Size(1232, 67);
             this.panel1.TabIndex = 20;
             // 
             // comboBox1
@@ -493,17 +506,17 @@
             this.comboBox1.Location = new System.Drawing.Point(17, 34);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(357, 28);
+            this.comboBox1.Size = new System.Drawing.Size(357, 26);
             this.comboBox1.TabIndex = 24;
             this.comboBox1.ValueMember = "clien_id";
             // 
             // fact_fechaDateTimePicker
             // 
             this.fact_fechaDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.listaFacturasBindingSource, "fact_fecha", true));
-            this.fact_fechaDateTimePicker.Location = new System.Drawing.Point(17, 98);
+            this.fact_fechaDateTimePicker.Location = new System.Drawing.Point(17, 92);
             this.fact_fechaDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fact_fechaDateTimePicker.Name = "fact_fechaDateTimePicker";
-            this.fact_fechaDateTimePicker.Size = new System.Drawing.Size(357, 27);
+            this.fact_fechaDateTimePicker.Size = new System.Drawing.Size(357, 24);
             this.fact_fechaDateTimePicker.TabIndex = 23;
             // 
             // panelDatos
@@ -519,11 +532,11 @@
             this.panelDatos.Controls.Add(fact_fechaLabel);
             this.panelDatos.Controls.Add(this.fact_fechaDateTimePicker);
             this.panelDatos.Enabled = false;
-            this.panelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDatos.Location = new System.Drawing.Point(28, 134);
+            this.panelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelDatos.Location = new System.Drawing.Point(6, 5);
             this.panelDatos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelDatos.Name = "panelDatos";
-            this.panelDatos.Size = new System.Drawing.Size(955, 161);
+            this.panelDatos.Size = new System.Drawing.Size(1194, 133);
             this.panelDatos.TabIndex = 38;
             // 
             // empleadoNombreComboBox
@@ -534,9 +547,9 @@
             this.empleadoNombreComboBox.DisplayMember = "empleadoNombre";
             this.empleadoNombreComboBox.Enabled = false;
             this.empleadoNombreComboBox.FormattingEnabled = true;
-            this.empleadoNombreComboBox.Location = new System.Drawing.Point(475, 101);
+            this.empleadoNombreComboBox.Location = new System.Drawing.Point(820, 34);
             this.empleadoNombreComboBox.Name = "empleadoNombreComboBox";
-            this.empleadoNombreComboBox.Size = new System.Drawing.Size(380, 28);
+            this.empleadoNombreComboBox.Size = new System.Drawing.Size(358, 26);
             this.empleadoNombreComboBox.TabIndex = 27;
             this.empleadoNombreComboBox.ValueMember = "caje_id";
             // 
@@ -557,17 +570,17 @@
             this.panelDetalle.Controls.Add(this.fact_totalTextBox);
             this.panelDetalle.Controls.Add(fact_totalLabel);
             this.panelDetalle.Enabled = false;
-            this.panelDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDetalle.Location = new System.Drawing.Point(28, 306);
+            this.panelDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelDetalle.Location = new System.Drawing.Point(8, 142);
             this.panelDetalle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelDetalle.Name = "panelDetalle";
-            this.panelDetalle.Size = new System.Drawing.Size(955, 226);
+            this.panelDetalle.Size = new System.Drawing.Size(1194, 223);
             this.panelDetalle.TabIndex = 39;
             // 
             // ListaFacturaDetalleDelete
             // 
             this.ListaFacturaDetalleDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaFacturaDetalleDelete.Location = new System.Drawing.Point(567, 181);
+            this.ListaFacturaDetalleDelete.Location = new System.Drawing.Point(850, 170);
             this.ListaFacturaDetalleDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ListaFacturaDetalleDelete.Name = "ListaFacturaDetalleDelete";
             this.ListaFacturaDetalleDelete.Size = new System.Drawing.Size(47, 36);
@@ -579,7 +592,7 @@
             // ListaFacturaDetalleAdd
             // 
             this.ListaFacturaDetalleAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListaFacturaDetalleAdd.Location = new System.Drawing.Point(567, 129);
+            this.ListaFacturaDetalleAdd.Location = new System.Drawing.Point(850, 118);
             this.ListaFacturaDetalleAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ListaFacturaDetalleAdd.Name = "ListaFacturaDetalleAdd";
             this.ListaFacturaDetalleAdd.Size = new System.Drawing.Size(47, 36);
@@ -588,6 +601,125 @@
             this.ListaFacturaDetalleAdd.UseVisualStyleBackColor = true;
             this.ListaFacturaDetalleAdd.Click += new System.EventHandler(this.ListaFacturaDetalleAdd_Click);
             // 
+            // listaFacturasDataGridView
+            // 
+            this.listaFacturasDataGridView.AllowUserToAddRows = false;
+            this.listaFacturasDataGridView.AllowUserToDeleteRows = false;
+            this.listaFacturasDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaFacturasDataGridView.AutoGenerateColumns = false;
+            this.listaFacturasDataGridView.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listaFacturasDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaFacturasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaFacturasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fact_id,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12});
+            this.listaFacturasDataGridView.DataSource = this.listaFacturasBindingSource;
+            this.listaFacturasDataGridView.GridColor = System.Drawing.SystemColors.Control;
+            this.listaFacturasDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.listaFacturasDataGridView.Name = "listaFacturasDataGridView";
+            this.listaFacturasDataGridView.ReadOnly = true;
+            this.listaFacturasDataGridView.RowHeadersWidth = 51;
+            this.listaFacturasDataGridView.RowTemplate.Height = 24;
+            this.listaFacturasDataGridView.Size = new System.Drawing.Size(1208, 565);
+            this.listaFacturasDataGridView.TabIndex = 39;
+            this.listaFacturasDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.listaFacturasDataGridView_DataError);
+            // 
+            // fact_id
+            // 
+            this.fact_id.DataPropertyName = "fact_id";
+            this.fact_id.HeaderText = "N° Factura";
+            this.fact_id.MinimumWidth = 6;
+            this.fact_id.Name = "fact_id";
+            this.fact_id.ReadOnly = true;
+            this.fact_id.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "fact_fecha";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Fecha";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "clien_id";
+            this.dataGridViewTextBoxColumn3.DataSource = this.listaClientesBindingSource;
+            this.dataGridViewTextBoxColumn3.DisplayMember = "clien_nom";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Cliente";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn3.ValueMember = "clien_id";
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "fact_total";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Total General";
+            this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "caje_id";
+            this.dataGridViewTextBoxColumn12.DataSource = this.listaNombreCajerosBindingSource;
+            this.dataGridViewTextBoxColumn12.DisplayMember = "empleadoNombre";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Cajero";
+            this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn12.ValueMember = "caje_id";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 119);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1216, 408);
+            this.tabControl1.TabIndex = 40;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listaFacturasDataGridView);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1208, 379);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Lista de Facturas";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panelDatos);
+            this.tabPage2.Controls.Add(this.panelDetalle);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1208, 379);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Factura";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // frm_facturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -595,9 +727,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1012, 573);
-            this.Controls.Add(this.panelDetalle);
-            this.Controls.Add(this.panelDatos);
+            this.ClientSize = new System.Drawing.Size(1232, 561);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bindingNavigatorTop);
             this.Controls.Add(this.BindingNavigator);
@@ -622,6 +753,10 @@
             this.panelDatos.PerformLayout();
             this.panelDetalle.ResumeLayout(false);
             this.panelDetalle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaFacturasDataGridView)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -667,5 +802,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridView listaFacturasDataGridView;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fact_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn12;
     }
 }
