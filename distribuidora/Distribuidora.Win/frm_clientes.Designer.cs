@@ -45,7 +45,7 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorDelete = new System.Windows.Forms.ToolStripButton();
             this.clien_telTextBox = new System.Windows.Forms.TextBox();
             this.bindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
@@ -57,6 +57,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.clien_idTextBox = new System.Windows.Forms.TextBox();
             this.panelDatos = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listaClientesDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             clien_telLabel = new System.Windows.Forms.Label();
             clien_numidLabel = new System.Windows.Forms.Label();
             clien_nomLabel = new System.Windows.Forms.Label();
@@ -68,6 +76,10 @@
             this.bindingNavigator.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelDatos.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaClientesDataGridView)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // clien_telLabel
@@ -105,9 +117,9 @@
             clien_idLabel.Location = new System.Drawing.Point(4, 12);
             clien_idLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             clien_idLabel.Name = "clien_idLabel";
-            clien_idLabel.Size = new System.Drawing.Size(254, 36);
+            clien_idLabel.Size = new System.Drawing.Size(245, 36);
             clien_idLabel.TabIndex = 16;
-            clien_idLabel.Text = "N° DE CLIENTE:";
+            clien_idLabel.Text = "N° DE CLIENTE";
             // 
             // listaClientesBindingNavigator
             // 
@@ -127,7 +139,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
-            this.bindingNavigatorDeleteItem});
+            this.bindingNavigatorDelete});
             this.listaClientesBindingNavigator.Location = new System.Drawing.Point(0, 431);
             this.listaClientesBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.listaClientesBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -135,12 +147,13 @@
             this.listaClientesBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.listaClientesBindingNavigator.Name = "listaClientesBindingNavigator";
             this.listaClientesBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.listaClientesBindingNavigator.Size = new System.Drawing.Size(628, 27);
+            this.listaClientesBindingNavigator.Size = new System.Drawing.Size(735, 27);
             this.listaClientesBindingNavigator.TabIndex = 0;
             this.listaClientesBindingNavigator.Text = "bindingNavigator1";
             // 
             // listaClientesBindingSource
             // 
+            this.listaClientesBindingSource.AllowNew = false;
             this.listaClientesBindingSource.DataSource = typeof(Distribuidora.BL.Entidades.cliente);
             // 
             // bindingNavigatorCountItem
@@ -211,15 +224,15 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
-            // bindingNavigatorDeleteItem
+            // bindingNavigatorDelete
             // 
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(87, 24);
-            this.bindingNavigatorDeleteItem.Text = "Eliminar";
-            this.bindingNavigatorDeleteItem.ToolTipText = "Eliminar";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
+            this.bindingNavigatorDelete.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDelete.Image")));
+            this.bindingNavigatorDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorDelete.Name = "bindingNavigatorDelete";
+            this.bindingNavigatorDelete.Size = new System.Drawing.Size(87, 24);
+            this.bindingNavigatorDelete.Text = "Eliminar";
+            this.bindingNavigatorDelete.ToolTipText = "Eliminar";
+            this.bindingNavigatorDelete.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // clien_telTextBox
             // 
@@ -251,7 +264,7 @@
             this.bindingNavigator.MovePreviousItem = null;
             this.bindingNavigator.Name = "bindingNavigator";
             this.bindingNavigator.PositionItem = null;
-            this.bindingNavigator.Size = new System.Drawing.Size(628, 47);
+            this.bindingNavigator.Size = new System.Drawing.Size(735, 47);
             this.bindingNavigator.TabIndex = 13;
             this.bindingNavigator.Text = "bindingNavigator1";
             // 
@@ -317,26 +330,28 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.clien_idTextBox);
             this.panel1.Controls.Add(clien_idLabel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
+            this.panel1.Location = new System.Drawing.Point(0, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(628, 67);
+            this.panel1.Size = new System.Drawing.Size(735, 67);
             this.panel1.TabIndex = 18;
             // 
             // clien_idTextBox
             // 
+            this.clien_idTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.clien_idTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.clien_idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaClientesBindingSource, "clien_id", true));
-            this.clien_idTextBox.Location = new System.Drawing.Point(292, 9);
+            this.clien_idTextBox.Enabled = false;
+            this.clien_idTextBox.Location = new System.Drawing.Point(268, 12);
             this.clien_idTextBox.Name = "clien_idTextBox";
             this.clien_idTextBox.ReadOnly = true;
-            this.clien_idTextBox.Size = new System.Drawing.Size(162, 41);
+            this.clien_idTextBox.Size = new System.Drawing.Size(254, 34);
             this.clien_idTextBox.TabIndex = 17;
             this.clien_idTextBox.Text = "0";
             // 
@@ -354,18 +369,114 @@
             this.panelDatos.Controls.Add(this.clien_nomTextBox);
             this.panelDatos.Enabled = false;
             this.panelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDatos.Location = new System.Drawing.Point(12, 155);
+            this.panelDatos.Location = new System.Drawing.Point(8, 6);
             this.panelDatos.Name = "panelDatos";
-            this.panelDatos.Size = new System.Drawing.Size(604, 261);
+            this.panelDatos.Size = new System.Drawing.Size(671, 258);
             this.panelDatos.TabIndex = 37;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 114);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(735, 317);
+            this.tabControl1.TabIndex = 38;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.listaClientesDataGridView);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(727, 288);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Lista de clientes";
+            // 
+            // listaClientesDataGridView
+            // 
+            this.listaClientesDataGridView.AllowUserToAddRows = false;
+            this.listaClientesDataGridView.AllowUserToDeleteRows = false;
+            this.listaClientesDataGridView.AutoGenerateColumns = false;
+            this.listaClientesDataGridView.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listaClientesDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listaClientesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaClientesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.listaClientesDataGridView.DataSource = this.listaClientesBindingSource;
+            this.listaClientesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaClientesDataGridView.GridColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listaClientesDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.listaClientesDataGridView.Name = "listaClientesDataGridView";
+            this.listaClientesDataGridView.ReadOnly = true;
+            this.listaClientesDataGridView.RowHeadersWidth = 51;
+            this.listaClientesDataGridView.RowTemplate.Height = 24;
+            this.listaClientesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.listaClientesDataGridView.Size = new System.Drawing.Size(721, 282);
+            this.listaClientesDataGridView.TabIndex = 0;
+            this.listaClientesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaClientesDataGridView_CellDoubleClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "clien_id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "N°";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "clien_numid";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Número de identidad";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "clien_nom";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 280;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "clien_tel";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Teléfono";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.panelDatos);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(727, 288);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Cliente";
             // 
             // frm_clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(628, 458);
-            this.Controls.Add(this.panelDatos);
+            this.ClientSize = new System.Drawing.Size(735, 458);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bindingNavigator);
             this.Controls.Add(this.listaClientesBindingNavigator);
@@ -383,6 +494,10 @@
             this.panel1.PerformLayout();
             this.panelDatos.ResumeLayout(false);
             this.panelDatos.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listaClientesDataGridView)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,9 +524,17 @@
         private System.Windows.Forms.TextBox clien_numidTextBox;
         private System.Windows.Forms.ToolStripButton bindingNavigatorEditItem;
         private System.Windows.Forms.TextBox clien_nomTextBox;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorDelete;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox clien_idTextBox;
         private System.Windows.Forms.Panel panelDatos;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView listaClientesDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

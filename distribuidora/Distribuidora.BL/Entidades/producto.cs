@@ -11,5 +11,6 @@ namespace Distribuidora.BL.Entidades
         public int produ_id { get; set; }
         public string produ_nom { get; set; }
         public decimal produ_prec { get; set; }
+        public int produ_cant { get; set; }
     }
 }

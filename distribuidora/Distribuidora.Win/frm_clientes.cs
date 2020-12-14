@@ -29,24 +29,34 @@ namespace Distribuidora.Win
             listaClientesBindingSource.DataSource = _clientesBL.ObtenerClientes();
         }
 
+        public void LimpiarDatos()
+        {
+            listaClientesBindingSource.Clear();
+        }
+
+        public void RecargarDatos()
+        {
+            int posicion = listaClientesBindingSource.Position;
+            LimpiarDatos();
+            CargarDatos();
+            listaClientesBindingSource.ResetBindings(false);
+            listaClientesBindingSource.Position = posicion;
+            EstadoBotones(true);
+        }
+
         public void EstadoBotones(bool estado)
         {
             listaClientesBindingNavigator.Enabled = estado;
             bindingNavigatorAddNewItem.Enabled = estado;
             bindingNavigatorCancelItem.Enabled = !estado;
+            bindingNavigatorSaveItem.Enabled = !estado;
             panelDatos.Enabled = !estado;
         }
 
         public void Permisos()
         {
-            if(resultadoLogin.departamentoControlTotal == true)
-            {
-                bindingNavigatorDeleteItem.Enabled = true;
-            }
-            else if (resultadoLogin.departamentoControlTotal == false)
-            {
-                bindingNavigatorDeleteItem.Enabled = false;
-            }
+            bindingNavigatorDelete.Enabled = 
+                resultadoLogin.departamentoControlTotal;
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -55,7 +65,7 @@ namespace Distribuidora.Win
             _clientesBL.AgregarCliente();
             listaClientesBindingSource.MoveLast();
             EstadoBotones(false);
-            bindingNavigatorSaveItem.Enabled = true;
+            this.tabControl1.SelectedTab = tabPage2;
         }
 
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
@@ -65,12 +75,10 @@ namespace Distribuidora.Win
                 var clienteCancelado = (cliente)listaClientesBindingSource.Current;
                 _clientesBL.CancelarCliente(clienteCancelado);
                 EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
             }
             else if(esNuevo == false)
             {
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
         }
 
@@ -80,20 +88,13 @@ namespace Distribuidora.Win
             {
                 var clienteGuardado = (cliente)listaClientesBindingSource.Current;
                 _clientesBL.GuardarCliente(clienteGuardado);
-                listaClientesBindingSource.RemoveCurrent();
-
-                listaClientesBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
             else if (esNuevo == false)
             {
                 var clienteEditado = (cliente)listaClientesBindingSource.Current;
                 _clientesBL.EditarCliente(clienteEditado);
-
-                listaClientesBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
         }
 
@@ -101,13 +102,23 @@ namespace Distribuidora.Win
         {
             esNuevo = false;
             EstadoBotones(false);
-            bindingNavigatorSaveItem.Enabled = true;
+            this.tabControl1.SelectedTab = tabPage2;
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            var clienteEliminado = (cliente)listaClientesBindingSource.Current;
-            _clientesBL.EliminarCliente(clienteEliminado);
+            var dlgRes = MessageBox.Show("¿Está seguro que desea eliminar el registro seleccionado ?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (dlgRes == DialogResult.Yes)
+            {
+                var clienteEliminado = (cliente)listaClientesBindingSource.Current;
+                _clientesBL.EliminarCliente(clienteEliminado);
+            }
+        }
+
+        private void listaClientesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.tabControl1.SelectedTab = tabPage2;
         }
     }
 }

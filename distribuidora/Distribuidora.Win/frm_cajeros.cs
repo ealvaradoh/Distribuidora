@@ -23,8 +23,29 @@ namespace Distribuidora.Win
             _cajerosBL = new cajerosBL();
             _empleadosBL = new empleadosBL();
             InitializeComponent();
+            CargarDatos();
+        }
+
+        public void CargarDatos()
+        {
             listaCajerosBindingSource.DataSource = _cajerosBL.ObtenerCajeros();
-            listaNombreEmpleadosBindingSource.DataSource = _empleadosBL.ObtenerNombreEmpleados();
+            listaNombreEmpleadosBindingSource.DataSource = _empleadosBL.ObtenerEmpleadosCajeros();
+        }
+
+        public void LimpiarDatos()
+        {
+            listaCajerosBindingSource.Clear();
+            listaNombreEmpleadosBindingSource.Clear();
+        }
+
+        public void RecargarDatos()
+        {
+            int posicion = listaCajerosBindingSource.Position;
+            LimpiarDatos();
+            CargarDatos();
+            listaCajerosBindingSource.ResetBindings(true);
+            listaCajerosBindingSource.Position = posicion;
+            EstadoBotones(true);
         }
 
         public void EstadoBotones(bool estado)
@@ -32,6 +53,7 @@ namespace Distribuidora.Win
             listaCajerosBindingNavigator.Enabled = estado;
             bindingNavigatorAddNewItem.Enabled = estado;
             bindingNavigatorCancelItem.Enabled = !estado;
+            BindingNavigatorSaveItem.Enabled = !estado;
             panelDatos.Enabled = !estado;
         }
 
@@ -41,7 +63,7 @@ namespace Distribuidora.Win
             _cajerosBL.AgregarCajero();
             listaCajerosBindingSource.MoveLast();
             EstadoBotones(false);
-            BindingNavigatorSaveItem.Enabled = true;
+            this.tabControl1.SelectedTab = tabPage2;
         }
 
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
@@ -51,13 +73,10 @@ namespace Distribuidora.Win
                 var cajeroCancelado = (cajero)listaCajerosBindingSource.Current;
                 _cajerosBL.CancelarCajero(cajeroCancelado);
                 EstadoBotones(true);
-                BindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
-                listaCajerosBindingSource.CancelEdit();
-                EstadoBotones(true);
-                BindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
         }
 
@@ -67,20 +86,13 @@ namespace Distribuidora.Win
             {
                 var cajeroGuardado = (cajero)listaCajerosBindingSource.Current;
                 _cajerosBL.GuardarCajero(cajeroGuardado);
-                listaCajerosBindingSource.RemoveCurrent();
-
-                listaCajerosBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                BindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
             else if (esNuevo == false)
             {
                 var cajeroEditado = (cajero)listaCajerosBindingSource.Current;
                 _cajerosBL.EditarCajero(cajeroEditado);
-
-                listaCajerosBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                BindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
         }
 
@@ -89,12 +101,30 @@ namespace Distribuidora.Win
             esNuevo = false;
             EstadoBotones(false);
             BindingNavigatorSaveItem.Enabled = true;
+            this.tabControl1.SelectedTab = tabPage2;
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            var cajeroEliminado = (cajero)listaCajerosBindingSource.Current;
-            _cajerosBL.EliminarCajero(cajeroEliminado);
+
+            var dlgRes = MessageBox.Show("¿Está seguro que desea eliminar el registro seleccionado ?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (dlgRes == DialogResult.Yes)
+            {
+                var cajeroEliminado = (cajero)listaCajerosBindingSource.Current;
+                _cajerosBL.EliminarCajero(cajeroEliminado);
+            }
+        }
+
+        private void listaCajerosDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.tabControl1.SelectedTab = tabPage2;
+        }
+
+        private void listaCajerosDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
         }
     }
 }

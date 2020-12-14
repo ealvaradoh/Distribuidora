@@ -20,7 +20,27 @@ namespace Distribuidora.Win
         {
             _proveedoresBL = new proveedoresBL();
             InitializeComponent();
+            CargarDatos();
+        }
+
+        public void CargarDatos()
+        {
             listaProveedoresBindingSource.DataSource = _proveedoresBL.ObtenerProveedores();
+        }
+
+        public void LimpiarDatos()
+        {
+            listaProveedoresBindingSource.Clear();
+        }
+
+        public void RecargarDatos()
+        {
+            int posicion = listaProveedoresBindingSource.Position;
+            LimpiarDatos();
+            CargarDatos();
+            listaProveedoresBindingSource.ResetBindings(true);
+            listaProveedoresBindingSource.Position = posicion;
+            EstadoBotones(true);
         }
 
         public void EstadoBotones(bool estado)
@@ -28,6 +48,7 @@ namespace Distribuidora.Win
             listaProveedoresBindingNavigator.Enabled = estado;
             bindingNavigatorAddNewItem.Enabled = estado;
             bindingNavigatorCancelNewItem.Enabled = !estado;
+            bindingNavigatorSaveItem.Enabled = !estado;
             panelDatos.Enabled = !estado;
         }
 
@@ -37,7 +58,7 @@ namespace Distribuidora.Win
             _proveedoresBL.AgregarProveedor();
             listaProveedoresBindingSource.MoveLast();
             EstadoBotones(false);
-            bindingNavigatorSaveItem.Enabled = true;
+            tabControl1.SelectedTab = tabPage2;
         }
 
         private void bindingNavigatorEdit_Click(object sender, EventArgs e)
@@ -45,6 +66,7 @@ namespace Distribuidora.Win
             esNuevo = false;
             EstadoBotones(false);
             bindingNavigatorSaveItem.Enabled = true;
+            tabControl1.SelectedTab = tabPage2;
         }
 
         private void bindingNavigatorCancel_Click(object sender, EventArgs e)
@@ -54,13 +76,10 @@ namespace Distribuidora.Win
                 var proveedorCancelado = (proveedor)listaProveedoresBindingSource.Current;
                 _proveedoresBL.CancelarProveedor(proveedorCancelado);
                 EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
-                listaProveedoresBindingSource.CancelEdit();
+                RecargarDatos();
             }
         }
 
@@ -70,27 +89,31 @@ namespace Distribuidora.Win
             {
                 var proveedorGuardado = (proveedor)listaProveedoresBindingSource.Current;
                 _proveedoresBL.GuardarProveedor(proveedorGuardado);
-                listaProveedoresBindingSource.RemoveCurrent();
-
-                listaProveedoresBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
             else if (esNuevo == false)
             {
                 var proveedorEditado = (proveedor)listaProveedoresBindingSource.Current;
                 _proveedoresBL.EditarProveedor(proveedorEditado);
-
-                listaProveedoresBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
         }
 
         private void bindingNavigatorDelete_Click(object sender, EventArgs e)
         {
-            var proveedorEliminado = (proveedor)listaProveedoresBindingSource.Current;
-            _proveedoresBL.EliminarProveedor(proveedorEliminado);
+            var dlgRes = MessageBox.Show("¿Está seguro que desea eliminar el registro seleccionado ?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (dlgRes == DialogResult.Yes)
+            {
+                var proveedorEliminado = (proveedor)listaProveedoresBindingSource.Current;
+                _proveedoresBL.EliminarProveedor(proveedorEliminado);
+            }
+        }
+
+        private void listaProveedoresDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tabControl1.SelectedTab = tabPage2;
         }
     }
 }

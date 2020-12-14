@@ -21,6 +21,11 @@ namespace Distribuidora.BL.Entidades
         public string emp_tel { get; set; }
         public int depar_id { get; set; }
         public departamento departamento { get; set; }
+
+        public empleado()
+        {
+            emp_fing = DateTime.Now;
+        }
     }
 }
 

@@ -55,7 +55,6 @@ namespace Distribuidora.BL.BL
                     resultado.Exitoso = true;
                     return resultado;
                 }
-                
             }
             resultado.Mensaje = "Usuario o Contraseña no existe";
             return resultado;
@@ -95,13 +94,14 @@ namespace Distribuidora.BL.BL
             }
         }
 
-        public BindingList<empleadoNombre> ObtenerNombreEmpleados()
+        public BindingList<empleadoNombre> ObtenerEmpleadosCajeros()
         {
             MySqlConnection _contexto;
             using (_contexto = contexto.crearConexion())
             {
                 string sql = "SELECT emp_id, CONCAT(emp_pnom, ' ', emp_snom, ' ', emp_pape, ' ', emp_sape) AS nombreEmpleado " +
-                "FROM empleado;";
+                "FROM empleado " +
+                "WHERE depar_id = 2;";
                 using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
                 {
                     MySqlDataReader reader = comando.ExecuteReader();

@@ -36,16 +36,21 @@ namespace Distribuidora.Win
             listaProductosBindingSource.DataSource = _productosBL.ObtenerProductos();
         }
 
-        public void Permisos(bool departamentoControlTotal)
+        public void LimpiarDatos()
         {
-            if (departamentoControlTotal == true)
-            {
-                bindingNavigator.Enabled = true;
-            }
-            else if (departamentoControlTotal == false)
-            {
-                bindingNavigator.Enabled = false;
-            }
+            listaOrdenesBindingSource.Clear();
+            listaProveedoresBindingSource.Clear();
+            listaProductosBindingSource.Clear();
+        }
+
+        public void RecargarDatos()
+        {
+            int posicion = listaOrdenesBindingSource.Position;
+            LimpiarDatos();
+            CargarDatos();
+            listaOrdenesBindingSource.ResetBindings(true);
+            listaOrdenesBindingSource.Position = posicion;
+            EstadoBotones(true);
         }
 
         public void EstadoBotones(bool estado)
@@ -55,7 +60,14 @@ namespace Distribuidora.Win
             bindingNavigatorCancelItem.Enabled = !estado;
             panelDatos.Enabled = !estado;
             panelDetalle.Enabled = !estado;
-        }   
+            bindingNavigatorSaveItem.Enabled = !estado;
+        }
+
+
+        public void Permisos(bool departamentoControlTotal)
+        {
+            
+        }
 
         private void orden_detalleDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
@@ -68,36 +80,27 @@ namespace Distribuidora.Win
             {
                 var ordenGuardada = (orden_entrega)listaOrdenesBindingSource.Current;
                 var resultado = _ordenesBL.GuardarOrden(ordenGuardada);
-                if (resultado.Exitoso == true)
-                {
-                    listaOrdenesBindingSource.Clear();
 
-                    listaOrdenesBindingSource.ResetBindings(false);
-                    listaOrdenesBindingSource.DataSource = _ordenesBL.ObtenerOrdenes();
-                    listaOrdenesBindingSource.MoveLast();
-                    EstadoBotones(true);
-                    bindingNavigatorSaveItem.Enabled = false;
+                if (resultado.Exitoso)
+                {
+                    RecargarDatos();
                 }
                 else
-                    MessageBox.Show(resultado.Mensaje);
+                    MessageBox.Show(resultado.Mensaje, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
             }
             else if (esNuevo == false)
             {
                 var ordenEditado = (orden_entrega)listaOrdenesBindingSource.Current;
                 var resultado = _ordenesBL.EditarOrden(ordenEditado);
-                if (resultado.Exitoso == true)
-                {
-                    listaOrdenesBindingSource.Clear();
 
-                    listaOrdenesBindingSource.ResetBindings(false);
-                    listaOrdenesBindingSource.DataSource = _ordenesBL.ObtenerOrdenes();
-                    listaOrdenesBindingSource.Position = ordenEditado.ord_id - 1;
-                    EstadoBotones(true);
-                    bindingNavigatorSaveItem.Enabled = false;
+                if (resultado.Exitoso)
+                {
+                    RecargarDatos();
                 }
                 else
-                    MessageBox.Show(resultado.Mensaje,"Alerta");
+                    MessageBox.Show(resultado.Mensaje,"Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
         }
 
@@ -107,14 +110,15 @@ namespace Distribuidora.Win
             _ordenesBL.AgregarOrden();
             listaOrdenesBindingSource.MoveLast();
             EstadoBotones(false);
-            bindingNavigatorSaveItem.Enabled = true;
+            this.tabControl1.SelectedTab = tabPage2;
         }
 
+        
         private void bindingNavigatorEditItem_Click(object sender, EventArgs e)
         {
+            this.tabControl1.SelectedTab = tabPage2;
             esNuevo = false;
             EstadoBotones(false);
-            bindingNavigatorSaveItem.Enabled = true;
         }
 
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
@@ -124,23 +128,36 @@ namespace Distribuidora.Win
                 var ordenCancelada = (orden_entrega)listaOrdenesBindingSource.Current;
                 _ordenesBL.CancelarOrden(ordenCancelada);
                 EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
-                listaOrdenesBindingSource.CancelEdit();
-                orden_detalleBindingSource.CancelEdit();
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-
+            var ordenEliminada = (orden_entrega)listaOrdenesBindingSource.Current;
+            _ordenesBL.EliminarOrden(ordenEliminada);
+            RecargarDatos();
         }
 
-        private void ListaProductosDetalleAdd_Click(object sender, EventArgs e)
+        private void listaOrdenesDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
+        }
+
+        private void orden_detalleDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void listaOrdenesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.tabControl1.SelectedTab = tabPage2;
+        }
+
+        private void bindingNavigatorAddNewItem1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -154,30 +171,12 @@ namespace Distribuidora.Win
             }
         }
 
-        public void CalcularTotal()
-        {
-            var orden = (orden_entrega)listaOrdenesBindingSource.Current;
-            orden.CalcularTotalCantidad();
-            listaOrdenesBindingSource.ResetBindings(false);
-        }
-
-        private void ListaProductosDetalleDelete_Click(object sender, EventArgs e)
+        private void bindingNavigatorDeleteItem1_Click(object sender, EventArgs e)
         {
             var orden = (orden_entrega)listaOrdenesBindingSource.Current;
             var ordenDetalle = (orden_detalle)orden_detalleBindingSource.Current;
 
             _ordenesBL.RemoverOrdenDetalle(orden, ordenDetalle);
-            CalcularTotal();
-        }
-
-        private void listaOrdenesDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.ThrowException = false;
-        }
-
-        private void orden_detalleDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            CalcularTotal();
         }
     }
 }

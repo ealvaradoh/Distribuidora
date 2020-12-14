@@ -24,7 +24,7 @@ namespace Distribuidora.BL.BL
             MySqlConnection _contexto;
             using (_contexto = contexto.crearConexion())
             {
-                string sqlOrden = "SELECT oe.`ord_id`, oe.`ord_fecha`, oe.`ord_cant_produ`, oe.`prov_id`, " +
+                string sqlOrden = "SELECT oe.`ord_id`, oe.`ord_fecha`, oe.`prov_id`, " +
                     "od.`ord_id` AS od_ord_id, od.`produ_id`, od.`ord_det_cant` " +
                     "FROM orden_entrega oe, orden_detalle od " +
                     "WHERE oe.`ord_id` = od.`ord_id` ORDER BY oe.`ord_id`;";
@@ -48,7 +48,6 @@ namespace Distribuidora.BL.BL
                             ord = new orden_entrega();
                             ord.ord_id = int.Parse(reader["ord_id"].ToString());
                             ord.ord_fecha = DateTime.Parse(reader["ord_fecha"].ToString());
-                            ord.ord_cant_produ = decimal.Parse(reader["ord_cant_produ"].ToString());
                             ord.prov_id = int.Parse(reader["prov_id"].ToString());
                             ord_idRepite = false;
                         }
@@ -89,22 +88,64 @@ namespace Distribuidora.BL.BL
             }
         }
 
-        public resultado ValidarOrden(orden_entrega ordenValida)
+        public void EliminarOrden(orden_entrega orden)
+        {
+            MySqlConnection _contexto;
+            using (_contexto = contexto.crearConexion())
+            {
+                string sqlOrdenDetalle = "DELETE FROM orden_detalle WHERE ord_id = @ord_id";
+                using (MySqlCommand comando = new MySqlCommand(sqlOrdenDetalle, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@ord_id", orden.ord_id);
+                    comando.ExecuteNonQuery();
+                }
+
+                string sqlOrden = "DELETE FROM orden_entrega WHERE ord_id = @ord_id";
+                using (MySqlCommand comando = new MySqlCommand(sqlOrden, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@ord_id", orden.ord_id);
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public resultado ValidaOrden(orden_entrega ord)
         {
             var resultado = new resultado();
             resultado.Exitoso = true;
-
-            if (ordenValida.ord_cant_produ > 100)
+            foreach (var ord_det in ord.orden_detalle)
             {
-                resultado.Mensaje = "No puede entregar una cantidad de más de 100 productos";
+                if (ord_det.ord_det_cant > 100)
+                {
+                    resultado.Exitoso = false;
+                    resultado.Mensaje = "No se pueden ingresar productos con una cantidad mayor a 100";
+                    return resultado;
+                }
+                if (ord_det.produ_id == 0)
+                {
+                    resultado.Exitoso = false;
+                    resultado.Mensaje = "Debe ingresar productos válidos";
+                    return resultado;
+                }
+            }
+            if (ord.prov_id == 0)
+            {
                 resultado.Exitoso = false;
+                resultado.Mensaje = "Debe ingresar un proveedor";
+                return resultado;
+            }
+            if (ord.orden_detalle.Count == 0)
+            {
+                resultado.Exitoso = false;
+                resultado.Mensaje = "Debe ingresar detalle de orden";
+                return resultado;
             }
             return resultado;
         }
 
         public resultado GuardarOrden(orden_entrega ordenGuardada)
         {
-            var resultado = ValidarOrden(ordenGuardada);
+            var resultado = ValidaOrden(ordenGuardada);
             if (resultado.Exitoso == false)
             {
                 return resultado;
@@ -112,14 +153,12 @@ namespace Distribuidora.BL.BL
             MySqlConnection _contexto;
             using (_contexto = contexto.crearConexion())
             {
-                string sqlOrden = "INSERT INTO orden_entrega VALUES(@ord_id, @ord_fecha, @ord_cant_produ, @prov_id);";
+                string sqlOrden = "INSERT INTO orden_entrega VALUES(@ord_id, @ord_fecha, @prov_id);";
                 using (MySqlCommand comando = new MySqlCommand(sqlOrden, _contexto))
                 {
                     comando.Parameters.AddWithValue("@ord_id", ordenGuardada.ord_id);
                     comando.Parameters.AddWithValue("@ord_fecha", ordenGuardada.ord_fecha);
-                    comando.Parameters.AddWithValue("@ord_cant_produ", ordenGuardada.ord_cant_produ);
                     comando.Parameters.AddWithValue("@prov_id", ordenGuardada.prov_id);
-                    
 
                     comando.ExecuteNonQuery();
                 }
@@ -139,6 +178,7 @@ namespace Distribuidora.BL.BL
                     "(@ord_id, @produ_id, @ord_det_cant);";
                 using (MySqlCommand comando = new MySqlCommand(sqlFacturaDetalle, _contexto))
                 {
+                    var productoBL = new productosBL();
                     foreach (orden_detalle ord_det in ordenGuardada.orden_detalle)
                     {
                         comando.Parameters.Clear();
@@ -149,16 +189,19 @@ namespace Distribuidora.BL.BL
                         comando.ExecuteNonQuery();
                         ListaOrdenesDetalle.Add(ord_det);
                     }
+                    foreach (var ord_det in ListaOrdenesDetalle)
+                    {
+                        productoBL.SumaCantidad(ord_det.ord_det_cant, ord_det.produ_id);
+                    }
                 }
-                ordenGuardada.orden_detalle = ListaOrdenesDetalle;
-                ListaOrdenes.Add(ordenGuardada);
             }
+            ListaOrdenesDetalle.Clear();
             return resultado;
         }
 
         public resultado EditarOrden(orden_entrega ordenEditada)
         {
-            var resultado = ValidarOrden(ordenEditada);
+            var resultado = ValidaOrden(ordenEditada);
             if (resultado.Exitoso == false)
             {
                 return resultado;
@@ -168,19 +211,46 @@ namespace Distribuidora.BL.BL
             {
                 // Actualizar Orden
                 string sqlOrden = "UPDATE orden_entrega SET " +
-                        "ord_fecha=@ord_fecha, ord_cant_produ=@ord_cant_produ, prov_id=@prov_id " +
+                        "ord_fecha=@ord_fecha, prov_id=@prov_id " +
                         "WHERE ord_id=@ord_id;";
                 using (MySqlCommand comando = new MySqlCommand(sqlOrden, _contexto))
                 {
                     comando.Parameters.AddWithValue("@ord_id", ordenEditada.ord_id);
                     comando.Parameters.AddWithValue("@ord_fecha", ordenEditada.ord_fecha);
-                    comando.Parameters.AddWithValue("@ord_cant_produ", ordenEditada.ord_cant_produ);
                     comando.Parameters.AddWithValue("@prov_id", ordenEditada.prov_id);
 
                     comando.ExecuteNonQuery();
                 }
 
-                // Actualizar orden detalle
+                string sqlCantidadActual = "SELECT * FROM orden_detalle WHERE ord_id = @ord_id";
+                using (MySqlCommand comando = new MySqlCommand(sqlCantidadActual, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@ord_id", ordenEditada.ord_id);
+                    MySqlDataReader reader = comando.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        orden_detalle ord_det = new orden_detalle();
+                        ord_det.ord_id = int.Parse(reader["ord_id"].ToString());
+                        ord_det.produ_id = int.Parse(reader["produ_id"].ToString());
+                        ord_det.ord_det_cant = decimal.Parse(reader["ord_det_cant"].ToString());
+
+                        ListaOrdenesDetalle.Add(ord_det);
+                    }
+                    comando.Parameters.Clear();
+                    reader.Close();
+
+                    var productoBL = new productosBL();
+                    foreach (var ord_det in ListaOrdenesDetalle)
+                    {
+                        productoBL.RestaCantidad(ord_det.ord_det_cant, ord_det.produ_id);
+                    }
+                    ListaOrdenesDetalle.Clear();
+                }
+            }
+
+            // Actualizar orden detalle
+            using (_contexto = contexto.crearConexion())
+            {
                 string sqlOrdenDetalle = "DELETE FROM orden_detalle WHERE ord_id = @ord_id";
                 using (MySqlCommand comando = new MySqlCommand(sqlOrdenDetalle, _contexto))
                 {
@@ -192,17 +262,23 @@ namespace Distribuidora.BL.BL
                     "(@ord_id, @produ_id, @ord_det_cant);";
                 using (MySqlCommand comando = new MySqlCommand(sqlOrdenDetalle, _contexto))
                 {
+                    var productoBL = new productosBL();
                     foreach (orden_detalle ord_det in ordenEditada.orden_detalle)
                     {
                         comando.Parameters.Clear();
                         comando.Parameters.AddWithValue("@ord_id", ordenEditada.ord_id);
                         comando.Parameters.AddWithValue("@produ_id", ord_det.produ_id);
                         comando.Parameters.AddWithValue("@ord_det_cant", ord_det.ord_det_cant);
-
                         comando.ExecuteNonQuery();
+                        ListaOrdenesDetalle.Add(ord_det);
+                    }
+                    foreach (var ord_det in ListaOrdenesDetalle)
+                    {
+                        productoBL.SumaCantidad(ord_det.ord_det_cant, ord_det.produ_id);
                     }
                 }
             }
+            ListaOrdenesDetalle.Clear();
             return resultado;
         }
 

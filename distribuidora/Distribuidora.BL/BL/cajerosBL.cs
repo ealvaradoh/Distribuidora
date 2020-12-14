@@ -49,7 +49,8 @@ namespace Distribuidora.BL.BL
             MySqlConnection _contexto;
             using (_contexto = contexto.crearConexion())
             {
-                string sql = "SELECT caje.`caje_id`, caje.`emp_id`, CONCAT(emple.`emp_pnom`,' ',emple.`emp_snom`,' ',emple.`emp_pape`) AS empleado FROM cajero caje " +
+                string sql = "SELECT caje.`caje_id`, caje.`emp_id`, CONCAT(emple.`emp_pnom`,' ',emple.`emp_snom`,' ',emple.`emp_pape`,' ',emple.`emp_sape`) " +
+                "AS empleado FROM cajero caje " +
                 "INNER JOIN empleado emple ON caje.`emp_id` = emple.`emp_id` " +
                 "ORDER BY emple.`emp_id`;";
                 using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
@@ -96,16 +97,6 @@ namespace Distribuidora.BL.BL
 
                     comando.ExecuteNonQuery();
                 }
-                sql = "SELECT MAX(caje_id) AS nuevoCajeroId FROM cajero;";
-                using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
-                {
-                    MySqlDataReader reader = comando.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        CajeroGuardado.caje_id = int.Parse(reader["nuevoCajeroId"].ToString());
-                    }
-                }
-                ListaCajeros.Add(CajeroGuardado);
             }
         }
 

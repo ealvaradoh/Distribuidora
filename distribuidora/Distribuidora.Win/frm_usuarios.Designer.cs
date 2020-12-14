@@ -102,7 +102,7 @@
             // emp_mailLabel
             // 
             emp_mailLabel.AutoSize = true;
-            emp_mailLabel.Location = new System.Drawing.Point(75, 330);
+            emp_mailLabel.Location = new System.Drawing.Point(32, 354);
             emp_mailLabel.Name = "emp_mailLabel";
             emp_mailLabel.Size = new System.Drawing.Size(40, 20);
             emp_mailLabel.TabIndex = 9;
@@ -111,7 +111,7 @@
             // emp_mail_ctrLabel
             // 
             emp_mail_ctrLabel.AutoSize = true;
-            emp_mail_ctrLabel.Location = new System.Drawing.Point(75, 386);
+            emp_mail_ctrLabel.Location = new System.Drawing.Point(32, 410);
             emp_mail_ctrLabel.Name = "emp_mail_ctrLabel";
             emp_mail_ctrLabel.Size = new System.Drawing.Size(131, 20);
             emp_mail_ctrLabel.TabIndex = 11;
@@ -183,15 +183,16 @@
             // produ_idLabel
             // 
             produ_idLabel.AutoSize = true;
+            produ_idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             produ_idLabel.Location = new System.Drawing.Point(13, 12);
             produ_idLabel.Name = "produ_idLabel";
-            produ_idLabel.Size = new System.Drawing.Size(280, 36);
+            produ_idLabel.Size = new System.Drawing.Size(286, 36);
             produ_idLabel.TabIndex = 1;
-            produ_idLabel.Text = "N° DE EMPLEADO:";
+            produ_idLabel.Text = "N° DE EMPLEADO";
             // 
             // listaEmpleadosBindingSource
             // 
-            this.listaEmpleadosBindingSource.DataSource = typeof(Distribuidora.BL.Entidades.empleado);
+            this.listaEmpleadosBindingSource.DataSource = typeof(global::Distribuidora.BL.Entidades.empleado);
             // 
             // listaEmpleadosBindingNavigator
             // 
@@ -295,7 +296,7 @@
             this.emp_activoCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.listaEmpleadosBindingSource, "emp_activo", true));
             this.emp_activoCheckBox.Enabled = false;
             this.emp_activoCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emp_activoCheckBox.Location = new System.Drawing.Point(655, 12);
+            this.emp_activoCheckBox.Location = new System.Drawing.Point(669, 12);
             this.emp_activoCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_activoCheckBox.Name = "emp_activoCheckBox";
             this.emp_activoCheckBox.Size = new System.Drawing.Size(200, 36);
@@ -307,6 +308,7 @@
             // 
             this.emp_fingDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.listaEmpleadosBindingSource, "emp_fing", true));
             this.emp_fingDateTimePicker.Enabled = false;
+            this.emp_fingDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.emp_fingDateTimePicker.Location = new System.Drawing.Point(36, 35);
             this.emp_fingDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_fingDateTimePicker.Name = "emp_fingDateTimePicker";
@@ -315,20 +317,23 @@
             // 
             // emp_idTextBox
             // 
-            this.emp_idTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.emp_idTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.emp_idTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.emp_idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_id", true));
+            this.emp_idTextBox.Enabled = false;
             this.emp_idTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emp_idTextBox.Location = new System.Drawing.Point(320, 12);
+            this.emp_idTextBox.Location = new System.Drawing.Point(331, 15);
             this.emp_idTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_idTextBox.Name = "emp_idTextBox";
             this.emp_idTextBox.ReadOnly = true;
-            this.emp_idTextBox.Size = new System.Drawing.Size(312, 38);
+            this.emp_idTextBox.Size = new System.Drawing.Size(312, 31);
             this.emp_idTextBox.TabIndex = 8;
+            this.emp_idTextBox.Text = "0";
             // 
             // emp_mailTextBox
             // 
             this.emp_mailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_mail", true));
-            this.emp_mailTextBox.Location = new System.Drawing.Point(75, 352);
+            this.emp_mailTextBox.Location = new System.Drawing.Point(32, 376);
             this.emp_mailTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_mailTextBox.Name = "emp_mailTextBox";
             this.emp_mailTextBox.ReadOnly = true;
@@ -338,9 +343,10 @@
             // emp_mail_ctrTextBox
             // 
             this.emp_mail_ctrTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaEmpleadosBindingSource, "emp_mail_ctr", true));
-            this.emp_mail_ctrTextBox.Location = new System.Drawing.Point(75, 408);
+            this.emp_mail_ctrTextBox.Location = new System.Drawing.Point(32, 432);
             this.emp_mail_ctrTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.emp_mail_ctrTextBox.Name = "emp_mail_ctrTextBox";
+            this.emp_mail_ctrTextBox.PasswordChar = '•';
             this.emp_mail_ctrTextBox.ReadOnly = true;
             this.emp_mail_ctrTextBox.Size = new System.Drawing.Size(200, 27);
             this.emp_mail_ctrTextBox.TabIndex = 12;
@@ -387,7 +393,7 @@
             // 
             // listaDepartamentosBindingSource
             // 
-            this.listaDepartamentosBindingSource.DataSource = typeof(Distribuidora.BL.Entidades.departamento);
+            this.listaDepartamentosBindingSource.DataSource = typeof(global::Distribuidora.BL.Entidades.departamento);
             // 
             // depar_idComboBox
             // 
@@ -459,9 +465,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(emp_mailLabel);
             this.panel2.Controls.Add(this.emp_mail_ctrTextBox);
-            this.panel2.Controls.Add(this.emp_mailTextBox);
+            this.panel2.Controls.Add(emp_mail_ctrLabel);
             this.panel2.Controls.Add(this.emp_snomTextBox);
+            this.panel2.Controls.Add(this.emp_mailTextBox);
             this.panel2.Controls.Add(this.emp_sapeTextBox);
             this.panel2.Controls.Add(this.emp_fingDateTimePicker);
             this.panel2.Controls.Add(this.emp_telTextBox);
@@ -477,8 +485,6 @@
             this.panel2.Controls.Add(depar_idLabel);
             this.panel2.Controls.Add(emp_papeLabel);
             this.panel2.Controls.Add(emp_fingLabel);
-            this.panel2.Controls.Add(emp_mail_ctrLabel);
-            this.panel2.Controls.Add(emp_mailLabel);
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(21, 136);
             this.panel2.Name = "panel2";

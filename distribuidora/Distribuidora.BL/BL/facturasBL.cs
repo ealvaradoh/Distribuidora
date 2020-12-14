@@ -1,4 +1,4 @@
-﻿using Distribuidora.BL.Entidades;
+﻿     using Distribuidora.BL.Entidades;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -24,27 +24,14 @@ namespace Distribuidora.BL.BL
             MySqlConnection _contexto;
             using (_contexto = contexto.crearConexion())
             {
-                string sqlFactura = "SELECT f.*, " +
-                    "fd.`fact_id` AS fd_fact_id, fd.`produ_id`, fd.`fact_det_cant`, fd.`fact_det_prec`, fd.`fact_det_total` " +
-                    "FROM factura f, factura_detalle fd " +
-                    "WHERE f.`fact_id` = fd.`fact_id` ORDER BY f.`fact_id`;";
+                string sqlFactura = "Select * from factura";
                 using (MySqlCommand comando = new MySqlCommand(sqlFactura, _contexto))
                 {
-
-                    MySqlDataReader reader = comando.ExecuteReader();
-                    factura fact = new factura();
-                    fact.fact_id = 0;
-                    factura_detalle fact_det = null;
-
-                    int fact_idControl = 0;
-                    bool fact_idRepite;
-                    while (reader.Read())
+                    using (MySqlDataReader reader = comando.ExecuteReader())
                     {
-                        // Factura
-                        fact_idControl = int.Parse(reader["fact_id"].ToString());
-                        if (fact_idControl != fact.fact_id)
+                        factura fact;
+                        while (reader.Read())
                         {
-                            
                             fact = new factura();
                             fact.fact_id = int.Parse(reader["fact_id"].ToString());
                             fact.fact_fecha = DateTime.Parse(reader["fact_fecha"].ToString());
@@ -53,27 +40,63 @@ namespace Distribuidora.BL.BL
                             fact.fact_isv = decimal.Parse(reader["fact_isv"].ToString());
                             fact.fact_total = decimal.Parse(reader["fact_total"].ToString());
                             fact.caje_id = int.Parse(reader["caje_id"].ToString());
-                            fact_idRepite = false;
-                        }
-                        else
-                            fact_idRepite = true;
-
-                        // Factura Detalle
-                        fact_det = new factura_detalle();
-                        fact_det.fact_id = int.Parse(reader["fd_fact_id"].ToString());
-                        fact_det.produ_id = int.Parse(reader["produ_id"].ToString());
-                        fact_det.fact_det_cant = decimal.Parse(reader["fact_det_cant"].ToString());
-                        fact_det.fact_det_prec = decimal.Parse(reader["fact_det_prec"].ToString());
-                        fact_det.fact_det_total = decimal.Parse(reader["fact_det_total"].ToString());
-
-                        if (fact.fact_id == fact_det.fact_id)
-                            fact.factura_detalle.Add(fact_det);
-
-                        if (fact_idRepite == false)
+                            
                             ListaFacturas.Add(fact);
+                        }
                     }
-                    reader.Close();
+                    foreach (var factura in ListaFacturas)
+                    {
+                        AsignarDetalle(factura);
+                    }
                     return ListaFacturas;
+                }
+
+                void AsignarDetalle(factura factura)
+                {
+                    string sqlFacturaDetalle = "SELECT * FROM factura_detalle " +
+                            "WHERE fact_id = @fact_id";
+                    using (MySqlCommand comando = new MySqlCommand(sqlFacturaDetalle, _contexto))
+                    {
+                        comando.Parameters.AddWithValue("@fact_id", factura.fact_id);
+                        using (MySqlDataReader reader = comando.ExecuteReader())
+                        {
+                            factura_detalle fact_det;
+                            while (reader.Read())
+                            {
+                                fact_det = new factura_detalle();
+                                fact_det.fact_id = int.Parse(reader["fact_id"].ToString());
+                                fact_det.produ_id = int.Parse(reader["produ_id"].ToString());
+                                fact_det.fact_det_cant = decimal.Parse(reader["fact_det_cant"].ToString());
+                                fact_det.fact_det_prec = decimal.Parse(reader["fact_det_prec"].ToString());
+                                fact_det.fact_det_total = decimal.Parse(reader["fact_det_total"].ToString());
+
+                                factura.factura_detalle.Add(fact_det);
+                            }
+                            reader.Close();
+                        }
+                    }
+                }
+            }
+        }
+
+        
+        public void EliminarFactura(factura factura)
+        {
+            MySqlConnection _contexto;
+            using (_contexto = contexto.crearConexion())
+            {
+                string sqlFacturaDetalle = "DELETE FROM factura_detalle WHERE fact_id = @fact_id";
+                using (MySqlCommand comando = new MySqlCommand(sqlFacturaDetalle, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@fact_id", factura.fact_id);
+                    comando.ExecuteNonQuery();
+                }
+
+                string sqlfactura = "DELETE FROM factura WHERE fact_id = @fact_id";
+                using (MySqlCommand comando = new MySqlCommand(sqlfactura, _contexto))
+                {
+                    comando.Parameters.AddWithValue("@fact_id", factura.fact_id);
+                    comando.ExecuteNonQuery();
                 }
             }
         }
@@ -82,31 +105,31 @@ namespace Distribuidora.BL.BL
         {
             var resultado = new resultado();
             resultado.Exitoso = true;
-            factura.caje_id = 0;
 
             MySqlConnection _contexto;
             string sql = "SELECT emp.`emp_id`, caje.`caje_id` " +
                     "FROM empleado emp, cajero caje " +
                     "WHERE emp.`emp_id` = caje.`emp_id` AND emp.`emp_mail` = @mail;";
-            resultadoLogin.cajeroID = 0;
             using (_contexto = contexto.crearConexion())
             {
                 using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
                 {
                     comando.Parameters.AddWithValue("@mail", resultadoLogin.empleadoMail);
-                    MySqlDataReader reader = comando.ExecuteReader();
-                    while (reader.Read())
+                    using (MySqlDataReader reader = comando.ExecuteReader())
                     {
-                        factura.caje_id = int.Parse(reader["caje_id"].ToString());
+                        while (reader.Read())
+                        {
+                            factura.caje_id = int.Parse(reader["caje_id"].ToString());
+                        }
+                        if (!reader.HasRows)
+                        {
+                            resultado.Exitoso = false;
+                            resultado.Mensaje = "El empleado no está autorizado para hacer facturas";
+                        }
                     }
                 }
-                if (factura.caje_id == 0)
-                {
-                    resultado.Exitoso = false;
-                    resultado.Mensaje = "El empleado no está autorizado para hacer facturas";
-                }
+                return resultado;
             }
-            return resultado;
         }
 
         public void CalcularTotalGeneral(factura fact)
@@ -244,6 +267,7 @@ namespace Distribuidora.BL.BL
                 ListaFacturas.Add(facturaGuardada);
             }
             ListaFacturasDetalle.Clear();
+            resultado.Mensaje = "Guardado exitósamente";
             return resultado;
         }
 
@@ -281,6 +305,7 @@ namespace Distribuidora.BL.BL
                     comando.Parameters.AddWithValue("@fact_id", facturaEditada.fact_id);
                     comando.ExecuteNonQuery();
                 }
+
                 sqlFacturaDetalle = "INSERT INTO factura_detalle VALUES" +
                     "(@fact_id, @produ_id, @fact_det_cant, @fact_det_prec, @fact_det_total);";
                 using (MySqlCommand comando = new MySqlCommand(sqlFacturaDetalle, _contexto))
@@ -298,19 +323,39 @@ namespace Distribuidora.BL.BL
                     }
                 }
             }
+            resultado.Mensaje = "Guardado exitósamente";
             return resultado;
         }
 
         public resultado AgregarFactura()
         {
             var nuevaFactura = new factura();
-            nuevaFactura.caje_id = resultadoLogin.cajeroID;
             var resultado = AutorizaCajeroAtiende(nuevaFactura);
 
             if (resultado.Exitoso == false)
                 return resultado;
             else
-                ListaFacturas.Add(nuevaFactura);
+            {
+                MySqlConnection _contexto;
+                using (_contexto = contexto.crearConexion())
+                {
+                    string sql = "SELECT emp.`emp_id`, caje.`caje_id`" +
+                        "FROM empleado emp, cajero caje " +
+                        "WHERE emp.`emp_id` = caje.`emp_id` " +
+                        "AND emp_mail = @mail;";
+                    using (MySqlCommand comando = new MySqlCommand(sql, _contexto))
+                    {
+                        comando.Parameters.AddWithValue("@mail", resultadoLogin.empleadoMail);
+                        MySqlDataReader reader = comando.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            nuevaFactura.caje_id = int.Parse(reader["caje_id"].ToString());
+                        }
+                        reader.Close();
+                    }
+                    ListaFacturas.Add(nuevaFactura);
+                }
+            }
 
             return resultado;
         }
@@ -321,7 +366,7 @@ namespace Distribuidora.BL.BL
             {
                 var nuevoDetalle = new factura_detalle();
                 factura.factura_detalle.Add(nuevoDetalle);
-                ListaFacturasDetalle.Add(nuevoDetalle);
+                //ListaFacturasDetalle.Add(nuevoDetalle);
             }
         }
 

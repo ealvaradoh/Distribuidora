@@ -58,6 +58,14 @@
             this.listaNombreEmpleadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nombreEmpleadoComboBox = new System.Windows.Forms.ComboBox();
             this.panelDatos = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listaCajerosDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             caje_fingLabel = new System.Windows.Forms.Label();
             clien_idLabel = new System.Windows.Forms.Label();
             caje_caja_asigLabel = new System.Windows.Forms.Label();
@@ -70,6 +78,10 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaNombreEmpleadosBindingSource)).BeginInit();
             this.panelDatos.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaCajerosDataGridView)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // caje_fingLabel
@@ -91,19 +103,19 @@
             clien_idLabel.Location = new System.Drawing.Point(4, 12);
             clien_idLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             clien_idLabel.Name = "clien_idLabel";
-            clien_idLabel.Size = new System.Drawing.Size(257, 36);
+            clien_idLabel.Size = new System.Drawing.Size(239, 36);
             clien_idLabel.TabIndex = 16;
-            clien_idLabel.Text = "N° DE CAJERO: ";
+            clien_idLabel.Text = "N° DE CAJERO";
             // 
             // caje_caja_asigLabel
             // 
             caje_caja_asigLabel.AutoSize = true;
             caje_caja_asigLabel.BackColor = System.Drawing.Color.Transparent;
-            caje_caja_asigLabel.Location = new System.Drawing.Point(49, 153);
+            caje_caja_asigLabel.Location = new System.Drawing.Point(24, 148);
             caje_caja_asigLabel.Name = "caje_caja_asigLabel";
-            caje_caja_asigLabel.Size = new System.Drawing.Size(120, 20);
+            caje_caja_asigLabel.Size = new System.Drawing.Size(115, 20);
             caje_caja_asigLabel.TabIndex = 33;
-            caje_caja_asigLabel.Text = "Caja asignada:";
+            caje_caja_asigLabel.Text = "Caja asignada";
             // 
             // nombreEmpleadoLabel
             // 
@@ -135,19 +147,20 @@
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorDeleteItem});
-            this.listaCajerosBindingNavigator.Location = new System.Drawing.Point(0, 442);
+            this.listaCajerosBindingNavigator.Location = new System.Drawing.Point(0, 570);
             this.listaCajerosBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.listaCajerosBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.listaCajerosBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.listaCajerosBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.listaCajerosBindingNavigator.Name = "listaCajerosBindingNavigator";
             this.listaCajerosBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.listaCajerosBindingNavigator.Size = new System.Drawing.Size(746, 27);
+            this.listaCajerosBindingNavigator.Size = new System.Drawing.Size(969, 27);
             this.listaCajerosBindingNavigator.TabIndex = 0;
             this.listaCajerosBindingNavigator.Text = "bindingNavigator1";
             // 
             // listaCajerosBindingSource
             // 
+            this.listaCajerosBindingSource.AllowNew = false;
             this.listaCajerosBindingSource.DataSource = typeof(Distribuidora.BL.Entidades.cajero);
             // 
             // bindingNavigatorCountItem
@@ -230,9 +243,10 @@
             // caje_fingDateTimePicker
             // 
             this.caje_fingDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.listaCajerosBindingSource, "caje_fing", true));
+            this.caje_fingDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.caje_fingDateTimePicker.Location = new System.Drawing.Point(197, 35);
             this.caje_fingDateTimePicker.Name = "caje_fingDateTimePicker";
-            this.caje_fingDateTimePicker.Size = new System.Drawing.Size(452, 27);
+            this.caje_fingDateTimePicker.Size = new System.Drawing.Size(156, 27);
             this.caje_fingDateTimePicker.TabIndex = 4;
             // 
             // bindingNavigator
@@ -256,7 +270,7 @@
             this.bindingNavigator.MovePreviousItem = null;
             this.bindingNavigator.Name = "bindingNavigator";
             this.bindingNavigator.PositionItem = null;
-            this.bindingNavigator.Size = new System.Drawing.Size(746, 47);
+            this.bindingNavigator.Size = new System.Drawing.Size(969, 47);
             this.bindingNavigator.TabIndex = 31;
             this.bindingNavigator.Text = "bindingNavigator1";
             // 
@@ -303,33 +317,35 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.caje_idTextBox);
             this.panel1.Controls.Add(clien_idLabel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
+            this.panel1.Location = new System.Drawing.Point(0, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(746, 67);
+            this.panel1.Size = new System.Drawing.Size(969, 67);
             this.panel1.TabIndex = 33;
             // 
             // caje_idTextBox
             // 
+            this.caje_idTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.caje_idTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.caje_idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaCajerosBindingSource, "caje_id", true));
-            this.caje_idTextBox.Location = new System.Drawing.Point(279, 9);
+            this.caje_idTextBox.Enabled = false;
+            this.caje_idTextBox.Location = new System.Drawing.Point(268, 12);
             this.caje_idTextBox.Name = "caje_idTextBox";
             this.caje_idTextBox.ReadOnly = true;
-            this.caje_idTextBox.Size = new System.Drawing.Size(316, 41);
+            this.caje_idTextBox.Size = new System.Drawing.Size(316, 34);
             this.caje_idTextBox.TabIndex = 36;
             this.caje_idTextBox.Text = "0";
             // 
             // caje_caja_asigTextBox1
             // 
             this.caje_caja_asigTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listaCajerosBindingSource, "caje_caja_asig", true));
-            this.caje_caja_asigTextBox1.Location = new System.Drawing.Point(197, 154);
+            this.caje_caja_asigTextBox1.Location = new System.Drawing.Point(45, 171);
             this.caje_caja_asigTextBox1.Name = "caje_caja_asigTextBox1";
             this.caje_caja_asigTextBox1.Size = new System.Drawing.Size(74, 27);
             this.caje_caja_asigTextBox1.TabIndex = 34;
@@ -364,18 +380,124 @@
             this.panelDatos.Controls.Add(this.caje_caja_asigTextBox1);
             this.panelDatos.Enabled = false;
             this.panelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelDatos.Location = new System.Drawing.Point(27, 151);
+            this.panelDatos.Location = new System.Drawing.Point(6, 6);
             this.panelDatos.Name = "panelDatos";
-            this.panelDatos.Size = new System.Drawing.Size(688, 223);
+            this.panelDatos.Size = new System.Drawing.Size(949, 221);
             this.panelDatos.TabIndex = 36;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 114);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(969, 456);
+            this.tabControl1.TabIndex = 37;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.AutoScroll = true;
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.listaCajerosDataGridView);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(961, 427);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Lista de cajeros";
+            // 
+            // listaCajerosDataGridView
+            // 
+            this.listaCajerosDataGridView.AllowUserToAddRows = false;
+            this.listaCajerosDataGridView.AllowUserToDeleteRows = false;
+            this.listaCajerosDataGridView.AllowUserToOrderColumns = true;
+            this.listaCajerosDataGridView.AutoGenerateColumns = false;
+            this.listaCajerosDataGridView.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listaCajerosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaCajerosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.listaCajerosDataGridView.DataSource = this.listaCajerosBindingSource;
+            this.listaCajerosDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaCajerosDataGridView.GridColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listaCajerosDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.listaCajerosDataGridView.Name = "listaCajerosDataGridView";
+            this.listaCajerosDataGridView.ReadOnly = true;
+            this.listaCajerosDataGridView.RowHeadersWidth = 51;
+            this.listaCajerosDataGridView.RowTemplate.Height = 24;
+            this.listaCajerosDataGridView.Size = new System.Drawing.Size(955, 421);
+            this.listaCajerosDataGridView.TabIndex = 0;
+            this.listaCajerosDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaCajerosDataGridView_CellDoubleClick);
+            this.listaCajerosDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.listaCajerosDataGridView_DataError);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "caje_id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "N° Cajero";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "caje_caja_asig";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Caja asignada";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "caje_fing";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Fecha ingreso";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 131;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "emp_id";
+            this.dataGridViewTextBoxColumn4.DataSource = this.listaNombreEmpleadosBindingSource;
+            this.dataGridViewTextBoxColumn4.DisplayMember = "nombreEmpleado";
+            this.dataGridViewTextBoxColumn4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Empleado";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn4.ValueMember = "emp_id";
+            this.dataGridViewTextBoxColumn4.Width = 104;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.panelDatos);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(961, 427);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Cajero";
             // 
             // frm_cajeros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(746, 469);
-            this.Controls.Add(this.panelDatos);
+            this.ClientSize = new System.Drawing.Size(969, 597);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bindingNavigator);
             this.Controls.Add(this.listaCajerosBindingNavigator);
@@ -393,6 +515,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.listaNombreEmpleadosBindingSource)).EndInit();
             this.panelDatos.ResumeLayout(false);
             this.panelDatos.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listaCajerosDataGridView)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,5 +550,13 @@
         private System.Windows.Forms.ComboBox nombreEmpleadoComboBox;
         private System.Windows.Forms.TextBox caje_idTextBox;
         private System.Windows.Forms.Panel panelDatos;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView listaCajerosDataGridView;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn4;
     }
 }

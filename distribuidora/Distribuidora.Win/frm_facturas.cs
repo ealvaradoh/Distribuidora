@@ -25,32 +25,35 @@ namespace Distribuidora.Win
             _clientesBL = new clientesBL();
             _cajerosBL = new cajerosBL();
             _productosBL = new productosBL();
-
             InitializeComponent();
             CargarDatos();
-            
             Permisos();
         }
 
         public void CargarDatos()
         {
-            Application.DoEvents();
             listaFacturasBindingSource.DataSource = _facturasBL.ObtenerFacturas();
             listaClientesBindingSource.DataSource = _clientesBL.ObtenerClientes();
             listaProductosBindingSource.DataSource = _productosBL.ObtenerProductos();
             listaNombreCajerosBindingSource.DataSource = _cajerosBL.ObtenerNombreCajeros();
         }
 
-        public void Permisos()
+        public void LimpiarDatos()
         {
-            if (resultadoLogin.departamentoControlTotal == true)
-            {
-                bindingNavigatorDelete.Enabled = true;
-            }
-            else if (resultadoLogin.departamentoControlTotal == false)
-            {
-                bindingNavigatorDelete.Enabled = false;
-            }
+            listaFacturasBindingSource.Clear();
+            listaClientesBindingSource.Clear();
+            listaProductosBindingSource.Clear();
+            listaNombreCajerosBindingSource.Clear();
+        }
+
+        public void RecargarDatos()
+        {
+            int posicion = listaFacturasBindingSource.Position;
+            LimpiarDatos();
+            CargarDatos();
+            listaFacturasBindingSource.ResetBindings(true);
+            listaFacturasBindingSource.Position = posicion;
+            EstadoBotones(true);
         }
 
         public void EstadoBotones(bool estado)
@@ -63,20 +66,24 @@ namespace Distribuidora.Win
             bindingNavigatorSaveItem.Enabled = !estado;
         }
 
+        public void Permisos()
+        {
+            bindingNavigatorDelete.Enabled = 
+                resultadoLogin.departamentoControlTotal;
+        }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             esNuevo = true;
-            var factura = (factura)listaFacturasBindingSource.Current;
-
             var resultado = _facturasBL.AgregarFactura();
             if (resultado.Exitoso == true)
             {
                 listaFacturasBindingSource.MoveLast();
                 EstadoBotones(false);
+                this.tabControl1.SelectedTab = tabPage2;
             }
             else
-                MessageBox.Show(resultado.Mensaje, "Alerta");
+                MessageBox.Show(resultado.Mensaje, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void bindingNavigatorCancelItem_Click(object sender, EventArgs e)
@@ -89,11 +96,7 @@ namespace Distribuidora.Win
             }
             else if (esNuevo == false)
             {
-                var facturacancelada = (factura)listaFacturasBindingSource.Current;
-                listaFacturasBindingSource.Clear();
-                listaFacturasBindingSource.DataSource = _facturasBL.ObtenerFacturas();
-                listaFacturasBindingSource.Position = facturacancelada.fact_id - 1;
-                EstadoBotones(true);
+                RecargarDatos();
             }
         }
 
@@ -112,15 +115,11 @@ namespace Distribuidora.Win
                 var resultado = _facturasBL.GuardarFactura(facturaGuardada);
                 if (resultado.Exitoso == true)
                 {
-                    listaFacturasBindingSource.Clear();
-
-                    listaFacturasBindingSource.ResetBindings(false);
-                    listaFacturasBindingSource.DataSource = _facturasBL.ObtenerFacturas();
-                    listaFacturasBindingSource.MoveLast();
-                    EstadoBotones(true);
+                    RecargarDatos();
+                    MessageBox.Show(resultado.Mensaje, "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(resultado.Mensaje, "Alerta");
+                    MessageBox.Show(resultado.Mensaje, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             else if (esNuevo == false)
@@ -129,14 +128,11 @@ namespace Distribuidora.Win
                 var resultado = _facturasBL.EditarFactura(facturaEditada);
                 if (resultado.Exitoso == true)
                 {
-                    listaFacturasBindingSource.Clear();
-                    listaFacturasBindingSource.ResetBindings(false);
-                    listaFacturasBindingSource.DataSource = _facturasBL.ObtenerFacturas();
-                    listaFacturasBindingSource.Position = facturaEditada.fact_id - 1;
-                    EstadoBotones(true);
+                    RecargarDatos();
+                    MessageBox.Show(resultado.Mensaje, "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(resultado.Mensaje, "Alerta");
+                    MessageBox.Show(resultado.Mensaje, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -149,62 +145,23 @@ namespace Distribuidora.Win
             {
                 esNuevo = false;
                 EstadoBotones(false);
+                this.tabControl1.SelectedTab = tabPage2;
             }
             else
-                MessageBox.Show(resultado.Mensaje, "Alerta");
-            
+                MessageBox.Show(resultado.Mensaje, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void ListaFacturaDetalleDelete_Click(object sender, EventArgs e)
         {
-            var factura = (factura)listaFacturasBindingSource.Current;
-            var facturaDetalle = (factura_detalle)factura_detalleBindingSource.Current;
-
-            _facturasBL.RemoverFacturaDetalle(factura, facturaDetalle);
-            CalcularTotales();
-        }
-
-        private void fact_subtTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                fact_subtTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_subtTextBox.Text));
-            }
-            catch (Exception error)
-            {
-
-            }
-
-        }
-
-        private void fact_isvTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                fact_isvTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_isvTextBox.Text));
-            }
-            catch (Exception error)
-            {
-
-            }
-
-        }
-
-        private void fact_totalTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                fact_totalTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_totalTextBox.Text));
-            }
-            catch (Exception error)
-            {
-
-            }
+            
         }
 
         private void bindingNavigatorDelete_Click(object sender, EventArgs e)
         {
-
+            var facturaEliminada = (factura)listaFacturasBindingSource.Current;
+            _facturasBL.EliminarFactura(facturaEliminada);
+            RecargarDatos();
         }
 
         public void CalcularTotales()
@@ -222,6 +179,65 @@ namespace Distribuidora.Win
         private void factura_detalleDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             CalcularTotales();
+        }
+
+        private void factura_detalleDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
+        }
+
+        private void listaFacturasDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.tabControl1.SelectedTab = tabPage2;
+        }
+
+        private void bindingNavigatorAddNewItem2_Click(object sender, EventArgs e)
+        {
+            var factura = (factura)listaFacturasBindingSource.Current;
+            _facturasBL.AgregarFacturaDetalle(factura);
+            factura_detalleDataGridView.Focus();
+        }
+
+        private void bindingNavigatorDeleteItem1_Click(object sender, EventArgs e)
+        {
+            var factura = (factura)listaFacturasBindingSource.Current;
+            var factura_detalle = (factura_detalle)factura_detalleBindingSource.Current;
+
+            _facturasBL.RemoverFacturaDetalle(factura, factura_detalle);
+            CalcularTotales();
+        }
+
+        private void fact_subtTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                fact_subtTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_subtTextBox.Text));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void fact_isvTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                fact_isvTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_isvTextBox.Text));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void fact_totalTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                fact_totalTextBox.Text = String.Format("{0:N2}", decimal.Parse(fact_totalTextBox.Text));
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

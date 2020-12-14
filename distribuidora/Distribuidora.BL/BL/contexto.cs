@@ -15,13 +15,17 @@ namespace Distribuidora.BL.BL
         {
             string conxStr = string.Format(
                 "Server = {0}; Database = {1}; Uid = {2}; Pwd = {3};", server, database, Uid, Pwd);
-
-            if(conexion.State.ToString() == "Closed")
-            {
-                conexion = new MySqlConnection(conxStr);
-                conexion.Open();
-            }
+            conexion = new MySqlConnection(conxStr);
+            conexion.Open();
             return conexion;
+        }
+
+        public void ConexionInicial()
+        {
+            using (crearConexion())
+            {
+
+            }
         }
     }
 }

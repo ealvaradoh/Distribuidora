@@ -14,7 +14,6 @@ namespace Distribuidora.Win
 {
     public partial class frm_menu : Form
     {
-        public static bool DepartamentoControlTotal;
         public frm_menu()
         {
             InitializeComponent();
@@ -27,13 +26,12 @@ namespace Distribuidora.Win
             frmLogin.ShowDialog();
         }
 
-        
         private void frm_menu_Load(object sender, EventArgs e)
         {
             Login();
             statusServidor.Text = "Servidor: " + contexto.server;
             StatusBD.Text = "Base de Datos: " + contexto.database;
-            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre + " - " + resultadoLogin.departamentoNombre;
+            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre + " [" + resultadoLogin.departamentoNombre + "]";
         }
 
         public frm_usuarios frm_usuarios;
@@ -60,7 +58,7 @@ namespace Distribuidora.Win
             Login();
             statusServidor.Text = "Servidor: " + contexto.server;
             StatusBD.Text = "BD: " + contexto.database;
-            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre + " - " + resultadoLogin.departamentoNombre;
+            StatusUsuario.Text = "Usuario: " + resultadoLogin.empleadoNombre + " [" + resultadoLogin.departamentoNombre + "]";
         }
 
         public frm_clientes frm_clientes;
@@ -193,6 +191,24 @@ namespace Distribuidora.Win
         private void toolStripOrdenes_Click(object sender, EventArgs e)
         {
             AbrirOrdenes();
+        }
+
+        private void frm_menu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var dlgRes = MessageBox.Show("¿Desea cerrar el sistema?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dlgRes == DialogResult.Yes)
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void frm_menu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

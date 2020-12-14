@@ -13,5 +13,10 @@ namespace Distribuidora.BL.Entidades
         public DateTime caje_fing { get; set; }
         public int emp_id { get; set; }
         public empleado empleado { get; set; }
+
+        public cajero()
+        {
+            caje_fing = DateTime.Now;
+        }
     }
 }

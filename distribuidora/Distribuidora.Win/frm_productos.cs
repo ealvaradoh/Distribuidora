@@ -29,11 +29,27 @@ namespace Distribuidora.Win
             listaProductosBindingSource.DataSource = _productosBL.ObtenerProductos();
         }
 
+        public void LimpiarDatos()
+        {
+            listaProductosBindingSource.Clear();
+        }
+
+        public void RecargarDatos()
+        {
+            int posicion = listaProductosBindingSource.Position;
+            LimpiarDatos();
+            CargarDatos();
+            listaProductosBindingSource.ResetBindings(true);
+            listaProductosBindingSource.Position = posicion;
+            EstadoBotones(true);
+        }
+
         public void EstadoBotones(bool estado)
         {
             listaProductosBindingNavigator.Enabled = estado;
             bindingNavigatorAddNewItem.Enabled = estado;
             bindingNavigatorCancelItem.Enabled = !estado;
+            bindingNavigatorSaveItem.Enabled = !estado;
             panelDatos.Enabled = !estado;
         }
 
@@ -46,7 +62,7 @@ namespace Distribuidora.Win
             else if (resultadoLogin.departamentoControlTotal == false)
             {
                 bindingNavigatorDeleteItem.Enabled = false;
-                bindingNavigatorEditItem.Visible = false;
+                bindingNavigatorEditItem.Enabled = false;
             }
         }
 
@@ -56,20 +72,13 @@ namespace Distribuidora.Win
             {
                 var productoGuardado = (producto)listaProductosBindingSource.Current;
                 _productosBL.GuardarProducto(productoGuardado);
-                listaProductosBindingSource.RemoveCurrent();
-
-                listaProductosBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
             else if (esNuevo == false)
             {
                 var productoEditado = (producto)listaProductosBindingSource.Current;
                 _productosBL.EditarProducto(productoEditado);
-
-                listaProductosBindingSource.ResetBindings(false);
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
+                RecargarDatos();
             }
         }
 
@@ -78,12 +87,18 @@ namespace Distribuidora.Win
             esNuevo = false;
             EstadoBotones(false);
             bindingNavigatorSaveItem.Enabled = true;
+            tabControl1.SelectedTab = tabPage2;
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            var productoEliminado = (producto)listaProductosBindingSource.Current;
-            _productosBL.EliminarProducto(productoEliminado);
+            var dlgRes = MessageBox.Show("¿Está seguro que desea eliminar el registro seleccionado ?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (dlgRes == DialogResult.Yes)
+            {
+                var productoEliminado = (producto)listaProductosBindingSource.Current;
+                _productosBL.EliminarProducto(productoEliminado);
+            }
         }
 
         private void listaProductosBindingNavigatorCancel_Click(object sender, EventArgs e)
@@ -93,13 +108,10 @@ namespace Distribuidora.Win
                 var productoCancelado = (producto)listaProductosBindingSource.Current;
                 _productosBL.CancelarProducto(productoCancelado);
                 EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
             }
             else if (esNuevo == false)
             {
-                EstadoBotones(true);
-                bindingNavigatorSaveItem.Enabled = false;
-                listaProductosBindingSource.CancelEdit();
+                RecargarDatos();
             }
         }
 
@@ -109,7 +121,12 @@ namespace Distribuidora.Win
             _productosBL.AgregarProducto();
             listaProductosBindingSource.MoveLast();
             EstadoBotones(false);
-            bindingNavigatorSaveItem.Enabled = true;
+            tabControl1.SelectedTab = tabPage2;
+        }
+
+        private void listaProductosDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tabControl1.SelectedTab = tabPage2;
         }
     }
 }

@@ -52,41 +52,26 @@ namespace Distribuidora.Win
             Application.Exit();
         }
 
-        public static string server, database, user, pwd;
         public static string usuario, contra;
         private void btnConectar_Click(object sender, EventArgs e)
         {
-            // Datos MySQL
-            server = txtServer.Text;
-            database = txtDatabase.Text;
-            user = txtUser.Text;
-            pwd = txtPwd.Text;
-
             // Datos usuario que inicia sesión
             usuario = txtUsuario.Text;
             contra = txtContraseña.Text;
 
-            btnConectar.Enabled = false;
-            btnConectar.Text = "Conectando...";
-            Application.DoEvents();
-
-            contexto.server = server;
-            contexto.database = database;
-            contexto.Uid = user;
-            contexto.Pwd = pwd;
-
             var resultadoLogin = _empleadoBL.AutorizarEmpleado(usuario, contra);
             if (resultadoLogin.Exitoso == true)
             {
+                MenuPrincipal.Enabled = true;
                 this.Close();
             }
             else
             {
-                MessageBox.Show(resultadoLogin.Mensaje);
+                MessageBox.Show(resultadoLogin.Mensaje, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            btnConectar.Enabled = true;
-            btnConectar.Text = "Conectar";
+            btnIngresar.Enabled = true;
+            btnIngresar.Text = "Conectar";
         }
     }
 }
